@@ -95,6 +95,15 @@ def add_fig_cap(doc, text):
     r.bold = True
     return p
 
+def add_fig_image(doc, img_path, width_in=5.8):
+    if os.path.exists(img_path):
+        p = doc.add_paragraph()
+        apply_p_format(p, align=WD_PARAGRAPH_ALIGNMENT.CENTER, line_spacing=1.0, space_after=Pt(4), space_before=Pt(8))
+        r = p.add_run()
+        r.add_picture(img_path, width=Inches(width_in))
+        return p
+    return None
+
 def style_table(t, col_widths=None):
     t.alignment = WD_TABLE_ALIGNMENT.CENTER
     border_kwargs = {
@@ -270,6 +279,7 @@ def build_master_docx():
 
     add_p(doc, f"Catatan Informasi Operasional: Kedai beroperasi setiap hari kerja pukul {cfg['marketing'].get('opening_hours', '07.30 - 13.30 WIB')} melayani santap di tempat (Dine-In), bawa pulang (Takeaway), pemesanan WhatsApp ({cfg['marketing'].get('phone_wa', '0859 3984 7536')}), serta terintegrasi penuh pada platform digital {cfg['marketing'].get('delivery_services', 'GoFood & GrabFood')}.")
     add_p(doc, f"\nBerikut merupakan gambaran visual dari produk {cfg['business_name']}:")
+    add_fig_image(doc, os.path.join(data_dir, "produk_bakmi_mimu.png"), width_in=5.8)
     add_fig_cap(doc, f"Gambar 1.1 Gambaran Produk {cfg['business_name']}")
 
     # -----------------------------------------------------------------
@@ -293,7 +303,8 @@ def build_master_docx():
 
     add_heading(doc, "2.3 Aspek Lokasi", level=2)
     add_p(doc, f"{cfg['business_name']} berlokasi di titik yang sangat strategis: {cfg['marketing']['location']}. Lokasi ini berada persis di depan gerbang utama institusi pendidikan dan perumahan padat penduduk yang menjamin tingginya lalu lintas pengunjung alami (foot traffic), akses parkir yang memadai, serta visibilitas gerai yang sangat optimal.")
-    add_fig_cap(doc, f"Gambar 2.1 Lokasi {cfg['business_name']}")
+    add_fig_image(doc, os.path.join(data_dir, "peta_lokasi_bakmi_mimu.png"), width_in=5.8)
+    add_fig_cap(doc, f"Gambar 2.1 Peta Lokasi Kedai {cfg['business_name']}")
 
     add_heading(doc, "2.4 Target Pemasaran", level=2)
     add_p(doc, f"Target pemasaran utama dari {cfg['business_name']} difokuskan kepada para orang tua murid dan guru sekolah Kalam Kudus saat jam antar-jemput, warga perumahan Duri Kosambi dan Semanan yang mencari sarapan dan makan siang keluarga, serta komunitas pecinta bakmi otentik di area Jakarta Barat dengan kisaran harga yang kompetitif ({cfg['marketing']['price_range']}).")
@@ -318,6 +329,7 @@ def build_master_docx():
     doc.add_page_break()
     add_heading(doc, "BAB III\nASPEK MANAJEMEN", level=1)
     add_p(doc, "Struktur Organisasi")
+    add_fig_image(doc, os.path.join(data_dir, "struktur_organisasi_bakmi_mimu.png"), width_in=5.8)
     add_fig_cap(doc, f"Gambar 3.1 Struktur Organisasi {cfg['business_name']}")
     add_p(doc, f"Struktur organisasi {cfg['business_name']} dirancang ramping, fungsional, dan efektif dengan total 3 orang tenaga kerja inti. Total alokasi anggaran gaji karyawan ditetapkan pada kisaran sekitar Rp 10.000.000 per bulan (Rp 120.000.000 per tahun) tanpa sistem insentif penjualan. Berikut rincian uraian pekerjaan (Job Description) untuk setiap posisi:")
     for role in cfg['management']['organization_roles']:
@@ -358,11 +370,7 @@ def build_master_docx():
 
     add_heading(doc, "4.2 Layout Usaha", level=2)
     layout_path = os.path.join(data_dir, "denah_tata_letak_ruko.png")
-    if os.path.exists(layout_path):
-        p_img = doc.add_paragraph()
-        apply_p_format(p_img, align=WD_PARAGRAPH_ALIGNMENT.CENTER, line_spacing=1.0, space_after=Pt(4), space_before=Pt(8))
-        r_img = p_img.add_run()
-        r_img.add_picture(layout_path, width=Inches(6.0))
+    add_fig_image(doc, layout_path, width_in=5.8)
     add_fig_cap(doc, f"Gambar 4.1 Denah Tata Letak Kedai Ruko 1 Lantai {cfg['business_name']}")
     add_p(doc, f"Tata letak (layout) ruangan {cfg['business_name']} dirancang dengan prinsip ergonomi alur kerja (workflow ergonomics) dan efisiensi ruang ruko satu lantai berdimensi memanjang. Penataan ruang menerapkan sistem arus satu arah (straight-line flow) dari akses masuk depan menuju ruang santap utama dan area servis belakang, guna meminimalisasi tabrakan arus antara pengunjung dan staf operasional:")
     add_p(doc, "1. Area Depan & Teras (Dapur Semi-Terbuka / Open Kitchen & Dine-In Luar): Terletak di bagian depan sebelum rolling door sebagai titik kontak pertama pelanggan. Dilengkapi etalase kaca gerobak utama untuk meracik mie, stasiun kompor gas perebusan bertemperatur tinggi, meja kuah kaldu, dispenser tempat minum, kulkas penyimpanan sayuran dan bahan segar harian, serta meja persiapan sayur dan pangsit. Pada sisi seberang teras disediakan 1 meja makan dengan 4 kursi santap luar (juga difungsikan sebagai waiting area pesanan take-away), 1 unit freezer pembeku stok daging, serta rak perlengkapan sanitasi dan kipas angin teras.")
@@ -372,6 +380,7 @@ def build_master_docx():
     add_p(doc, f"Total kapasitas tempat duduk pengunjung di seluruh area kedai {cfg['business_name']} mencapai 23 kursi aktif (4 kursi di teras depan dan 19 kursi di ruang makan dalam), menjamin pemenuhan target perputaran meja (table turnover rate) harian secara optimal.")
 
     add_heading(doc, "4.3 Network Planning", level=2)
+    add_fig_image(doc, os.path.join(data_dir, "network_planning_bakmi_mimu.png"), width_in=6.0)
     add_fig_cap(doc, f"Gambar 4.2 Network Planning {cfg['business_name']}")
     add_p(doc, "Keterangan urutan aktivitas pra-operasional (Critical Path Activity A s/d L):")
     steps = [
@@ -843,8 +852,12 @@ def build_master_docx():
     add_p(doc, "2. Mengoptimalkan saluran pemasaran digital ojek online (GoFood, GrabFood, ShopeeFood) serta program promosi jam makan siang.", indent=1)
     add_p(doc, "3. Menjalin kontrak pasokan jangka panjang dengan distributor daging segar dan tepung terigu untuk mengunci harga bahan baku dan menghindari fluktuasi harga pasar.", indent=1)
 
+    out_docx_2 = os.path.join(base, "naskah utama", "Laporan_SKB_Bakmi_Mimu_Carina_Sayang.docx")
     doc.save(out_docx)
-    print(f"[SUCCESS] Laporan Master SKB Bakmi Mimu berhasil dibuat di: {out_docx}")
+    doc.save(out_docx_2)
+    print(f"[SUCCESS] Laporan Master SKB Bakmi Mimu berhasil dibuat:")
+    print(f"  - {out_docx}")
+    print(f"  - {out_docx_2}")
 
 if __name__ == "__main__":
     build_master_docx()

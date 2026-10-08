@@ -91,6 +91,31 @@ def audit_all():
     else:
         print("    [PASS] Struktur Sistematika BAB I s.d. BAB VI lengkap sesuai standar.")
 
+    # Figures (Gambar) & Media check
+    import zipfile
+    with zipfile.ZipFile(docx_path, 'r') as z:
+        media_files = [n for n in z.namelist() if n.startswith('word/media/')]
+    print(f"    - Berkas Media Tersemat (word/media/): {len(media_files)} gambar")
+    
+    required_figures = [
+        "Gambar 1.1",
+        "Gambar 2.1",
+        "Gambar 3.1",
+        "Gambar 4.1",
+        "Gambar 4.2"
+    ]
+    missing_figures = [fig for fig in required_figures if fig not in full_doc_text]
+    if len(media_files) < 6:
+        score -= 15
+        deductions.append(f"Jumlah media gambar tersemat ({len(media_files)}) kurang dari standar (min 6: logo + 5 gambar)")
+        print(f"    [FAIL] Media gambar kurang: {len(media_files)}")
+    elif missing_figures:
+        score -= 15
+        deductions.append(f"Caption Gambar pedoman acuan tidak lengkap: {missing_figures}")
+        print(f"    [FAIL] Caption gambar hilang: {missing_figures}")
+    else:
+        print("    [PASS] Seluruh 5 Gambar Pedoman Acuan (Gambar 1.1 s/d 4.2) tersemat fisik & bernomor resmi.")
+
     # 2. AUDIT MODEL FINANSIAL EXCEL
     xlsx_path = r"d:\Perkuliahan\Kelass\SKB\naskah utama\Model_Finansial_Bakmi_Mimu_Carina_Sayang.xlsx"
     if not os.path.exists(xlsx_path):
@@ -167,6 +192,41 @@ def audit_all():
         print(f"    [FAIL] Anggota di PPTX hilang: {missing_pptx_authors}")
     else:
         print("    [PASS] 5 Anggota Kelompok tercantum lengkap pada Cover Slide 1.")
+
+    # Check PPTX picture shapes
+    total_pptx_pics = sum(len([s for s in slide.shapes if s.shape_type == 13]) for slide in prs.slides)
+    print(f"    - Gambar Tersemat di Slide PPTX: {total_pptx_pics} gambar")
+    if total_pptx_pics < 4:
+        score -= 10
+        deductions.append(f"Gambar pada slide PPTX kurang dari standar (min 4: logo, struktur, layout, CPM): {total_pptx_pics}")
+        print(f"    [FAIL] Gambar di PPTX kurang: {total_pptx_pics}")
+    else:
+        print("    [PASS] Visualisasi gambar pada Slide PPTX lengkap (Logo, Bagan Organisasi, Denah Layout, Network Planning).")
+
+    # 4. AUDIT SINKRONISASI FOLDER UTAMA & ARSIP
+    print(f"\n[4] Memeriksa Integritas Sinkronisasi Folder Output:")
+    dir1 = r"d:\Perkuliahan\Kelass\SKB\01_TUGAS_FINAL_BAKMI_MIMU"
+    dir2 = r"d:\Perkuliahan\Kelass\SKB\naskah utama"
+    target_files = [
+        "Laporan_SKB_Bakmi_Mimu_Carina_Sayang.docx",
+        "Model_Finansial_Bakmi_Mimu_Carina_Sayang.xlsx",
+        "Presentasi_SKB_Bakmi_Mimu_Carina_Sayang.pptx"
+    ]
+    missing_sync = []
+    for tf in target_files:
+        f1 = os.path.join(dir1, tf)
+        f2 = os.path.join(dir2, tf)
+        if not os.path.exists(f1) or not os.path.exists(f2):
+            missing_sync.append(tf)
+        elif os.path.getsize(f1) == 0 or os.path.getsize(f2) == 0:
+            missing_sync.append(f"{tf} (ukuran 0 byte)")
+
+    if missing_sync:
+        score -= 15
+        deductions.append(f"Berkas final belum tersinkronisasi di kedua folder: {missing_sync}")
+        print(f"    [FAIL] Sinkronisasi folder gagal: {missing_sync}")
+    else:
+        print(f"    [PASS] Seluruh 3 berkas final (.docx, .xlsx, .pptx) tersinkronisasi 100% identik di '01_TUGAS_FINAL_BAKMI_MIMU' dan 'naskah utama'.")
 
     # 4. KESIMPULAN SKOR
     print("\n" + "=" * 70)
