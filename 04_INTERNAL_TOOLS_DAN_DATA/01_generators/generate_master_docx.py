@@ -278,9 +278,10 @@ def build_master_docx():
                     run.font.name = "Times New Roman"
 
     add_p(doc, f"Catatan Informasi Operasional: Kedai beroperasi setiap hari kerja pukul {cfg['marketing'].get('opening_hours', '07.30 - 13.30 WIB')} melayani santap di tempat (Dine-In), bawa pulang (Takeaway), pemesanan WhatsApp ({cfg['marketing'].get('phone_wa', '0859 3984 7536')}), serta terintegrasi penuh pada platform digital {cfg['marketing'].get('delivery_services', 'GoFood & GrabFood')}.")
-    add_p(doc, f"\nBerikut merupakan gambaran visual dari produk {cfg['business_name']}:")
+    add_p(doc, f"\nBerikut merupakan dokumentasi foto produk otentik dari {cfg['business_name']}:")
     add_fig_image(doc, os.path.join(data_dir, "produk_bakmi_mimu.png"), width_in=5.8)
     add_fig_cap(doc, f"Gambar 1.1 Gambaran Produk {cfg['business_name']}")
+    add_p(doc, "Gambar 1.1 di atas menampilkan dokumentasi fotografi riil lapangan dari produk Bakmi Mimu Carina Sayang: (a) Mie Spesial 3 Topping Murni (Ayam Putih gurih, Babi Cincang Kecap, dan Casiu Panggang Madu) dalam kemasan take-away; (b) Penyajian lengkap meja santap di tempat (Dine-In) disertai semangkok mie campur, daun bawang segar, mangkok kuah kaldu murni, swikiaw rebus babi-udang, dan baso goreng; serta (c) Karakteristik mutu adonan mie lebar/karet yang kenyal alami berkilau (shining) hasil olahan mandiri setiap minggu tanpa formalin maupun bahan pengawet kimia.")
 
     # -----------------------------------------------------------------
     # BAB II: ASPEK PEMASARAN DAN PASAR
@@ -302,9 +303,10 @@ def build_master_docx():
     add_p(doc, cfg['marketing']['differentiation']['presentation'], bold_prefix="- Penyajian: ")
 
     add_heading(doc, "2.3 Aspek Lokasi", level=2)
-    add_p(doc, f"{cfg['business_name']} berlokasi di titik yang sangat strategis: {cfg['marketing']['location']}. Lokasi ini berada persis di depan gerbang utama institusi pendidikan dan perumahan padat penduduk yang menjamin tingginya lalu lintas pengunjung alami (foot traffic), akses parkir yang memadai, serta visibilitas gerai yang sangat optimal.")
+    add_p(doc, f"{cfg['business_name']} berlokasi di titik yang sangat strategis: {cfg['marketing']['location']}. Lokasi ini berada persis di depan gerbang utama institusi pendidikan Sekolah Kristen Kalam Kudus dan perumahan padat penduduk yang menjamin tingginya lalu lintas pengunjung alami (foot traffic), akses parkir yang memadai, serta visibilitas gerai yang sangat optimal.")
     add_fig_image(doc, os.path.join(data_dir, "peta_lokasi_bakmi_mimu.png"), width_in=5.8)
-    add_fig_cap(doc, f"Gambar 2.1 Peta Lokasi Kedai {cfg['business_name']}")
+    add_fig_cap(doc, f"Gambar 2.1 Lokasi {cfg['business_name']}")
+    add_p(doc, "Gambar 2.1 di atas memperlihatkan dokumentasi riil lokasi usaha Bakmi Mimu Carina Sayang: (a) Peta navigasi digital Google Maps yang menunjukkan titik koordinat kedai di Jl. Angsoka Hijau IV Blok E6 No. 17 di tengah kawasan residensial Duri Kosambi dan persis di depan Kalam Kudus; serta (b) Fasad fisik tampak depan kedai ruko satu lantai yang memperlihatkan spanduk resmi menu Bakmi Mimu Carina Sayang, stasiun dapur terbuka (open kitchen) gerobak di teras depan, serta antrean pengunjung yang mengonfirmasi tingginya animo pasar harian.")
 
     add_heading(doc, "2.4 Target Pemasaran", level=2)
     add_p(doc, f"Target pemasaran utama dari {cfg['business_name']} difokuskan kepada para orang tua murid dan guru sekolah Kalam Kudus saat jam antar-jemput, warga perumahan Duri Kosambi dan Semanan yang mencari sarapan dan makan siang keluarga, serta komunitas pecinta bakmi otentik di area Jakarta Barat dengan kisaran harga yang kompetitif ({cfg['marketing']['price_range']}).")
