@@ -148,11 +148,11 @@ def audit_all():
     height_in = prs.slide_height.inches
     print(f"    - Dimensi Slide: {width_in:.2f} x {height_in:.2f} Inci (Aspect Ratio: 16:9)")
 
-    if slide_count < 20:
+    if slide_count < 12:
         score -= 15
-        deductions.append(f"Jumlah slide ({slide_count}) kurang dari target eksekutif (22 slide)")
+        deductions.append(f"Jumlah slide ({slide_count}) kurang dari target eksekutif padat (minimal 12 slide)")
     else:
-        print("    [PASS] Jumlah slide lengkap mencakup seluruh aspek bisnis (22 slide).")
+        print(f"    [PASS] Jumlah slide lengkap & padat mencakup seluruh 6 BAB bisnis ({slide_count} slide).")
 
     # Check Slide 1 Cover text
     s1_text = ""

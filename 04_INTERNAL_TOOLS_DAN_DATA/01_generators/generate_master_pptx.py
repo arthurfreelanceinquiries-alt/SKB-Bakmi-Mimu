@@ -44,6 +44,8 @@ def create_presentation():
     BORDER_NAVY = RGBColor(147, 197, 253)    # Soft Blue Border (#93C5FD)
     WHITE = RGBColor(255, 255, 255)
 
+    TOTAL_SLIDES = 13
+
     def set_slide_background(slide):
         bg = slide.shapes.add_shape(MSO_SHAPE.RECTANGLE, 0, 0, prs.slide_width, prs.slide_height)
         bg.fill.solid()
@@ -85,7 +87,7 @@ def create_presentation():
         tf_sb.margin_left = tf_sb.margin_right = tf_sb.margin_top = tf_sb.margin_bottom = 0
         p_sb = tf_sb.paragraphs[0]
         p_sb.alignment = PP_ALIGN.CENTER
-        p_sb.text = f"SLIDE {slide_idx:02d} / 22"
+        p_sb.text = f"SLIDE {slide_idx:02d} / {TOTAL_SLIDES:02d}"
         p_sb.font.name = "Times New Roman"
         p_sb.font.size = Pt(10)
         p_sb.font.bold = True
@@ -129,10 +131,10 @@ def create_presentation():
         
         tf = card.text_frame
         tf.word_wrap = True
-        tf.margin_left = Inches(0.18)
-        tf.margin_right = Inches(0.18)
-        tf.margin_top = Inches(0.16)
-        tf.margin_bottom = Inches(0.16)
+        tf.margin_left = Inches(0.16)
+        tf.margin_right = Inches(0.16)
+        tf.margin_top = Inches(0.14)
+        tf.margin_bottom = Inches(0.14)
         return card, tf
 
     def style_table_cell(cell, text, font_size=11, bold=False, color=TEXT_MAIN, align=PP_ALIGN.LEFT, bg_color=None):
@@ -162,11 +164,9 @@ def create_presentation():
     # Master Frame Box
     card1, tf1 = add_card(s1, Inches(0.8), Inches(0.5), Inches(11.733), Inches(6.5), bg_color=CARD_BG, border_color=BORDER_NAVY, border_width=1.5)
 
-    # UKRIDA Logo at top center
     if os.path.exists(logo_path):
         s1.shapes.add_picture(logo_path, Inches(6.066), Inches(0.70), Inches(1.2), Inches(1.2))
 
-    # Text content on Cover Box
     tb_cov = s1.shapes.add_textbox(Inches(1.0), Inches(1.98), Inches(11.333), Inches(2.6))
     tf_cov = tb_cov.text_frame
     tf_cov.word_wrap = True
@@ -244,7 +244,6 @@ def create_presentation():
         pm3.font.size = Pt(10)
         pm3.font.color.rgb = TEXT_MUTED
 
-    # Footer note
     tb_foot = s1.shapes.add_textbox(Inches(1.0), Inches(6.12), Inches(11.333), Inches(0.4))
     tf_foot = tb_foot.text_frame
     tf_foot.word_wrap = True
@@ -256,28 +255,28 @@ def create_presentation():
     p_f.font.color.rgb = TEXT_MUTED
 
     # =========================================================================
-    # SLIDE 2: DAFTAR ISI & AGENDA KAJIAN
+    # SLIDE 2: DAFTAR ISI & SISTEMATIKA KAJIAN (AGENDA 6 BAB)
     # =========================================================================
     s2 = prs.slides.add_slide(blank_layout)
     set_slide_background(s2)
-    add_header(s2, "Daftar Isi & Sistematika Kajian", "Ringkasan 6 bab utama studi kelayakan bisnis sesuai standar akademik FEB UKRIDA", tag="AGENDA PRESENTASI", slide_idx=2)
+    add_header(s2, "Daftar Isi & Sistematika Kajian", "Ringkasan 6 bab utama studi kelayakan bisnis berstandar akademik FEB UKRIDA", tag="AGENDA PRESENTASI", slide_idx=2)
 
     toc_items = [
-        ("01", "BAB I: PENDAHULUAN & PROFIL", "Perjalanan usaha 1999 Taman Aries -> 2016 Duri Kosambi, basis pelanggan 2019, dan peluang ekspansi 2027/28."),
-        ("02", "BAB II: ASPEK PASAR & PEMASARAN", "Segmentasi STP, 3 racikan minyak khas, 3 topping daging murni, benchmarking kompetitor, dan bauran 7P."),
-        ("03", "BAB III: ASPEK MANAJEMEN", "Struktur organisasi 3 staf fungsional, job description terstruktur, dan total alokasi upah Rp 10 Jt/bulan."),
-        ("04", "BAB IV: ASPEK TEKNIS & OPERASI", "Tata letak ruko 1 lantai 23 kursi, open kitchen gerobak teras, adonan fresh mingguan, dan Gantt Chart 12 minggu."),
-        ("05", "BAB V: ASPEK KEUANGAN TERPADU", f"Initial outlay Rp {met['initial_outlay']/1e6:.1f} Jt, proyeksi arus kas 5 tahun, dan penyusutan garis lurus 20% per tahun."),
-        ("06", "BAB VI: KELAYAKAN INVESTASI", f"Uji 4 kriteria: NPV Rp {met['npv']/1e9:.2f} M, IRR > 20%, Payback Period {met['pp_months']:.2f} Bulan, dan PI {met['pi']:.2f}.")
+        ("01", "BAB I: PENDAHULUAN & PROFIL", "Perjalanan usaha 1999 Taman Aries -> 2016 Duri Kosambi, basis pelanggan 2019, peluang ekspansi 2027/28, & 5 pilar diferensiasi."),
+        ("02", "BAB II: ASPEK PASAR & PEMASARAN", "Segmentasi STP, bauran pemasaran terpadu 7P lengkap, matriks komparasi kompetitor, & keunggulan 3 racikan minyak khas."),
+        ("03", "BAB III: ASPEK MANAJEMEN & SDM", "Struktur organisasi owner & 3 staf fungsional, rincian job description operasional, & total anggaran upah pasti Rp 10 Jt/bulan."),
+        ("04", "BAB IV: ASPEK TEKNIS & OPERASI", "Tata letak ruko 1 lantai 23 kursi, alur open kitchen teras, adonan mie mingguan tanpa pengawet, & timeline pra-operasi 12 minggu."),
+        ("05", "BAB V: ASPEK KEUANGAN TERPADU", f"Modal awal Rp {met['initial_outlay']/1e6:.1f} Jt, 12 item capex Rp {met['capex_total']/1e6:.1f} Jt, depresiasi 20%, & proyeksi arus kas 5 tahun (CIF, COF, NCF)."),
+        ("06", "BAB VI: KELAYAKAN INVESTASI", f"Uji 4 kriteria: NPV Positif Rp {met['npv']/1e9:.2f} M, IRR > 20%, Payback Period {met['pp_months']:.2f} Bulan (cepat), & PI {met['pi']:.2f}x.")
     ]
 
     for idx, (num, title, desc) in enumerate(toc_items):
         col = idx % 3
         row = idx // 3
         x = Inches(0.8 + col * 3.98)
-        y = Inches(1.85 + row * 2.55)
+        y = Inches(1.75 + row * 2.65)
         w = Inches(3.78)
-        h = Inches(2.35)
+        h = Inches(2.50)
 
         card_t, tf_t = add_card(s2, x, y, w, h, bg_color=CARD_BG, border_color=BORDER_MUTED)
         
@@ -291,124 +290,108 @@ def create_presentation():
         p2 = tf_t.add_paragraph()
         p2.text = title
         p2.font.name = "Times New Roman"
-        p2.font.size = Pt(13.5)
+        p2.font.size = Pt(13)
         p2.font.bold = True
         p2.font.color.rgb = NAVY_PRIMARY
 
         p3 = tf_t.add_paragraph()
         p3.text = f"\n{desc}"
         p3.font.name = "Times New Roman"
-        p3.font.size = Pt(11.5)
+        p3.font.size = Pt(11)
         p3.font.color.rgb = TEXT_MUTED
 
     # =========================================================================
-    # SLIDE 3: LATAR BELAKANG & EVOLUSI USAHA
+    # SLIDE 3: PROFIL USAHA, HISTORI 1999–2028 & 5 PILAR DIFERENSIASI (BAB I)
     # =========================================================================
     s3 = prs.slides.add_slide(blank_layout)
     set_slide_background(s3)
-    add_header(s3, "Latar Belakang & Filosofi Usaha", "Perjalanan kuliner legendaris sejak 1999 dan peluang ekspansi masa depan", tag="BAB I: PENDAHULUAN", slide_idx=3)
+    add_header(s3, "Profil Usaha & Keunggulan Kompetitif", "Perjalanan kuliner legendaris sejak 1999, diferensiasi produk, dan peluang ekspansi masa depan", tag="BAB I: PENDAHULUAN", slide_idx=3)
 
+    # Top: 4 Timeline Cards
     story_steps = [
-        ("1999", "Awal di Taman Aries", "Usaha didirikan pertama kali tahun 1999 di Taman Aries (Meruya) dengan resep autentik keluarga turun-temurun."),
-        ("2016", "Relokasi ke Duri Kosambi", "Tahun 2016 berpindah ke ruko Jl. Angsoka Hijau IV Duri Kosambi untuk melayani perumahan dan civitas sekolah."),
-        ("2019", "Basis Pelanggan Solid", "Tahun 2019 basis pelanggan setia terbentuk kuat, menjadi destinasi sarapan dan makan siang favorit keluarga."),
-        ("2027/28", "Peluang Ekspansi Cabang", "Tingginya permintaan membuka peluang ekspansi 2027/2028 untuk mencari ruko lebih luas atau membuka cabang baru.")
+        ("1999", "Awal di Taman Aries", "Usaha didirikan pertama kali di Taman Aries (Meruya) dengan resep autentik keluarga turun-temurun."),
+        ("2016", "Relokasi ke Duri Kosambi", "Tahun 2016 berpindah ke ruko Jl. Angsoka Hijau IV Duri Kosambi persis di depan Kalam Kudus."),
+        ("2019", "Basis Pelanggan Solid", "Basis pelanggan setia terbentuk kuat favorit sarapan dan makan siang keluarga perumahan."),
+        ("2027/28", "Peluang Ekspansi Cabang", "Tingginya permintaan membuka peluang ekspansi 2027/2028 untuk ruko lebih luas atau cabang baru.")
     ]
-
     for idx, (yr, ttl, dsc) in enumerate(story_steps):
         x = Inches(0.8 + idx * 2.98)
-        y = Inches(1.85)
+        y = Inches(1.75)
         w = Inches(2.78)
-        h = Inches(4.0)
+        h = Inches(1.75)
 
         card_s, tf_s = add_card(s3, x, y, w, h, bg_color=CARD_BG, border_color=GOLD_ACCENT if idx == 3 else BORDER_MUTED)
-        
         p1 = tf_s.paragraphs[0]
         p1.text = yr
         p1.font.name = "Times New Roman"
-        p1.font.size = Pt(24)
+        p1.font.size = Pt(16)
         p1.font.bold = True
         p1.font.color.rgb = GOLD_ACCENT
 
         p2 = tf_s.add_paragraph()
         p2.text = ttl
         p2.font.name = "Times New Roman"
-        p2.font.size = Pt(13.5)
+        p2.font.size = Pt(11.5)
         p2.font.bold = True
         p2.font.color.rgb = NAVY_PRIMARY
 
         p3 = tf_s.add_paragraph()
-        p3.text = f"\n{dsc}"
+        p3.text = dsc
         p3.font.name = "Times New Roman"
-        p3.font.size = Pt(11.5)
+        p3.font.size = Pt(10)
         p3.font.color.rgb = TEXT_MAIN
 
-    # Bottom Callout: Filosofi Adonan
-    card_ph, tf_ph = add_card(s3, Inches(0.8), Inches(6.0), Inches(11.733), Inches(1.05), bg_color=GOLD_BG_LIGHT, border_color=GOLD_ACCENT)
+    # Middle: Banner Filosofi Mutu Adonan Mingguan
+    card_ph, tf_ph = add_card(s3, Inches(0.8), Inches(3.65), Inches(11.733), Inches(0.90), bg_color=GOLD_BG_LIGHT, border_color=GOLD_ACCENT)
     pph1 = tf_ph.paragraphs[0]
-    pph1.text = "FILOSOFI MUTU: ADONAN MIE FRESH DIBUAT SETIAP MINGGU (BATCH MINGGUAN TANPA PENGAWET)"
+    pph1.text = "FILOSOFI MUTU: ADONAN MIE FRESH DIBUAT MANDIRI SETIAP MINGGU (BATCH MINGGUAN TANPA PENGAWET)"
     pph1.font.name = "Times New Roman"
-    pph1.font.size = Pt(12)
+    pph1.font.size = Pt(11.5)
     pph1.font.bold = True
     pph1.font.color.rgb = GOLD_ACCENT
     pph2 = tf_ph.add_paragraph()
     pph2.text = "Adonan mie dibuat mandiri setiap minggu menghasilkan tekstur kenyal alami berkilau (shining), higienis, serta 100% bebas dari formalin dan zat pengawet kimia berbahaya."
     pph2.font.name = "Times New Roman"
-    pph2.font.size = Pt(11.5)
+    pph2.font.size = Pt(10.5)
     pph2.font.color.rgb = TEXT_MAIN
 
+    # Bottom: 5 Pilar Keunggulan Kompetitif
+    pillars = [
+        ("01. TASTE (RASA)", "Mie kenyal, 3 racikan minyak khas (babi, ayam, sayur+wijen), kaldu gurih asli, 3 topping murni: ayam putih, babi kecap, casiu madu."),
+        ("02. LOKASI STRATEGIS", "Jl. Angsoka Hijau IV Blok E6 No. 17 Duri Kosambi (Depan Taman TK, SD, SMP Kalam Kudus), lokasi strategis & parkir motor aman."),
+        ("03. OPEN KITCHEN", "Dapur terbuka gerobak di teras depan, perebusan higienis terlihat jelas, serta saus botol resmi Cap Belibis & Mangga Besar."),
+        ("04. PORSI FLEKSIBEL", "Pilihan fleksibel: Porsi Kecil (27k), Reguler (29k-39k), hingga Jumbo (+100% mie / 2x lipat porsi standar 49k-59k) untuk segala selera."),
+        ("05. PELENGKAP LENGKAP", "Swikiaw & pangsit kuah (@4.5k-5.5k), baso goreng babi-udang 8k, badak sarsaparilla, susu kacang & liang teh segar 12k.")
+    ]
+    for idx, (tit, dsc) in enumerate(pillars):
+        x = Inches(0.8 + idx * 2.38)
+        y = Inches(4.70)
+        w = Inches(2.20)
+        h = Inches(2.40)
+
+        c_p, tf_p = add_card(s3, x, y, w, h, bg_color=CARD_BG, border_color=BORDER_MUTED)
+        p1 = tf_p.paragraphs[0]
+        p1.text = tit
+        p1.font.name = "Times New Roman"
+        p1.font.size = Pt(11)
+        p1.font.bold = True
+        p1.font.color.rgb = NAVY_PRIMARY
+
+        p2 = tf_p.add_paragraph()
+        p2.text = f"\n{dsc}"
+        p2.font.name = "Times New Roman"
+        p2.font.size = Pt(10)
+        p2.font.color.rgb = TEXT_MAIN
+
     # =========================================================================
-    # SLIDE 4: 5 PILAR KEUNGGULAN KOMPETITIF
+    # SLIDE 4: DAFTAR MENU & STRUKTUR HARGA JUAL RESMI (BAB I)
     # =========================================================================
     s4 = prs.slides.add_slide(blank_layout)
     set_slide_background(s4)
-    add_header(s4, "5 Pilar Keunggulan Kompetitif", "Faktor diferensiasi penentu daya saing Bakmi Mimu Carina Sayang", tag="BAB I: PENDAHULUAN", slide_idx=4)
-
-    pillars = [
-        ("01", "Taste (Cita Rasa)", "Mie kenyal dipadu 3 pilihan racikan minyak (babi, ayam, sayur+wijen), kaldu gurih asli, dan 3 topping murni: ayam putih, babi kecap, dan casiu madu panggang."),
-        ("02", "Location (Lokasi)", "Jl. Angsoka Hijau IV Blok E6 No. 17 Duri Kosambi, Cengkareng (persis di depan Taman TK, SD, SMP Kalam Kudus), lokasi sangat strategis dan parkir motor aman."),
-        ("03", "Service (Dapur)", "Dapur terbuka (open kitchen) gerobak di teras depan ruko, perebusan higienis terlihat jelas, serta saus botolan resmi terpercaya Cap Belibis & Mangga Besar."),
-        ("04", "Size (Porsi Fleksibel)", "Pilihan fleksibel: Porsi Kecil (27k), Reguler (29k-39k), hingga Porsi Jumbo (+100% mie dari porsi standar / 2x lipat porsi biasa 49k-59k) untuk segala kapasitas selera."),
-        ("05", "Pelengkap & Minuman", "Pilihan pelengkap swikiaw rebus, pangsit kuah, baso sapi & ikan (@4.5k-5.5k/pcs), baso goreng babi-udang 8k, badak sarsaparilla, susu kacang & liang teh 12k.")
-    ]
-
-    for idx, (num, tit, dsc) in enumerate(pillars):
-        x = Inches(0.8 + idx * 2.38)
-        y = Inches(1.85)
-        w = Inches(2.2)
-        h = Inches(5.1)
-
-        c_p, tf_p = add_card(s4, x, y, w, h, bg_color=CARD_BG, border_color=BORDER_MUTED)
-        
-        p1 = tf_p.paragraphs[0]
-        p1.text = f"PILAR {num}"
-        p1.font.name = "Times New Roman"
-        p1.font.size = Pt(12)
-        p1.font.bold = True
-        p1.font.color.rgb = GOLD_ACCENT
-
-        p2 = tf_p.add_paragraph()
-        p2.text = tit
-        p2.font.name = "Times New Roman"
-        p2.font.size = Pt(13.5)
-        p2.font.bold = True
-        p2.font.color.rgb = NAVY_PRIMARY
-
-        p3 = tf_p.add_paragraph()
-        p3.text = f"\n{dsc}"
-        p3.font.name = "Times New Roman"
-        p3.font.size = Pt(11.5)
-        p3.font.color.rgb = TEXT_MAIN
-
-    # =========================================================================
-    # SLIDE 5: DAFTAR MENU & STRUKTUR HARGA (TABEL NATIVE POWERPOINT)
-    # =========================================================================
-    s5 = prs.slides.add_slide(blank_layout)
-    set_slide_background(s5)
-    add_header(s5, "Daftar Menu & Struktur Harga Jual Resmi", "Struktur harga bersaing (Value-Based Pricing) sesuai daftar menu riil kedai", tag="BAB I: PENDAHULUAN", slide_idx=5)
+    add_header(s4, "Daftar Menu & Struktur Harga Jual Resmi", "Struktur harga bersaing (Value-Based Pricing) sesuai daftar menu riil kedai di Duri Kosambi", tag="BAB I: PENDAHULUAN", slide_idx=4)
 
     # Left Table: Menu Bakmi Utama
-    tb_shape1 = s5.shapes.add_table(7, 3, Inches(0.8), Inches(1.85), Inches(5.7), Inches(5.1))
+    tb_shape1 = s4.shapes.add_table(7, 3, Inches(0.8), Inches(1.75), Inches(5.7), Inches(4.35))
     tbl1 = tb_shape1.table
     tbl1.columns[0].width = Inches(2.6)
     tbl1.columns[1].width = Inches(1.4)
@@ -420,7 +403,7 @@ def create_presentation():
 
     m1_data = [
         ("Mie Campur (Ayam + Babi Kecap)", "Rp 29.000", "Reguler Favorit"),
-        ("Mie Ayam Putih / Babi Saja", "Rp 29.000", "Topping Tunggal"),
+        ("Mie Ayam Putih / Babi Saja", "Rp 29.000", "Topping Tunggal Murni"),
         ("Mie Daging Casiu Madu", "Rp 31.000", "Casiu Panggang Gurih"),
         ("Mie Spesial 3 Isi Lengkap", "Rp 39.000", "Ayam, Babi & Casiu"),
         ("Porsi Jumbo (+100% Mie)", "Rp 49.000 - 59.000", "2x Lipat Porsi Standar"),
@@ -428,12 +411,12 @@ def create_presentation():
     ]
     for r_idx, (m_n, m_h, m_k) in enumerate(m1_data, start=1):
         bg_r = CARD_BG if r_idx % 2 == 1 else CARD_BG_SOFT
-        style_table_cell(tbl1.cell(r_idx, 0), m_n, font_size=11.5, bold=True, color=NAVY_PRIMARY, bg_color=bg_r)
-        style_table_cell(tbl1.cell(r_idx, 1), m_h, font_size=12, bold=True, color=GOLD_ACCENT, align=PP_ALIGN.RIGHT, bg_color=bg_r)
-        style_table_cell(tbl1.cell(r_idx, 2), m_k, font_size=11, color=TEXT_MUTED, bg_color=bg_r)
+        style_table_cell(tbl1.cell(r_idx, 0), m_n, font_size=11, bold=True, color=NAVY_PRIMARY, bg_color=bg_r)
+        style_table_cell(tbl1.cell(r_idx, 1), m_h, font_size=11.5, bold=True, color=GOLD_ACCENT, align=PP_ALIGN.RIGHT, bg_color=bg_r)
+        style_table_cell(tbl1.cell(r_idx, 2), m_k, font_size=10.5, color=TEXT_MUTED, bg_color=bg_r)
 
     # Right Table: Menu Pelengkap & Minuman
-    tb_shape2 = s5.shapes.add_table(7, 3, Inches(6.8), Inches(1.85), Inches(5.7), Inches(5.1))
+    tb_shape2 = s4.shapes.add_table(7, 3, Inches(6.833), Inches(1.75), Inches(5.7), Inches(4.35))
     tbl2 = tb_shape2.table
     tbl2.columns[0].width = Inches(2.6)
     tbl2.columns[1].width = Inches(1.4)
@@ -445,186 +428,157 @@ def create_presentation():
 
     m2_data = [
         ("Pangsit Rebus Kuah (5 pcs)", "Rp 22.500", "@Rp 4.500 / pcs"),
-        ("Swikiaw Rebus Kuah (5 pcs)", "Rp 27.500", "@Rp 5.500 / pcs"),
+        ("Swikiaw Rebus Kuah (5 pcs)", "Rp 27.500", "@Rp 5.500 / pcs (Babi-Udang)"),
         ("Baso Sapi & Baso Ikan (5 pcs)", "Rp 22.500", "Sama harga pangsit"),
         ("Pangsit Goreng & Baso Goreng", "Rp 5.000 - 8.000", "Baso grg babi-udang 8k"),
-        ("Badak Sarsaparilla", "Rp 12.000 - 14.000", "Soda legendaris Siantar"),
+        ("Badak Sarsaparilla (Cap Badak)", "Rp 12.000 - 14.000", "Soda legendaris Siantar"),
         ("Susu Kacang, Liang Teh, Teh", "Rp 1.000 - 12.000", "Saus Belibis & Mangga Bsr")
     ]
     for r_idx, (m_n, m_h, m_k) in enumerate(m2_data, start=1):
         bg_r = CARD_BG if r_idx % 2 == 1 else CARD_BG_SOFT
-        style_table_cell(tbl2.cell(r_idx, 0), m_n, font_size=11.5, bold=True, color=NAVY_LIGHT, bg_color=bg_r)
-        style_table_cell(tbl2.cell(r_idx, 1), m_h, font_size=12, bold=True, color=GOLD_ACCENT, align=PP_ALIGN.RIGHT, bg_color=bg_r)
-        style_table_cell(tbl2.cell(r_idx, 2), m_k, font_size=11, color=TEXT_MUTED, bg_color=bg_r)
+        style_table_cell(tbl2.cell(r_idx, 0), m_n, font_size=11, bold=True, color=NAVY_LIGHT, bg_color=bg_r)
+        style_table_cell(tbl2.cell(r_idx, 1), m_h, font_size=11.5, bold=True, color=GOLD_ACCENT, align=PP_ALIGN.RIGHT, bg_color=bg_r)
+        style_table_cell(tbl2.cell(r_idx, 2), m_k, font_size=10.5, color=TEXT_MUTED, bg_color=bg_r)
+
+    # Bottom Banner Quality Guarantee
+    card_bq, tf_bq = add_card(s4, Inches(0.8), Inches(6.25), Inches(11.733), Inches(0.85), bg_color=GREEN_BG_LIGHT, border_color=GREEN_ACCENT)
+    pbq1 = tf_bq.paragraphs[0]
+    pbq1.text = "STANDAR KUALITAS BAHAN: 100% DAGING MURNI PILIHAN (TANPA BEBEK & JAMUR)"
+    pbq1.font.name = "Times New Roman"
+    pbq1.font.size = Pt(11.5)
+    pbq1.font.bold = True
+    pbq1.font.color.rgb = GREEN_ACCENT
+    pbq2 = tf_bq.add_paragraph()
+    pbq2.text = "Seluruh menu diolah fresh setiap hari tanpa formalin. Disajikan lengkap dengan 3 racikan minyak khas (minyak babi, ayam, atau sayur+wijen) sesuai selera pengunjung."
+    pbq2.font.name = "Times New Roman"
+    pbq2.font.size = Pt(10.5)
+    pbq2.font.color.rgb = TEXT_MAIN
 
     # =========================================================================
-    # SLIDE 6: ANALISIS STP PASAR
+    # SLIDE 5: ANALISIS PASAR: STP & PETA PERSAINGAN KOMPETITOR (BAB II)
     # =========================================================================
-    s6 = prs.slides.add_slide(blank_layout)
-    set_slide_background(s6)
-    add_header(s6, "Analisis Pasar: STP Framework", "Segmenting, Targeting, dan Positioning pasar sasaran Bakmi Mimu Carina Sayang", tag="BAB II: ASPEK PASAR", slide_idx=6)
+    s5 = prs.slides.add_slide(blank_layout)
+    set_slide_background(s5)
+    add_header(s5, "Analisis Pasar: STP & Peta Kompetitor", "Segmentasi pasar sasaran serta matriks komparasi daya saing terhadap kompetitor sekitar", tag="BAB II: ASPEK PASAR", slide_idx=5)
 
-    stp_cols = [
+    # Left: STP Framework (3 Cards)
+    stp_items = [
         ("SEGMENTASI (SEGMENTING)", [
-            ("Geografis", "Radius 0 - 5 km meliputi Perumahan Duri Kosambi, Semanan, Taman Semanan Indah, Cengkareng, dan Puri Kembangan."),
-            ("Demografis", "Pria & wanita usia 7 - 65 tahun, siswa-siswi, guru, orang tua murid Kalam Kudus, karyawan kantor, SES Menengah."),
-            ("Perilaku", "Pencinta kuliner mie oriental yang mengutamakan tekstur kenyal, cita rasa bumbu otentik, dan higienitas ruang makan.")
+            "Geografis: Radius 0 - 5 km meliputi Perumahan Duri Kosambi, Semanan, TSI, & Cengkareng.",
+            "Demografis: Pria & wanita usia 7 - 65 tahun, siswa-siswi, guru, orang tua Kalam Kudus, SES Menengah.",
+            "Perilaku: Pencinta bakmi oriental yang mengutamakan tekstur kenyal, kaldu gurih, & higienitas."
         ]),
         ("TARGET PASAR (TARGETING)", [
-            ("Keluarga Residensial", "Keluarga perumahan sekitar Duri Kosambi yang mencari santapan sarapan pagi dan makan siang lezat."),
-            ("Civitas Kalam Kudus", "Siswa-siswi, guru, staf, dan orang tua murid Sekolah Kristen Kalam Kudus Kosambi tepat di depan gerai."),
-            ("Pesan Antar & Komunitas", "Jemaat gereja hari Sabtu-Minggu serta pelanggan bawa pulang / pesan antar warga sekitar.")
+            "Keluarga Residensial: Keluarga perumahan sekitar Duri Kosambi untuk sarapan & makan siang.",
+            "Civitas Kalam Kudus: Murid, guru, dan orang tua Sekolah Kristen Kalam Kudus di depan kedai.",
+            "Komunitas Sekitar: Jemaat gereja hari Sabtu-Minggu serta pelanggan bawa pulang / take-away."
         ]),
         ("POSISI PASAR (POSITIONING)", [
-            ("Identitas Utama", "“Kedai Bakmi Otentik Legendaris dengan Resep 1999 dan Standar Kebersihan Higienis Terpercaya.”"),
-            ("Value Proposition", "Memberikan kepuasan rasa resep keluarga 1999 dengan porsi mengenyangkan dan harga sangat sebanding."),
-            ("Brand Perception", "Bukan sekadar warung tenda biasa, melainkan kedai bakmi keluarga yang bersih, ramah, dan terpercaya.")
+            "Identitas: “Kedai Bakmi Otentik Legendaris Resep 1999 dan Standar Kebersihan Higienis Terpercaya”.",
+            "Value Proposition: Memberikan kepuasan rasa autentik resep keluarga dengan porsi mengenyangkan.",
+            "Brand Perception: Kedai bakmi keluarga yang bersih, ramah, bersahaja, dan bernilai sebanding."
         ])
     ]
-
-    for idx, (title, points) in enumerate(stp_cols):
-        x = Inches(0.8 + idx * 3.98)
-        y = Inches(1.85)
-        w = Inches(3.78)
-        h = Inches(5.1)
-
-        c_stp, tf_stp = add_card(s6, x, y, w, h, bg_color=CARD_BG, border_color=BORDER_NAVY if idx == 2 else BORDER_MUTED)
-        
-        p1 = tf_stp.paragraphs[0]
-        p1.text = title
+    for idx, (tit, bullets) in enumerate(stp_items):
+        y = Inches(1.75 + idx * 1.75)
+        c_s, tf_s = add_card(s5, Inches(0.8), y, Inches(5.7), Inches(1.65), bg_color=CARD_BG, border_color=BORDER_NAVY if idx == 2 else BORDER_MUTED)
+        p1 = tf_s.paragraphs[0]
+        p1.text = tit
         p1.font.name = "Times New Roman"
-        p1.font.size = Pt(13.5)
+        p1.font.size = Pt(12)
         p1.font.bold = True
         p1.font.color.rgb = NAVY_PRIMARY
 
-        for sub, txt in points:
-            psub = tf_stp.add_paragraph()
-            psub.text = f"\n• {sub}:"
-            psub.font.name = "Times New Roman"
-            psub.font.size = Pt(12)
-            psub.font.bold = True
-            psub.font.color.rgb = GOLD_ACCENT
+        for b in bullets:
+            pb = tf_s.add_paragraph()
+            pb.text = f"• {b}"
+            pb.font.name = "Times New Roman"
+            pb.font.size = Pt(9.5)
+            pb.font.color.rgb = TEXT_MAIN
 
-            ptxt = tf_stp.add_paragraph()
-            ptxt.text = txt
-            ptxt.font.name = "Times New Roman"
-            ptxt.font.size = Pt(11)
-            ptxt.font.color.rgb = TEXT_MAIN
-
-    # =========================================================================
-    # SLIDE 7: PETA PERSAINGAN KOMPETITOR
-    # =========================================================================
-    s7 = prs.slides.add_slide(blank_layout)
-    set_slide_background(s7)
-    add_header(s7, "Analisis Persaingan & Peta Kompetitor", "Matriks perbandingan daya saing Bakmi Mimu terhadap pelaku usaha sejenis", tag="BAB II: ASPEK PASAR", slide_idx=7)
-
-    comp_data = [
-        ("BAKMI MIMU CARINA SAYANG", "Brand Unggulan Kita", GOLD_ACCENT, [
-            ("Rasa & Resep", "Resep keluarga sejak 1999 di Taman Aries, 3 racikan minyak khas (babi, ayam, sayur+wijen), adonan fresh mingguan."),
-            ("Fasilitas Kedai", "Ruko 1 lantai, sirkulasi 6 kipas angin sejuk, suasana hangat padat (23 kursi), open kitchen gerobak depan."),
-            ("Varian Topping", "3 Topping murni: Ayam putih gurih, babi kecap manis, casiu madu (tanpa bebek/jamur), kuah swikiaw & pangsit."),
-            ("Layanan & Saus", "Penyajian kilat < 5 menit, nota manual kasir, saus botol resmi Cap Belibis & Mangga Besar."),
-            ("Harga & Value", "Rp 27.000 - Rp 59.000 (Sangat terjangkau dengan opsi porsi kecil, reguler, hingga jumbo +100% mie).")
+    # Right: Komparasi 3 Kompetitor (3 Cards)
+    comp_items = [
+        ("BAKMI MIMU CARINA SAYANG (BRAND UNGGULAN)", GOLD_ACCENT, [
+            "Rasa & Resep: Resep 1999, 3 racikan minyak khas, adonan fresh mingguan.",
+            "Fasilitas: Ruko 1 lantai 23 kursi, 6 kipas angin dinding sejuk, open kitchen teras.",
+            "Topping & Saus: 3 Topping murni (ayam, babi, casiu), kuah swikiaw, saus Belibis.",
+            "Harga & Value: Rp 27.000 - Rp 59.000 (Opsi porsi kecil, reguler, hingga jumbo)."
         ]),
-        ("BAKMI ALOK / BRAND BESAR", "Kompetitor Merek Terkenal", NAVY_LIGHT, [
-            ("Rasa & Resep", "Cita rasa bakmi ayam rebus gurih, brand equity kuat di Jakarta Barat."),
-            ("Fasilitas Kedai", "Restoran permanen ber-AC, kapasitas besar, antrean panjang saat jam makan siang."),
-            ("Varian Topping", "Fokus dominan ayam kampung rebus, tidak menyediakan varian babi casiu madu."),
-            ("Layanan & Saus", "Standar restoran waralaba terstruktur, layanan formal."),
-            ("Harga & Value", "Rp 45.000 - Rp 65.000 (Segmen premium, relatif lebih mahal untuk konsumsi harian).")
+        ("BAKMI ALOK / BRAND BESAR (KOMPETITOR TERKENAL)", NAVY_LIGHT, [
+            "Rasa & Resep: Dominan ayam rebus gurih, brand equity kuat Jakarta Barat.",
+            "Fasilitas: Restoran permanen ber-AC, kapasitas besar, antrean jam makan siang.",
+            "Topping & Saus: Fokus ayam kampung rebus, tidak menyediakan varian babi casiu.",
+            "Harga & Value: Rp 45.000 - Rp 65.000 (Segmen premium, relatif lebih mahal)."
         ]),
-        ("WARUNG BAKMI LOKAL KOSAMBI", "Kompetitor Tradisional Sekitar", TEXT_MUTED, [
-            ("Rasa & Resep", "Cita rasa standar warung tenda gerobak kaki lima, bumbu penyedap dominan."),
-            ("Fasilitas Kedai", "Kios semi terbuka/tenda pinggir jalan, sirkulasi udara terbatas, parkir sempit."),
-            ("Varian Topping", "Topping terbatas ayam cincang biasa, jarang menyediakan menu swikiaw rebus."),
-            ("Layanan & Saus", "Kemasan plastik mika konvensional, rentan tumpah dan cepat dingin."),
-            ("Harga & Value", "Rp 20.000 - Rp 25.000 (Harga murah namun kebersihan dan fasilitas sangat minim).")
+        ("WARUNG BAKMI LOKAL KOSAMBI (TRADISIONAL)", TEXT_MUTED, [
+            "Rasa & Resep: Standar gerobak kaki lima, bumbu penyedap dominan.",
+            "Fasilitas: Kios tenda pinggir jalan, sirkulasi udara terbatas, parkir sempit.",
+            "Topping & Saus: Topping terbatas ayam cincang biasa, jarang menyediakan swikiaw.",
+            "Harga & Value: Rp 20.000 - Rp 25.000 (Murah namun higienitas & fasilitas minim)."
         ])
     ]
-
-    for idx, (b_name, b_sub, b_col, pts) in enumerate(comp_data):
-        x = Inches(0.8 + idx * 3.98)
-        y = Inches(1.85)
-        w = Inches(3.78)
-        h = Inches(5.1)
-
-        c_cp, tf_cp = add_card(s7, x, y, w, h, bg_color=CARD_BG, border_color=b_col, border_width=1.5 if idx == 0 else 1.0)
-        
-        p1 = tf_cp.paragraphs[0]
+    for idx, (b_name, b_col, pts) in enumerate(comp_items):
+        y = Inches(1.75 + idx * 1.75)
+        c_c, tf_c = add_card(s5, Inches(6.833), y, Inches(5.7), Inches(1.65), bg_color=CARD_BG, border_color=b_col, border_width=1.5 if idx == 0 else 1.0)
+        p1 = tf_c.paragraphs[0]
         p1.text = b_name
         p1.font.name = "Times New Roman"
-        p1.font.size = Pt(13)
+        p1.font.size = Pt(11.5)
         p1.font.bold = True
         p1.font.color.rgb = b_col
 
-        p2 = tf_cp.add_paragraph()
-        p2.text = b_sub
-        p2.font.name = "Times New Roman"
-        p2.font.size = Pt(11)
-        p2.font.color.rgb = TEXT_MUTED
-
-        for p_name, p_desc in pts:
-            prt = tf_cp.add_paragraph()
-            prt.text = f"\n▸ {p_name}:"
-            prt.font.name = "Times New Roman"
-            prt.font.size = Pt(11.5)
-            prt.font.bold = True
-            prt.font.color.rgb = NAVY_PRIMARY
-
-            prd = tf_cp.add_paragraph()
-            prd.text = p_desc
-            prd.font.name = "Times New Roman"
-            prd.font.size = Pt(10.5)
-            prd.font.color.rgb = TEXT_MAIN
+        for p_t in pts:
+            pp = tf_c.add_paragraph()
+            pp.text = f"▸ {p_t}"
+            pp.font.name = "Times New Roman"
+            pp.font.size = Pt(9.5)
+            pp.font.color.rgb = TEXT_MAIN
 
     # =========================================================================
-    # SLIDE 8: BAURAN PEMASARAN 4P TRADISIONAL
+    # SLIDE 6: STRATEGI BAURAN PEMASARAN TERPADU (MARKETING MIX 7P LENGKAP) (BAB II)
     # =========================================================================
-    s8 = prs.slides.add_slide(blank_layout)
-    set_slide_background(s8)
-    add_header(s8, "Strategi Bauran Pemasaran (4P Tradisional)", "Strategi eksekusi taktis: Product, Price, Place, dan Promotion", tag="BAB II: ASPEK PASAR", slide_idx=8)
+    s6 = prs.slides.add_slide(blank_layout)
+    set_slide_background(s6)
+    add_header(s6, "Strategi Bauran Pemasaran Terpadu (Marketing Mix 7P)", "Penerapan bauran pemasaran menyeluruh: 4P Tradisional dan 3P Extended Layanan", tag="BAB II: ASPEK PASAR", slide_idx=6)
 
+    # Top Row: 4P Tradisional
     p4_cards = [
         ("PRODUCT (PRODUK)", GOLD_ACCENT, [
-            "Resep autentik 1999 (Taman Aries), adonan fresh dibuat mandiri setiap minggu tanpa pengawet.",
-            "3 Topping murni: Ayam Putih, Babi Kecap, & Casiu Madu gurih (tanpa daging bebek & jamur).",
-            "3 Pilihan racikan minyak mie: Minyak Babi, Minyak Ayam, & Minyak Sayur + Wijen.",
-            "Variasi porsi fleksibel: Porsi Kecil (27k), Reguler (29k-39k), hingga Jumbo (+100% mie, 49k-59k)."
+            "Resep autentik 1999 (Taman Aries), adonan fresh dibuat mandiri setiap minggu tanpa formalin.",
+            "3 Topping murni: Ayam Putih, Babi Kecap, & Casiu Madu gurih (tanpa bebek & jamur).",
+            "3 Pilihan racikan minyak: Minyak Babi, Minyak Ayam, & Minyak Sayur + Wijen.",
+            "Porsi fleksibel: Porsi Kecil (27k), Reguler (29k-39k), hingga Jumbo (+100% mie, 49k-59k)."
         ]),
         ("PRICE (HARGA)", GREEN_ACCENT, [
             "Menerapkan Value-Based Pricing bersaing di kawasan residensial Duri Kosambi.",
-            "Range harga bakmi: Rp 27.000 s.d. Rp 59.000 (belum termasuk menu pelengkap tambahan).",
-            "Menu kuah: Pangsit rebus Rp 22.500 (5 pcs), Swikiaw Rp 27.500 (5 pcs), Baso sapi/ikan Rp 22.500.",
+            "Range bakmi: Rp 27.000 s.d. Rp 59.000 (porsi kecil, reguler, hingga jumbo kenyang).",
+            "Kuah pelengkap: Pangsit rebus Rp 22.500 (5 pcs), Swikiaw Rp 27.500 (5 pcs), Baso Rp 22.500.",
             "Gorengan Rp 5.000 - 8.000, minuman segar Rp 1.000 - 14.000 (Badak, Liang Teh, Susu Kacang)."
         ]),
-        ("PLACE (DISTRIBUSI / LOKASI)", NAVY_LIGHT, [
-            "Lokasi ruko 1 lantai di Jl. Angsoka Hijau IV Blok E6 No. 17 Duri Kosambi, Cengkareng, Jakarta Barat.",
+        ("PLACE (LOKASI)", NAVY_LIGHT, [
+            "Ruko 1 lantai di Jl. Angsoka Hijau IV Blok E6 No. 17 Duri Kosambi, Cengkareng, Jakarta Barat.",
             "Posisi emas persis di depan Taman TK, SD, dan SMP Sekolah Kristen Kalam Kudus.",
-            "Fasilitas ruang makan berdaya tampung 23 kursi aktif (meja reguler + meja bar dinding).",
-            "Fokus saluran penjualan langsung: Makan di tempat (Dine-In) dan pesanan bawa pulang (Take-Away)."
+            "Daya tampung ruang makan 23 kursi aktif (3 meja reguler 12 kursi + meja dinding 7 kursi + teras 4 kursi).",
+            "Saluran penjualan langsung: Makan di tempat (Dine-In) dan pesanan bawa pulang (Take-Away)."
         ]),
         ("PROMOTION (PROMOSI)", NAVY_PRIMARY, [
-            "Tidak mengadakan program promosi diskon buatan, kupon berhadiah, atau stamp card formal.",
-            "Murni mengandalkan penjualan lokal getok tular (loyalitas pelanggan lama sejak 2019 & pembeli baru).",
-            "Pemasaran organik sukarela dari ulasan pengunjung dan food vlogger kuliner (viral di media sosial).",
-            "Papan nama kedai (signage) sederhana di fasad ruko yang terlihat jelas oleh para penjemput sekolah."
+            "Murni mengandalkan pemasaran lokal getok tular (loyalitas pelanggan setia sejak 2019).",
+            "Pemasaran organik sukarela dari ulasan pengunjung dan food vlogger kuliner di media sosial.",
+            "Papan nama kedai (signage) sederhana di fasad ruko yang terlihat jelas oleh penjemput sekolah.",
+            "Tanpa biaya diskon buatan sehingga menjaga citra mutu autentik dan stabilitas margin laba."
         ])
     ]
-
     for idx, (title, col, bullets) in enumerate(p4_cards):
-        c = idx % 2
-        r = idx // 2
-        x = Inches(0.8 + c * 6.0)
-        y = Inches(1.85 + r * 2.55)
-        w = Inches(5.7)
-        h = Inches(2.4)
+        x = Inches(0.8 + idx * 2.98)
+        y = Inches(1.75)
+        w = Inches(2.78)
+        h = Inches(2.55)
 
-        card_4p, tf_4p = add_card(s8, x, y, w, h, bg_color=CARD_BG, border_color=col)
-        
+        c_4p, tf_4p = add_card(s6, x, y, w, h, bg_color=CARD_BG, border_color=col)
         p1 = tf_4p.paragraphs[0]
         p1.text = title
         p1.font.name = "Times New Roman"
-        p1.font.size = Pt(13.5)
+        p1.font.size = Pt(11.5)
         p1.font.bold = True
         p1.font.color.rgb = col
 
@@ -632,19 +586,13 @@ def create_presentation():
             pb = tf_4p.add_paragraph()
             pb.text = f"• {b}"
             pb.font.name = "Times New Roman"
-            pb.font.size = Pt(11.5)
+            pb.font.size = Pt(9.5)
             pb.font.color.rgb = TEXT_MAIN
 
-    # =========================================================================
-    # SLIDE 9: BAURAN LAYANAN 3P EXTENDED
-    # =========================================================================
-    s9 = prs.slides.add_slide(blank_layout)
-    set_slide_background(s9)
-    add_header(s9, "Strategi Bauran Layanan (3P Extended)", "Pilar keunggulan operasional: People, Process, dan Physical Evidence", tag="BAB II: ASPEK PASAR", slide_idx=9)
-
+    # Bottom Row: 3P Extended Layanan
     p3_cards = [
         ("PEOPLE (SUMBER DAYA MANUSIA)", GOLD_ACCENT, [
-            "Tim operasional terdiri dari 3 karyawan tetap: Koki Utama, Asisten Koki, dan Kasir-Pramusaji.",
+            "Tim operasional 3 karyawan tetap: Koki Utama Dapur, Asisten Koki Dapur, & Kasir-Pramusaji.",
             "Sistem remunerasi berbasis upah bulanan pasti (total alokasi gaji tetap Rp 10.000.000 per bulan).",
             "Fokus tim diarahkan penuh pada konsistensi racikan rasa resep 1999 dan higienitas sajian.",
             "Karyawan berseragam bersih, ramah menyambut tamu, dan menguasai varian menu topping secara rinci."
@@ -652,181 +600,133 @@ def create_presentation():
         ("PROCESS (PROSES OPERASIONAL)", NAVY_LIGHT, [
             "Sistem pemesanan kasir menggunakan nota fisik manual yang tertib, cepat, dan transparan.",
             "Alur penyajian kilat: Perebusan mie fresh membutuhkan 45 detik, saji di meja pelanggan < 5 menit.",
-            "Siklus produksi adonan mie dibuat mandiri terjadwal setiap minggu tanpa bahan pengawet.",
+            "Siklus produksi adonan mie dibuat mandiri terjadwal setiap minggu tanpa bahan pengawet kimia.",
             "Penyediaan botol saus meja standar resmi (Cap Belibis & Mangga Besar) yang selalu terisi higienis."
         ]),
         ("PHYSICAL EVIDENCE (BUKTI FISIK)", GREEN_ACCENT, [
-            "Desain interior standar ruko 1 lantai yang bersih, bersahaja, rapi, dan mengutamakan sirkulasi alami.",
-            "Fasilitas sirkulasi udara menggunakan 6 unit kipas angin dinding/plafon sejuk bebas rasa pengap.",
-            "Kapasitas dine-in mencapai 23 kursi aktif (3 meja reguler 12 kursi + meja dinding 7 kursi + meja teras 4 kursi).",
-            "Fasilitas sanitasi wastafel cuci tangan dan toilet bersih tertutup di sudut belakang kedai."
+            "Desain interior standar ruko 1 lantai yang bersih, bersahaja, rapi, dan sirkulasi udara alami.",
+            "Fasilitas pendingin udara menggunakan 6 unit kipas angin dinding/plafon sejuk bebas rasa pengap.",
+            "Kapasitas dine-in 23 kursi aktif (meja reguler kayu, meja bar dinding memanjang, dan meja teras).",
+            "Fasilitas sanitasi wastafel cuci tangan higienis dan toilet bersih tertutup di sudut belakang kedai."
         ])
     ]
-
     for idx, (title, col, bullets) in enumerate(p3_cards):
         x = Inches(0.8 + idx * 3.98)
-        y = Inches(1.85)
+        y = Inches(4.45)
         w = Inches(3.78)
-        h = Inches(5.1)
+        h = Inches(2.55)
 
-        card_3p, tf_3p = add_card(s9, x, y, w, h, bg_color=CARD_BG, border_color=col)
-        
+        c_3p, tf_3p = add_card(s6, x, y, w, h, bg_color=CARD_BG, border_color=col)
         p1 = tf_3p.paragraphs[0]
         p1.text = title
         p1.font.name = "Times New Roman"
-        p1.font.size = Pt(13.5)
+        p1.font.size = Pt(12)
         p1.font.bold = True
         p1.font.color.rgb = col
 
         for b in bullets:
             pb = tf_3p.add_paragraph()
-            pb.text = f"\n▸ {b}"
+            pb.text = f"▸ {b}"
             pb.font.name = "Times New Roman"
-            pb.font.size = Pt(11.5)
+            pb.font.size = Pt(10)
             pb.font.color.rgb = TEXT_MAIN
 
     # =========================================================================
-    # SLIDE 10: STRUKTUR ORGANISASI & PEMBAGIAN TUGAS
+    # SLIDE 7: ASPEK MANAJEMEN & SDM: STRUKTUR, JOBDESK & GAJI (BAB III)
     # =========================================================================
-    s10 = prs.slides.add_slide(blank_layout)
-    set_slide_background(s10)
-    add_header(s10, "Struktur Organisasi & Pembagian Tugas", "Desain tata kelola tim operasional gerai Bakmi Mimu Carina Sayang", tag="BAB III: ASPEK MANAJEMEN", slide_idx=10)
+    s7 = prs.slides.add_slide(blank_layout)
+    set_slide_background(s7)
+    add_header(s7, "Aspek Manajemen & SDM: Struktur, Jobdesk & Gaji", "Struktur tata kelola fungsional, pembagian job description, dan kebijakan kompensasi upah", tag="BAB III: ASPEK MANAJEMEN", slide_idx=7)
 
-    # Top Manager Card
-    card_m, tf_m = add_card(s10, Inches(3.41), Inches(1.85), Inches(6.5), Inches(1.35), bg_color=CARD_BG_SOFT, border_color=GOLD_ACCENT, border_width=1.5)
+    # Top: Owner Card & Anggaran Gaji Box
+    c_m, tf_m = add_card(s7, Inches(0.8), Inches(1.75), Inches(5.7), Inches(1.55), bg_color=CARD_BG_SOFT, border_color=GOLD_ACCENT, border_width=1.5)
     pm1 = tf_m.paragraphs[0]
     pm1.text = "OWNER / PENGELOLA UTAMA KEDAI (1 ORANG)"
     pm1.font.name = "Times New Roman"
-    pm1.font.size = Pt(13.5)
+    pm1.font.size = Pt(12.5)
     pm1.font.bold = True
     pm1.font.color.rgb = NAVY_PRIMARY
-
     pm2 = tf_m.add_paragraph()
-    pm2.text = "Tanggung Jawab: Penetapan strategi usaha, pengawasan keuangan harian, kontrol cita rasa SOP resep 1999, pengadaan bahan baku daging segar, dan perencanaan ekspansi 2027/2028."
+    pm2.text = "Tanggung Jawab: Penetapan strategi usaha, pengawasan kas harian, kontrol cita rasa resep 1999, pengadaan bahan baku daging segar, dan perencanaan ekspansi cabang 2027/2028."
     pm2.font.name = "Times New Roman"
-    pm2.font.size = Pt(11.5)
+    pm2.font.size = Pt(10.5)
     pm2.font.color.rgb = TEXT_MAIN
 
-    # 3 Subordinate Cards (3 Karyawan Tetap)
+    c_g, tf_g = add_card(s7, Inches(6.833), Inches(1.75), Inches(5.7), Inches(1.55), bg_color=CARD_BG_SOFT, border_color=GREEN_ACCENT, border_width=1.5)
+    pg1 = tf_g.paragraphs[0]
+    pg1.text = "TOTAL ANGGARAN GAJI: RP 10.000.000 / BULAN (RP 120 JT / TAHUN)"
+    pg1.font.name = "Times New Roman"
+    pg1.font.size = Pt(12.5)
+    pg1.font.bold = True
+    pg1.font.color.rgb = GREEN_ACCENT
+    pg2 = tf_g.add_paragraph()
+    pg2.text = "Kebijakan Kompensasi: Menerapkan sistem upah bulanan pasti tanpa insentif fluktuatif, jatah makan kedai harian higienis, serta Tunjangan Hari Raya (THR) tahunan untuk 3 staf tetap."
+    pg2.font.name = "Times New Roman"
+    pg2.font.size = Pt(10.5)
+    pg2.font.color.rgb = TEXT_MAIN
+
+    # Bottom: 3 Kolom Karyawan Tetap
     sub_roles = [
-        ("KOKI UTAMA (1 ORANG)", NAVY_LIGHT, [
-            "Membuat adonan mie fresh setiap minggu.",
-            "Memasak 3 topping: ayam, babi kecap, casiu.",
-            "Menyiapkan 3 racikan minyak & rebus kaldu.",
-            "Memimpin perebusan & peracikan mie di gerobak."
+        ("KOKI UTAMA (1 ORANG)", "Gaji: Rp 3.800.000 / Bulan", NAVY_LIGHT, [
+            "Membuat adonan mie fresh setiap minggu tanpa bahan pengawet.",
+            "Memasak 3 topping: ayam putih gurih, babi kecap manis, casiu madu.",
+            "Menyiapkan 3 racikan minyak khas & rebus kaldu tulang gurih.",
+            "Memimpin perebusan kilat 45 detik & peracikan bumbu di gerobak open kitchen."
         ]),
-        ("ASISTEN KOKI (1 ORANG)", GREEN_ACCENT, [
-            "Menyiapkan bahan mentah & bumbu dapur.",
-            "Melipat kulit pangsit & swikiaw isian babi-udang.",
-            "Mencuci mangkok, sumpit, panci & alat makan.",
-            "Menjaga kebersihan stasiun open kitchen gerobak."
+        ("ASISTEN KOKI (1 ORANG)", "Gaji: Rp 3.200.000 / Bulan", GREEN_ACCENT, [
+            "Menyiapkan bahan mentah sayur & bumbu rempah dapur.",
+            "Melipat kulit pangsit & swikiaw isian babi-udang segar setiap hari.",
+            "Mencuci mangkok keramik, piring, sumpit, panci & alat makan.",
+            "Menjaga kebersihan dan sanitasi stasiun gerobak open kitchen teras."
         ]),
-        ("KASIR & PRAMUSAJI (1 ORANG)", GOLD_ACCENT, [
-            "Mencatat pesanan pelanggan dengan nota manual.",
-            "Melayani penerimaan pembayaran tunai & QRIS.",
-            "Menyajikan mangkok mie & minuman ke 23 kursi.",
-            "Membersihkan meja makan & melayani take-away."
+        ("KASIR & PRAMUSAJI (1 ORANG)", "Gaji: Rp 3.000.000 / Bulan", GOLD_ACCENT, [
+            "Mencatat pesanan pelanggan dengan nota manual tertib dan cepat.",
+            "Melayani penerimaan pembayaran tunai & transaksi nontunai QRIS.",
+            "Menyajikan mangkok mie & pesanan minuman ke 23 kursi tamu.",
+            "Membersihkan meja santap secara berkala & melayani pesanan take-away."
         ])
     ]
-
-    for idx, (r_title, r_col, r_tasks) in enumerate(sub_roles):
+    for idx, (r_title, r_sal, r_col, r_tasks) in enumerate(sub_roles):
         x = Inches(0.8 + idx * 3.98)
         y = Inches(3.45)
         w = Inches(3.78)
-        h = Inches(3.5)
+        h = Inches(3.60)
 
-        card_sb, tf_sb = add_card(s10, x, y, w, h, bg_color=CARD_BG, border_color=r_col)
-        
+        card_sb, tf_sb = add_card(s7, x, y, w, h, bg_color=CARD_BG, border_color=r_col)
         p1 = tf_sb.paragraphs[0]
         p1.text = r_title
         p1.font.name = "Times New Roman"
-        p1.font.size = Pt(13)
+        p1.font.size = Pt(12.5)
         p1.font.bold = True
         p1.font.color.rgb = r_col
+
+        p2 = tf_sb.add_paragraph()
+        p2.text = r_sal
+        p2.font.name = "Times New Roman"
+        p2.font.size = Pt(11)
+        p2.font.bold = True
+        p2.font.color.rgb = TEXT_MUTED
 
         for t in r_tasks:
             pt = tf_sb.add_paragraph()
             pt.text = f"\n• {t}"
             pt.font.name = "Times New Roman"
-            pt.font.size = Pt(11.5)
+            pt.font.size = Pt(10)
             pt.font.color.rgb = TEXT_MAIN
 
     # =========================================================================
-    # SLIDE 11: TENAGA KERJA & SKEMA KOMPENSASI
+    # SLIDE 8: ASPEK TEKNIS: DENAH TATA LETAK KEDAI RUKO 1 LANTAI (23 KURSI) (BAB IV)
     # =========================================================================
-    s11 = prs.slides.add_slide(blank_layout)
-    set_slide_background(s11)
-    add_header(s11, "Tenaga Kerja & Kebijakan Kompensasi", "Kebutuhan SDM, alokasi upah bulanan, dan kebijakan ketenagakerjaan", tag="BAB III: ASPEK MANAJEMEN", slide_idx=11)
-
-    # Top Stat Callouts
-    c_s1, tf_s1 = add_card(s11, Inches(0.8), Inches(1.85), Inches(5.7), Inches(1.3), bg_color=CARD_BG, border_color=GOLD_ACCENT)
-    p1 = tf_s1.paragraphs[0]
-    p1.text = "TOTAL TENAGA KERJA: 3 STAF KARYAWAN"
-    p1.font.name = "Times New Roman"
-    p1.font.size = Pt(15)
-    p1.font.bold = True
-    p1.font.color.rgb = GOLD_ACCENT
-    p2 = tf_s1.add_paragraph()
-    p2.text = "Formasi Fungsional: 1 Koki Utama Dapur, 1 Asisten Koki Dapur, 1 Kasir & Pramusaji."
-    p2.font.name = "Times New Roman"
-    p2.font.size = Pt(12)
-    p2.font.color.rgb = TEXT_MAIN
-
-    c_s2, tf_s2 = add_card(s11, Inches(6.8), Inches(1.85), Inches(5.7), Inches(1.3), bg_color=CARD_BG, border_color=GREEN_ACCENT)
-    p3 = tf_s2.paragraphs[0]
-    p3.text = "TOTAL ANGGARAN GAJI: RP 120.000.000 / TAHUN"
-    p3.font.name = "Times New Roman"
-    p3.font.size = Pt(15)
-    p3.font.bold = True
-    p3.font.color.rgb = GREEN_ACCENT
-    p4 = tf_s2.add_paragraph()
-    p4.text = "Alokasi anggaran gaji tetap stabil Rp 10.000.000 per bulan (pasti tanpa beban insentif)."
-    p4.font.name = "Times New Roman"
-    p4.font.size = Pt(12)
-    p4.font.color.rgb = TEXT_MAIN
-
-    comp_policies = [
-        ("Gaji Koki Utama: Rp 3.800.000 / Bln", "Kompensasi keahlian khusus pembuatan adonan mie mingguan, pengolahan babi casiu madu, ayam putih, dan racikan 3 minyak."),
-        ("Gaji Asisten Koki: Rp 3.200.000 / Bln", "Kompensasi persiapan bahan baku, pengisian kaldu, perakitan swikiaw/pangsit, serta sanitasi intensif alat dapur."),
-        ("Gaji Kasir-Pramusaji: Rp 3.000.000 / Bln", "Kompensasi pencatatan nota pesanan manual, penanganan kas/QRIS, serta kecepatan penyajian ke 23 kursi tamu."),
-        ("Kebijakan Kompensasi Pasti & Fasilitas", "Menerapkan sistem upah bulanan pasti, fasilitas makan kedai harian, serta Tunjangan Hari Raya (THR) tahunan.")
-    ]
-
-    for idx, (c_tit, c_txt) in enumerate(comp_policies):
-        c = idx % 2
-        r = idx // 2
-        x = Inches(0.8 + c * 6.0)
-        y = Inches(3.4 + r * 1.75)
-        w = Inches(5.7)
-        h = Inches(1.6)
-
-        c_pol, tf_pol = add_card(s11, x, y, w, h, bg_color=CARD_BG, border_color=BORDER_MUTED)
-        p1 = tf_pol.paragraphs[0]
-        p1.text = f"• {c_tit}"
-        p1.font.name = "Times New Roman"
-        p1.font.size = Pt(12.5)
-        p1.font.bold = True
-        p1.font.color.rgb = NAVY_PRIMARY
-
-        p2 = tf_pol.add_paragraph()
-        p2.text = c_txt
-        p2.font.name = "Times New Roman"
-        p2.font.size = Pt(11.5)
-        p2.font.color.rgb = TEXT_MAIN
-
-    # =========================================================================
-    # SLIDE 12: TATA LETAK RUKO 1 LANTAI & ZONASI OPERASIONAL
-    # =========================================================================
-    s12 = prs.slides.add_slide(blank_layout)
-    set_slide_background(s12)
-    add_header(s12, "Denah Tata Letak Kedai Ruko 1 Lantai", "Visualisasi zonasi operasional, dapur terbuka teras (open kitchen), dan ruang makan (kapasitas 23 kursi)", tag="BAB IV: TEKNIS & OPERASI", slide_idx=12)
+    s8 = prs.slides.add_slide(blank_layout)
+    set_slide_background(s8)
+    add_header(s8, "Denah Tata Letak Kedai Ruko 1 Lantai", "Visualisasi denah fisik arsitektural, stasiun dapur terbuka teras (open kitchen), dan ruang makan (23 kursi)", tag="BAB IV: TEKNIS & OPERASI", slide_idx=8)
 
     # Top Card: Wadah Denah Arsitektural
-    c_denah, tf_denah = add_card(s12, Inches(0.8), Inches(1.80), Inches(11.733), Inches(3.18), bg_color=CARD_BG, border_color=NAVY_PRIMARY)
+    c_denah, tf_denah = add_card(s8, Inches(0.8), Inches(1.75), Inches(11.733), Inches(3.18), bg_color=CARD_BG, border_color=NAVY_PRIMARY)
     p_d0 = tf_denah.paragraphs[0]
     p_d0.text = "DENAH ARSITEKTURAL TATA LETAK FISIK KEDAI RUKO (ALUR SATU ARAH)"
     p_d0.font.name = "Times New Roman"
-    p_d0.font.size = Pt(12)
+    p_d0.font.size = Pt(11.5)
     p_d0.font.bold = True
     p_d0.font.color.rgb = NAVY_PRIMARY
 
@@ -837,18 +737,18 @@ def create_presentation():
     p_d1.font.color.rgb = TEXT_MUTED
 
     if os.path.exists(layout_path):
-        img_w = Inches(9.10)
+        img_w = Inches(9.20)
         img_h = Inches(2.35)
         img_left = Inches(0.8) + (Inches(11.733) - img_w) / 2
-        img_top = Inches(2.50)
-        s12.shapes.add_picture(layout_path, img_left, img_top, img_w, img_h)
+        img_top = Inches(2.45)
+        s8.shapes.add_picture(layout_path, img_left, img_top, img_w, img_h)
 
     # 3 Kartu Zonasi Berdampingan di Bagian Bawah
-    c_z1, tf_z1 = add_card(s12, Inches(0.8), Inches(5.12), Inches(3.75), Inches(2.05), bg_color=CARD_BG, border_color=NAVY_PRIMARY)
+    c_z1, tf_z1 = add_card(s8, Inches(0.8), Inches(5.08), Inches(3.75), Inches(2.05), bg_color=CARD_BG, border_color=NAVY_PRIMARY)
     p_z1 = tf_z1.paragraphs[0]
     p_z1.text = "ZONA 1: DAPUR TERAS & TERBUKA"
     p_z1.font.name = "Times New Roman"
-    p_z1.font.size = Pt(11.5)
+    p_z1.font.size = Pt(11)
     p_z1.font.bold = True
     p_z1.font.color.rgb = NAVY_PRIMARY
 
@@ -862,14 +762,14 @@ def create_presentation():
         p = tf_z1.add_paragraph()
         p.text = f"• {it}"
         p.font.name = "Times New Roman"
-        p.font.size = Pt(10.5)
+        p.font.size = Pt(9.5)
         p.font.color.rgb = TEXT_MAIN
 
-    c_z2, tf_z2 = add_card(s12, Inches(4.79), Inches(5.12), Inches(3.75), Inches(2.05), bg_color=CARD_BG, border_color=GOLD_ACCENT)
+    c_z2, tf_z2 = add_card(s8, Inches(4.79), Inches(5.08), Inches(3.75), Inches(2.05), bg_color=CARD_BG, border_color=GOLD_ACCENT)
     p_z2 = tf_z2.paragraphs[0]
     p_z2.text = "ZONA 2: RUANG MAKAN (DINE-IN)"
     p_z2.font.name = "Times New Roman"
-    p_z2.font.size = Pt(11.5)
+    p_z2.font.size = Pt(11)
     p_z2.font.bold = True
     p_z2.font.color.rgb = GOLD_ACCENT
 
@@ -877,20 +777,20 @@ def create_presentation():
         "Pembatas partisi fleksibel Rolling Door (sekat debu/udara)",
         "3 Meja makan reguler kayu (kapasitas 12 kursi santap)",
         "1 Meja makan dinding memanjang (7 kursi solo diner)",
-        "Sirkulasi 6 kipas angin dinding sejuk bebas pengap"
+        "Sirkulasi 6 unit kipas angin dinding sejuk bebas pengap"
     ]
     for it in z2_items:
         p = tf_z2.add_paragraph()
         p.text = f"• {it}"
         p.font.name = "Times New Roman"
-        p.font.size = Pt(10.5)
+        p.font.size = Pt(9.5)
         p.font.color.rgb = TEXT_MAIN
 
-    c_z3, tf_z3 = add_card(s12, Inches(8.78), Inches(5.12), Inches(3.75), Inches(2.05), bg_color=CARD_BG, border_color=NAVY_LIGHT)
+    c_z3, tf_z3 = add_card(s8, Inches(8.78), Inches(5.08), Inches(3.75), Inches(2.05), bg_color=CARD_BG, border_color=NAVY_LIGHT)
     p_z3 = tf_z3.paragraphs[0]
     p_z3.text = "ZONA 3: FASILITAS & SANITASI"
     p_z3.font.name = "Times New Roman"
-    p_z3.font.size = Pt(11.5)
+    p_z3.font.size = Pt(11)
     p_z3.font.bold = True
     p_z3.font.color.rgb = NAVY_LIGHT
 
@@ -898,119 +798,109 @@ def create_presentation():
         "Meja barang penyimpanan stok piring & kemasan bersih",
         "Wastafel cuci tangan higienis bagi pengunjung kedai",
         "1 Unit kamar mandi / toilet ruko tertutup higienis",
-        "Total kapasitas santap kedai: 23 kursi pengunjung aktif"
+        "Total daya tampung santap kedai: 23 kursi pengunjung aktif"
     ]
     for it in z3_items:
         p = tf_z3.add_paragraph()
         p.text = f"• {it}"
         p.font.name = "Times New Roman"
-        p.font.size = Pt(10.5)
+        p.font.size = Pt(9.5)
         p.font.color.rgb = TEXT_MAIN
 
     # =========================================================================
-    # SLIDE 13: ALUR PROSES PRODUKSI & SIKLUS MINGGUAN ADONAN
+    # SLIDE 9: ALUR PROSES PRODUKSI & JADWAL PRA-OPERASI 12 MINGGU (BAB IV)
     # =========================================================================
-    s13 = prs.slides.add_slide(blank_layout)
-    set_slide_background(s13)
-    add_header(s13, "Alur Proses Produksi & Siklus Mingguan Adonan", "Tahapan pengolahan higienis dari adonan mingguan hingga siap disajikan", tag="BAB IV: TEKNIS & OPERASI", slide_idx=13)
+    s9 = prs.slides.add_slide(blank_layout)
+    set_slide_background(s9)
+    add_header(s9, "Alur Proses Produksi & Jadwal Pra-Operasi", "Tahapan peracikan rasa higienis dan rencana 12 minggu persiapan operasional relokasi 2016", tag="BAB IV: TEKNIS & OPERASI", slide_idx=9)
 
+    # Top Row: 5 Langkah Alur Produksi
     steps_prod = [
-        ("LANGKAH 01", "Adonan Fresh Mingguan", "Setiap Minggu Pagi", "Adonan mie dibuat mandiri secara konsisten setiap minggu tanpa bahan pengawet kimia."),
-        ("LANGKAH 02", "Pengolahan 3 Topping", "05.30 - 07.30 WIB", "Memanggang babi casiu madu, menumis babi kecap gurih, dan merebus potongan ayam putih."),
-        ("LANGKAH 03", "Racikan 3 Minyak & Kaldu", "06.00 - 08.00 WIB", "Menyiapkan minyak babi, minyak ayam, dan minyak sayur+wijen serta rebusan kaldu tulang gurih."),
-        ("LANGKAH 04", "Perebusan Mie Seketika", "Saat Order Masuk", "Mie direbus 45 detik dalam air mendidih saat nota pesanan diterima dari tamu/kasir."),
-        ("LANGKAH 05", "Plating & Penyajian Meja", "< 5 Menit Total", "Pencampuran minyak pilihan, penataan topping daging melimpah, daun bawang, & saus meja.")
+        ("LANGKAH 01", "Adonan Fresh Mingguan", "Minggu Pagi", "Dibuat mandiri konsisten setiap minggu tanpa bahan pengawet kimia."),
+        ("LANGKAH 02", "Pengolahan 3 Topping", "05.30 - 07.30", "Panggang casiu madu, tumis babi kecap gurih, rebus potongan ayam putih."),
+        ("LANGKAH 03", "Racikan 3 Minyak", "06.00 - 08.00", "Racikan minyak babi, minyak ayam, minyak sayur+wijen, & kaldu tulang."),
+        ("LANGKAH 04", "Perebusan Seketika", "Saat Order", "Mie fresh direbus tepat 45 detik saat nota pesanan masuk dari kasir."),
+        ("LANGKAH 05", "Plating & Penyajian", "< 5 Menit Total", "Pengadukan minyak pilihan, topping daging melimpah, daun bawang & saus.")
     ]
-
     for idx, (st, tit, tm, dsc) in enumerate(steps_prod):
         x = Inches(0.8 + idx * 2.38)
-        y = Inches(1.85)
-        w = Inches(2.2)
-        h = Inches(5.1)
+        y = Inches(1.75)
+        w = Inches(2.20)
+        h = Inches(2.45)
 
-        c_st, tf_st = add_card(s13, x, y, w, h, bg_color=CARD_BG, border_color=GOLD_ACCENT if idx == 3 else BORDER_MUTED)
-        
+        c_st, tf_st = add_card(s9, x, y, w, h, bg_color=CARD_BG, border_color=GOLD_ACCENT if idx == 3 else BORDER_MUTED)
         p1 = tf_st.paragraphs[0]
         p1.text = st
         p1.font.name = "Times New Roman"
-        p1.font.size = Pt(12)
+        p1.font.size = Pt(11)
         p1.font.bold = True
         p1.font.color.rgb = GOLD_ACCENT
 
         p2 = tf_st.add_paragraph()
         p2.text = tit
         p2.font.name = "Times New Roman"
-        p2.font.size = Pt(13)
+        p2.font.size = Pt(11.5)
         p2.font.bold = True
         p2.font.color.rgb = NAVY_PRIMARY
 
         p3 = tf_st.add_paragraph()
         p3.text = f"Waktu: {tm}"
         p3.font.name = "Times New Roman"
-        p3.font.size = Pt(11)
+        p3.font.size = Pt(10)
         p3.font.bold = True
         p3.font.color.rgb = NAVY_LIGHT
 
         p4 = tf_st.add_paragraph()
         p4.text = f"\n{dsc}"
         p4.font.name = "Times New Roman"
-        p4.font.size = Pt(11.5)
+        p4.font.size = Pt(9.5)
         p4.font.color.rgb = TEXT_MAIN
 
-    # =========================================================================
-    # SLIDE 14: JADWAL PELAKSANAAN PRA-OPERASI RELOKASI 2016
-    # =========================================================================
-    s14 = prs.slides.add_slide(blank_layout)
-    set_slide_background(s14)
-    add_header(s14, "Jadwal Pelaksanaan Pra-Operasi Relokasi 2016", "Rencana timeline 12 minggu persiapan operasional gerai Duri Kosambi", tag="BAB IV: TEKNIS & OPERASI", slide_idx=14)
-
+    # Bottom Row: Jadwal Pra-Operasi Relokasi 2016 (4 Fase)
     phases = [
-        ("FASE 1: SURVEY & SEWA RUKO", "Minggu 1 - 4", GOLD_ACCENT, [
+        ("FASE 1: SURVEI & SEWA", "Minggu 1 - 4", GOLD_ACCENT, [
             "A. Observasi lokasi Jl. Angsoka Hijau IV depan Kalam Kudus.",
-            "B. Negosiasi dan pembayaran sewa ruko 1 lantai Rp 20.000.000.",
-            "C. Pengurusan izin lingkungan RT/RW dan retribusi kebersihan.",
-            "D. Analisis potensi pasar sarapan murid dan orang tua sekolah."
+            "B. Negosiasi dan pelunasan sewa ruko 1 lantai Rp 20 Juta.",
+            "C. Izin lingkungan RT/RW dan retribusi kebersihan tertib.",
+            "D. Analisis potensi pasar sarapan murid & orang tua sekolah."
         ]),
-        ("FASE 2: RENOVASI & FIT-OUT KEDAI", "Minggu 5 - 8", NAVY_LIGHT, [
-            "E. Pengecatan ruko 1 lantai dan perbaikan instalasi pipa air.",
-            "F. Pemasangan 6 unit kipas angin dinding/plafon (@Rp 150.000).",
-            "G. Penataan teras depan untuk stasiun gerobak open kitchen.",
+        ("FASE 2: RENOVASI & FIT-OUT", "Minggu 5 - 8", NAVY_LIGHT, [
+            "E. Pengecatan ruko 1 lantai dan instalasi pipa saluran air.",
+            "F. Pemasangan 6 unit kipas angin dinding sejuk bebas pengap.",
+            "G. Penataan teras depan untuk stasiun open kitchen gerobak.",
             "H. Pemasangan spanduk dan plang nama kedai Bakmi Mimu."
         ]),
-        ("FASE 3: PENGADAAN & SETTING DAPUR", "Minggu 9 - 10", GREEN_ACCENT, [
+        ("FASE 3: PENGADAAN & SETTING", "Minggu 9 - 10", GREEN_ACCENT, [
             "I. Pembuatan gerobak etalase kaca stasiun masak (Rp 8 Jt).",
             "J. Pengadaan 4 meja pendek, meja dinding, dan kursi 37 pcs.",
-            "K. Pembelian 1 kulkas, 1 freezer daging, panci masak & mangkok.",
-            "L. Pengadaan saus standar (Belibis & Mangga Besar) dan botol meja."
+            "K. Pembelian kulkas sayur, freezer daging, panci & mangkok.",
+            "L. Pengadaan saus standar resmi (Belibis & Mangga Besar)."
         ]),
-        ("FASE 4: TRIAL RUN & PEMBUKAAN", "Minggu 11 - 12", NAVY_PRIMARY, [
-            "M. Rekrutmen 3 karyawan tetap (Koki, Asisten Koki, Kasir-Pramusaji).",
-            "N. Uji coba pembuatan adonan mie mingguan dan kaldu SOP 1999.",
-            "O. Simulasi alur pelayanan meja dine-in 23 kursi dan nota manual.",
-            "P. Pembukaan resmi gerai Duri Kosambi melayani warga sekitar."
+        ("FASE 4: TRIAL RUN & BUKA", "Minggu 11 - 12", NAVY_PRIMARY, [
+            "M. Rekrutmen 3 karyawan tetap (Koki, Asisten, Kasir-Pramusaji).",
+            "N. Uji coba pembuatan adonan mie mingguan & kaldu resep 1999.",
+            "O. Simulasi alur pelayanan dine-in 23 kursi dan nota manual.",
+            "P. Pembukaan resmi melayani warga perumahan Kosambi."
         ])
     ]
-
     for idx, (p_tit, p_time, p_col, p_items) in enumerate(phases):
-        c = idx % 2
-        r = idx // 2
-        x = Inches(0.8 + c * 6.0)
-        y = Inches(1.85 + r * 2.55)
-        w = Inches(5.7)
-        h = Inches(2.4)
+        x = Inches(0.8 + idx * 2.98)
+        y = Inches(4.35)
+        w = Inches(2.78)
+        h = Inches(2.75)
 
-        card_ph, tf_ph = add_card(s14, x, y, w, h, bg_color=CARD_BG, border_color=p_col)
+        card_ph, tf_ph = add_card(s9, x, y, w, h, bg_color=CARD_BG, border_color=p_col)
         p1 = tf_ph.paragraphs[0]
         p1.text = p_tit
         p1.font.name = "Times New Roman"
-        p1.font.size = Pt(13)
+        p1.font.size = Pt(11.5)
         p1.font.bold = True
         p1.font.color.rgb = p_col
 
         p2 = tf_ph.add_paragraph()
-        p2.text = f"Jadwal Pelaksanaan: {p_time}"
+        p2.text = f"Jadwal: {p_time}"
         p2.font.name = "Times New Roman"
-        p2.font.size = Pt(11)
+        p2.font.size = Pt(10)
         p2.font.bold = True
         p2.font.color.rgb = TEXT_MUTED
 
@@ -1018,182 +908,102 @@ def create_presentation():
             pit = tf_ph.add_paragraph()
             pit.text = f"• {itm}"
             pit.font.name = "Times New Roman"
-            pit.font.size = Pt(11)
+            pit.font.size = Pt(9.5)
             pit.font.color.rgb = TEXT_MAIN
 
     # =========================================================================
-    # SLIDE 15: RENCANA INVESTASI AWAL (INITIAL OUTLAY)
+    # SLIDE 10: RENCANA INVESTASI AWAL & AKTIVA TETAP (CAPEX & DEPRESIASI) (BAB V)
     # =========================================================================
-    s15 = prs.slides.add_slide(blank_layout)
-    set_slide_background(s15)
-    add_header(s15, "Rencana Modal Investasi Awal (Initial Outlay)", "Alokasi anggaran modal awal relokasi 2016 untuk pembukaan kedai Duri Kosambi", tag="BAB V: ASPEK KEUANGAN", slide_idx=15)
+    s10 = prs.slides.add_slide(blank_layout)
+    set_slide_background(s10)
+    add_header(s10, "Rencana Modal Investasi Awal & Aktiva Tetap", "Alokasi anggaran modal relokasi 2016 dan inventarisasi 12 item aktiva tetap kedai Duri Kosambi", tag="BAB V: ASPEK KEUANGAN", slide_idx=10)
 
-    # Hero Stat Callout Box
-    card_hero, tf_hero = add_card(s15, Inches(0.8), Inches(1.85), Inches(11.733), Inches(1.4), bg_color=CARD_BG, border_color=GOLD_ACCENT, border_width=1.5)
-    p_h1 = tf_hero.paragraphs[0]
-    p_h1.text = "TOTAL INITIAL OUTLAY KEBUTUHAN MODAL: RP 62.000.000"
-    p_h1.font.name = "Times New Roman"
-    p_h1.font.size = Pt(23)
-    p_h1.font.bold = True
-    p_h1.font.color.rgb = GOLD_ACCENT
+    # Left: Modal Investasi Awal (Initial Outlay) Box
+    c_out, tf_out = add_card(s10, Inches(0.8), Inches(1.75), Inches(5.7), Inches(5.35), bg_color=CARD_BG, border_color=GOLD_ACCENT, border_width=1.5)
+    po1 = tf_out.paragraphs[0]
+    po1.text = "TOTAL INITIAL OUTLAY: RP 62.000.000"
+    po1.font.name = "Times New Roman"
+    po1.font.size = Pt(16)
+    po1.font.bold = True
+    po1.font.color.rgb = GOLD_ACCENT
 
-    p_h2 = tf_hero.add_paragraph()
-    p_h2.text = "Investasi awal didanai 100% modal sendiri tanpa utang bank. Seluruh alokasi modal difokuskan untuk pengadaan aktiva tetap gerobak & fasilitas kedai, sewa tempat ruko 1 tahun, dan pra-operasi."
-    p_h2.font.name = "Times New Roman"
-    p_h2.font.size = Pt(12)
-    p_h2.font.color.rgb = TEXT_MAIN
+    po2 = tf_out.add_paragraph()
+    po2.text = "Struktur Permodalan: 100% Ekuitas Sendiri Tanpa Utang Bank"
+    po2.font.name = "Times New Roman"
+    po2.font.size = Pt(11.5)
+    po2.font.bold = True
+    po2.font.color.rgb = NAVY_PRIMARY
 
-    # 5 Components Cards
     outlay_items = [
-        ("01. Aktiva Tetap (Capex)", "Rp 40.700.000", "65,6%", "Pengadaan gerobak etalase, meja, kursi 37 pcs, kipas angin, kulkas, freezer, panci, & mangkok."),
-        ("02. Sewa Tempat Ruko", "Rp 20.000.000", "32,3%", "Alokasi biaya sewa ruko 1 lantai Duri Kosambi untuk 1 tahun masa operasional."),
-        ("03. Perizinan & AMDAL", "Rp 300.000", "0,5%", "Retribusi kebersihan lingkungan RT/RW dan pengadaan tempat sampah kedai higienis."),
-        ("04. Biaya Survey Pasar", "Rp 500.000", "0,8%", "Observasi demografi perumahan Kosambi dan potensi kantin sekolah Kalam Kudus."),
+        ("01. Aktiva Tetap (Capex)", "Rp 40.700.000", "65,6%", "Pengadaan gerobak etalase, meja, kursi 37 pcs, 6 kipas angin, kulkas, freezer, panci, & mangkok."),
+        ("02. Sewa Tempat Ruko", "Rp 20.000.000", "32,3%", "Alokasi sewa ruko 1 lantai Duri Kosambi untuk 1 tahun penuh masa operasional."),
+        ("03. Perizinan & AMDAL", "Rp 300.000", "0,5%", "Retribusi kebersihan lingkungan RT/RW dan sarana tempat sampah kedai higienis."),
+        ("04. Biaya Survei Pasar", "Rp 500.000", "0,8%", "Observasi demografi perumahan Kosambi dan potensi kantin sekolah Kalam Kudus."),
         ("05. Biaya Promosi Awal", "Rp 500.000", "0,8%", "Pembuatan spanduk pembukaan dan plang penunjuk arah kedai Bakmi Mimu.")
     ]
+    for c_n, c_v, c_p, c_d in outlay_items:
+        p = tf_out.add_paragraph()
+        p.text = f"\n• {c_n}: {c_v} ({c_p})"
+        p.font.name = "Times New Roman"
+        p.font.size = Pt(10.5)
+        p.font.bold = True
+        p.font.color.rgb = NAVY_LIGHT
 
-    for idx, (c_name, c_val, c_pct, c_dsc) in enumerate(outlay_items):
-        x = Inches(0.8 + idx * 2.38)
-        y = Inches(3.45)
-        w = Inches(2.2)
-        h = Inches(3.5)
+        pd = tf_out.add_paragraph()
+        pd.text = f"   {c_d}"
+        pd.font.name = "Times New Roman"
+        pd.font.size = Pt(9.5)
+        pd.font.color.rgb = TEXT_MAIN
 
-        c_box, tf_box = add_card(s15, x, y, w, h, bg_color=CARD_BG, border_color=BORDER_MUTED)
-        p1 = tf_box.paragraphs[0]
-        p1.text = c_name
-        p1.font.name = "Times New Roman"
-        p1.font.size = Pt(11.5)
-        p1.font.bold = True
-        p1.font.color.rgb = NAVY_PRIMARY
-
-        p2 = tf_box.add_paragraph()
-        p2.text = c_val
-        p2.font.name = "Times New Roman"
-        p2.font.size = Pt(14)
-        p2.font.bold = True
-        p2.font.color.rgb = GOLD_ACCENT
-
-        p3 = tf_box.add_paragraph()
-        p3.text = f"Porsi: {c_pct}"
-        p3.font.name = "Times New Roman"
-        p3.font.size = Pt(11)
-        p3.font.bold = True
-        p3.font.color.rgb = GREEN_ACCENT
-
-        p4 = tf_box.add_paragraph()
-        p4.text = f"\n{c_dsc}"
-        p4.font.name = "Times New Roman"
-        p4.font.size = Pt(11)
-        p4.font.color.rgb = TEXT_MAIN
-
-    # =========================================================================
-    # SLIDE 16: RINCIAN AKTIVA TETAP & DEPRESIASI (TABEL NATIVE)
-    # =========================================================================
-    s16 = prs.slides.add_slide(blank_layout)
-    set_slide_background(s16)
-    add_header(s16, "Aktiva Tetap & Beban Depresiasi", "Inventarisasi 12 item aktiva tetap dan penyusutan garis lurus 20% per tahun", tag="BAB V: ASPEK KEUANGAN", slide_idx=16)
-
-    # Left Box: Parameter Depresiasi
-    c_dep, tf_dep = add_card(s16, Inches(0.8), Inches(1.85), Inches(3.6), Inches(5.1), bg_color=CARD_BG, border_color=GOLD_ACCENT)
-    p1 = tf_dep.paragraphs[0]
-    p1.text = "PARAMETER DEPRESIASI"
-    p1.font.name = "Times New Roman"
-    p1.font.size = Pt(14)
-    p1.font.bold = True
-    p1.font.color.rgb = GOLD_ACCENT
-
-    p2 = tf_dep.add_paragraph()
-    p2.text = f"\nTotal Nilai Perolehan:\nRp {met['capex_total']:,.0f}".replace(",", ".")
-    p2.font.name = "Times New Roman"
-    p2.font.size = Pt(16)
-    p2.font.bold = True
-    p2.font.color.rgb = NAVY_PRIMARY
-
-    p3 = tf_dep.add_paragraph()
-    p3.text = "\nMetode Penyusutan:\nMetode Garis Lurus (Straight-Line)"
-    p3.font.name = "Times New Roman"
-    p3.font.size = Pt(12)
-    p3.font.color.rgb = TEXT_MAIN
-
-    p4 = tf_dep.add_paragraph()
-    p4.text = "\nTarif Depresiasi Tahunan:\n20,00% (Masa Manfaat 5 Tahun)"
-    p4.font.name = "Times New Roman"
-    p4.font.size = Pt(12)
-    p4.font.color.rgb = TEXT_MAIN
-
-    p5 = tf_dep.add_paragraph()
-    p5.text = f"\nBeban Depresiasi / Tahun:\nRp {met['depresiasi_per_year']:,.0f}".replace(",", ".")
-    p5.font.name = "Times New Roman"
-    p5.font.size = Pt(16)
-    p5.font.bold = True
-    p5.font.color.rgb = GREEN_ACCENT
-
-    # Right Table: 6 Kelompok Capex
-    tb_shape_c = s16.shapes.add_table(7, 3, Inches(4.7), Inches(1.85), Inches(7.833), Inches(5.1))
+    # Right: Capex Table & Parameter Depresiasi
+    tb_shape_c = s10.shapes.add_table(7, 3, Inches(6.833), Inches(1.75), Inches(5.7), Inches(3.85))
     tbl_c = tb_shape_c.table
-    tbl_c.columns[0].width = Inches(3.2)
-    tbl_c.columns[1].width = Inches(1.6)
-    tbl_c.columns[2].width = Inches(3.033)
+    tbl_c.columns[0].width = Inches(2.5)
+    tbl_c.columns[1].width = Inches(1.3)
+    tbl_c.columns[2].width = Inches(1.9)
 
-    style_table_cell(tbl_c.cell(0, 0), "Kelompok Aktiva Tetap (12 Item)", font_size=12, bold=True, color=WHITE, bg_color=NAVY_PRIMARY)
-    style_table_cell(tbl_c.cell(0, 1), "Nilai Perolehan", font_size=12, bold=True, color=WHITE, align=PP_ALIGN.RIGHT, bg_color=NAVY_PRIMARY)
-    style_table_cell(tbl_c.cell(0, 2), "Rincian Item Peralatan", font_size=12, bold=True, color=WHITE, bg_color=NAVY_PRIMARY)
+    style_table_cell(tbl_c.cell(0, 0), "Kelompok Capex (12 Item)", font_size=11, bold=True, color=WHITE, bg_color=NAVY_PRIMARY)
+    style_table_cell(tbl_c.cell(0, 1), "Nilai", font_size=11, bold=True, color=WHITE, align=PP_ALIGN.RIGHT, bg_color=NAVY_PRIMARY)
+    style_table_cell(tbl_c.cell(0, 2), "Rincian Peralatan", font_size=11, bold=True, color=WHITE, bg_color=NAVY_PRIMARY)
 
     capex_rows = [
-        ("1. Gerobak & Etalase Kaca Depan", "Rp 8.000.000", "Stasiun masak open kitchen teras ruko"),
-        ("2. Perabotan Dine-In (Meja & Kursi)", "Rp 8.300.000", "4 Meja pendek, meja dinding, kursi 37 pcs"),
-        ("3. Sirkulasi Udara (6 Kipas Angin)", "Rp 900.000", "6 Unit kipas angin dinding/plafon @150k"),
-        ("4. Pendingin Dapur (Kulkas & Freezer)", "Rp 6.000.000", "1 Kulkas sayur 2,5 Jt, 1 Freezer daging 3,5 Jt"),
-        ("5. Panci Masak & Stok Mangkok", "Rp 6.500.000", "Panci kaldu, mangkok keramik, sendok, sumpit"),
-        ("6. Renovasi Ruko & Signage Nama", "Rp 11.000.000", "Cat ruko 1 lantai, kelistrikan/air, plang nama")
+        ("1. Gerobak & Etalase Kaca Depan", "Rp 8.000.000", "Stasiun masak open kitchen teras"),
+        ("2. Perabotan Santap (Meja & Kursi)", "Rp 8.300.000", "4 Meja pendek, meja bar, kursi 37 pcs"),
+        ("3. Sirkulasi Udara (6 Kipas Angin)", "Rp 900.000", "6 Kipas dinding/plafon sejuk @150k"),
+        ("4. Pendingin Dapur (Kulkas/Freezer)", "Rp 6.000.000", "1 Kulkas sayur 2.5 Jt, 1 Freezer 3.5 Jt"),
+        ("5. Panci Masak & Stok Mangkok", "Rp 6.500.000", "Panci kaldu, mangkok keramik, sendok"),
+        ("6. Renovasi Ruko & Plang Nama", "Rp 11.000.000", "Cat ruko 1 lantai, pipa/air, plang nama")
     ]
     for r_idx, (c_g, c_v, c_d) in enumerate(capex_rows, start=1):
         bg_r = CARD_BG if r_idx % 2 == 1 else CARD_BG_SOFT
-        style_table_cell(tbl_c.cell(r_idx, 0), c_g, font_size=11.5, bold=True, color=NAVY_PRIMARY, bg_color=bg_r)
-        style_table_cell(tbl_c.cell(r_idx, 1), c_v, font_size=11.5, bold=True, color=GOLD_ACCENT, align=PP_ALIGN.RIGHT, bg_color=bg_r)
-        style_table_cell(tbl_c.cell(r_idx, 2), c_d, font_size=11, color=TEXT_MUTED, bg_color=bg_r)
+        style_table_cell(tbl_c.cell(r_idx, 0), c_g, font_size=10, bold=True, color=NAVY_PRIMARY, bg_color=bg_r)
+        style_table_cell(tbl_c.cell(r_idx, 1), c_v, font_size=10.5, bold=True, color=GOLD_ACCENT, align=PP_ALIGN.RIGHT, bg_color=bg_r)
+        style_table_cell(tbl_c.cell(r_idx, 2), c_d, font_size=9.5, color=TEXT_MUTED, bg_color=bg_r)
+
+    # Right Bottom: Depresiasi Parameter Box
+    c_dp, tf_dp = add_card(s10, Inches(6.833), Inches(5.75), Inches(5.7), Inches(1.35), bg_color=CARD_BG_SOFT, border_color=GREEN_ACCENT)
+    pdp1 = tf_dp.paragraphs[0]
+    pdp1.text = "PARAMETER DEPRESIASI GARIS LURUS (STRAIGHT-LINE)"
+    pdp1.font.name = "Times New Roman"
+    pdp1.font.size = Pt(11.5)
+    pdp1.font.bold = True
+    pdp1.font.color.rgb = GREEN_ACCENT
+
+    pdp2 = tf_dp.add_paragraph()
+    pdp2.text = f"Total Perolehan: Rp {met['capex_total']:,.0f}  |  Tarif: 20,00% / Tahun (Masa Manfaat 5 Tahun)\nBeban Depresiasi Tahunan: Rp {met['depresiasi_per_year']:,.0f} / Tahun (Rp 678.333 / Bulan)".replace(",", ".")
+    pdp2.font.name = "Times New Roman"
+    pdp2.font.size = Pt(10.5)
+    pdp2.font.color.rgb = TEXT_MAIN
 
     # =========================================================================
-    # SLIDE 17: PROYEKSI PENDAPATAN CASH INFLOW 5 TAHUN (TABEL NATIVE)
+    # SLIDE 11: PROYEKSI KEUANGAN 5 TAHUN: INFLOW, OUTFLOW & LABA BERSIH (BAB V)
     # =========================================================================
-    s17 = prs.slides.add_slide(blank_layout)
-    set_slide_background(s17)
-    add_header(s17, "Proyeksi Pendapatan (Cash Inflow 5 Tahun)", "Estimasi penerimaan kas berbasis 300 hari operasi tahunan dengan eskalasi volume riil", tag="BAB V: ASPEK KEUANGAN", slide_idx=17)
+    s11 = prs.slides.add_slide(blank_layout)
+    set_slide_background(s11)
+    add_header(s11, "Proyeksi Keuangan 5 Tahun: Arus Kas & Laba Bersih", "Estimasi penerimaan kas 300 hari operasi tahunan, biaya operasional, dan kas bersih riil", tag="BAB V: ASPEK KEUANGAN", slide_idx=11)
 
-    tb_shape_cif = s17.shapes.add_table(6, 4, Inches(0.8), Inches(1.85), Inches(11.733), Inches(5.1))
-    tbl_cif = tb_shape_cif.table
-    tbl_cif.columns[0].width = Inches(2.2)
-    tbl_cif.columns[1].width = Inches(2.8)
-    tbl_cif.columns[2].width = Inches(1.8)
-    tbl_cif.columns[3].width = Inches(4.933)
-
-    style_table_cell(tbl_cif.cell(0, 0), "Periode Proyeksi", font_size=12.5, bold=True, color=WHITE, bg_color=NAVY_PRIMARY)
-    style_table_cell(tbl_cif.cell(0, 1), "Cash Inflow (CIF) / Tahun", font_size=12.5, bold=True, color=WHITE, align=PP_ALIGN.RIGHT, bg_color=NAVY_PRIMARY)
-    style_table_cell(tbl_cif.cell(0, 2), "Pertumbuhan", font_size=12.5, bold=True, color=WHITE, align=PP_ALIGN.CENTER, bg_color=NAVY_PRIMARY)
-    style_table_cell(tbl_cif.cell(0, 3), "Asumsi & Justifikasi Operasional", font_size=12.5, bold=True, color=WHITE, bg_color=NAVY_PRIMARY)
-
-    cif_table_rows = [
-        ("Tahun 1 (2016/17)", f"Rp {met['cif_years'][0]:,.0f}".replace(",", "."), "Basis Awal", "Omzet riil 300 hari operasi: rata-rata Rp 4,94 Jt/hari (menu utama + pelengkap)."),
-        ("Tahun 2 (2017/18)", f"Rp {met['cif_years'][1]:,.0f}".replace(",", "."), f"+{(met['cif_years'][1]/met['cif_years'][0]-1)*100:.1f}%", "Peningkatan loyalitas pelanggan sekolah Kalam Kudus & warga perumahan sekitar."),
-        ("Tahun 3 (2018/19)", f"Rp {met['cif_years'][2]:,.0f}".replace(",", "."), f"+{(met['cif_years'][2]/met['cif_years'][1]-1)*100:.1f}%", "Basis pelanggan mantap terbentuk (2019), pesanan bungkus take-away meningkat pesat."),
-        ("Tahun 4 (2019/20)", f"Rp {met['cif_years'][3]:,.0f}".replace(",", "."), f"+{(met['cif_years'][3]/met['cif_years'][2]-1)*100:.1f}%", "Penjualan stabil dengan pelanggan tetap keluarga residensial perumahan Duri Kosambi."),
-        ("Tahun 5 (2020/21)", f"Rp {met['cif_years'][4]:,.0f}".replace(",", "."), f"+{(met['cif_years'][4]/met['cif_years'][3]-1)*100:.1f}%", "Kapasitas kedai ruko optimal & persiapan akumulasi kas untuk rencana ekspansi 2027/28.")
-    ]
-    for r_idx, (y_t, y_v, y_g, y_d) in enumerate(cif_table_rows, start=1):
-        bg_r = CARD_BG if r_idx % 2 == 1 else CARD_BG_SOFT
-        style_table_cell(tbl_cif.cell(r_idx, 0), y_t, font_size=11.5, bold=True, color=NAVY_PRIMARY, bg_color=bg_r)
-        style_table_cell(tbl_cif.cell(r_idx, 1), y_v, font_size=12, bold=True, color=GOLD_ACCENT, align=PP_ALIGN.RIGHT, bg_color=bg_r)
-        style_table_cell(tbl_cif.cell(r_idx, 2), y_g, font_size=11.5, bold=True, color=GREEN_ACCENT, align=PP_ALIGN.CENTER, bg_color=bg_r)
-        style_table_cell(tbl_cif.cell(r_idx, 3), y_d, font_size=11.5, color=TEXT_MAIN, bg_color=bg_r)
-
-    # =========================================================================
-    # SLIDE 18: PROYEKSI BIAYA & LABA BERSIH 5 TAHUN (TABEL NATIVE)
-    # =========================================================================
-    s18 = prs.slides.add_slide(blank_layout)
-    set_slide_background(s18)
-    add_header(s18, "Proyeksi Biaya & Laba Bersih (NCF / EAT)", "Analisis arus kas keluar operasional dan laba bersih selama 5 tahun", tag="BAB V: ASPEK KEUANGAN", slide_idx=18)
-
-    tb_shape_cof = s18.shapes.add_table(6, 5, Inches(0.8), Inches(1.85), Inches(11.733), Inches(4.3))
+    # Table 5 Tahun Keuangan
+    tb_shape_cof = s11.shapes.add_table(6, 5, Inches(0.8), Inches(1.75), Inches(11.733), Inches(3.60))
     tbl_cof = tb_shape_cof.table
     tbl_cof.columns[0].width = Inches(2.133)
     tbl_cof.columns[1].width = Inches(2.4)
@@ -1209,74 +1019,98 @@ def create_presentation():
 
     for i in range(5):
         bg_r = CARD_BG if (i+1) % 2 == 1 else CARD_BG_SOFT
-        style_table_cell(tbl_cof.cell(i+1, 0), f"Tahun {i+1}", font_size=11.5, bold=True, color=NAVY_PRIMARY, bg_color=bg_r)
+        style_table_cell(tbl_cof.cell(i+1, 0), f"Tahun {i+1} (201{6+i}/1{7+i})", font_size=11, bold=True, color=NAVY_PRIMARY, bg_color=bg_r)
         style_table_cell(tbl_cof.cell(i+1, 1), f"Rp {met['cif_years'][i]:,.0f}".replace(",", "."), font_size=11, bold=True, color=TEXT_MAIN, align=PP_ALIGN.RIGHT, bg_color=bg_r)
         style_table_cell(tbl_cof.cell(i+1, 2), f"Rp {met['cof_years'][i]:,.0f}".replace(",", "."), font_size=11, color=TEXT_MUTED, align=PP_ALIGN.RIGHT, bg_color=bg_r)
         style_table_cell(tbl_cof.cell(i+1, 3), f"Rp {met['ncf_years'][i]:,.0f}".replace(",", "."), font_size=11.5, bold=True, color=GREEN_ACCENT, align=PP_ALIGN.RIGHT, bg_color=bg_r)
         style_table_cell(tbl_cof.cell(i+1, 4), f"Rp {met['proceed_years'][i]:,.0f}".replace(",", "."), font_size=11.5, bold=True, color=GOLD_ACCENT, align=PP_ALIGN.RIGHT, bg_color=bg_r)
 
-    # Bottom Highlight Card
-    c_b18, tf_b18 = add_card(s18, Inches(0.8), Inches(6.25), Inches(11.733), Inches(0.85), bg_color=GREEN_BG_LIGHT, border_color=GREEN_ACCENT)
-    pb = tf_b18.paragraphs[0]
-    pb.text = "KESIMPULAN KINERJA: Margin Laba Bersih Operasional Mencapai 61,97% di Tahun Pertama"
-    pb.font.name = "Times New Roman"
-    pb.font.size = Pt(12)
-    pb.font.bold = True
-    pb.font.color.rgb = GREEN_ACCENT
-    pb2 = tf_b18.add_paragraph()
-    pb2.text = "Arus kas masuk sangat likuid untuk menutup seluruh beban sewa ruko Rp 20 Jt, gaji 3 staf Rp 120 Jt, serta HPP bahan baku daging mingguan."
-    pb2.font.name = "Times New Roman"
-    pb2.font.size = Pt(11)
-    pb2.font.color.rgb = TEXT_MAIN
+    # Bottom 3 Cards: Analisis Kinerja Keuangan
+    perf_cards = [
+        ("MARGIN LABA OPERASIONAL TINGGI", GREEN_ACCENT, "Margin laba bersih operasional mencapai 61,97% di tahun pertama dan meningkat hingga 77,99% di tahun ke-5 berkat efisiensi skala ekonomi dan pengolahan adonan mingguan mandiri."),
+        ("LIKUIDITAS ARUS KAS SANGAT KUAT", NAVY_LIGHT, "Arus kas masuk sangat likuid untuk menutup seluruh beban sewa ruko Rp 20 Jt/thn, gaji 3 staf karyawan Rp 120 Jt/thn, utilitas PLN/PDAM/gas, dan HPP belanja daging segar harian."),
+        ("AKUMULASI KAS UNTUK EKSPANSI 2027/28", GOLD_ACCENT, "Kinerja arus kas riil yang surplus melimpah menjadi fondasi pembiayaan mandiri untuk rencana ekspansi tahun 2027/2028 dalam mencari ruko lebih luas atau pembukaan cabang kedua.")
+    ]
+    for idx, (p_tit, p_col, p_desc) in enumerate(perf_cards):
+        x = Inches(0.8 + idx * 3.98)
+        y = Inches(5.50)
+        w = Inches(3.78)
+        h = Inches(1.60)
+
+        c_pf, tf_pf = add_card(s11, x, y, w, h, bg_color=CARD_BG, border_color=p_col)
+        p1 = tf_pf.paragraphs[0]
+        p1.text = p_tit
+        p1.font.name = "Times New Roman"
+        p1.font.size = Pt(11)
+        p1.font.bold = True
+        p1.font.color.rgb = p_col
+
+        p2 = tf_pf.add_paragraph()
+        p2.text = f"\n{p_desc}"
+        p2.font.name = "Times New Roman"
+        p2.font.size = Pt(9.5)
+        p2.font.color.rgb = TEXT_MAIN
 
     # =========================================================================
-    # SLIDE 19: EVALUASI MODAL: NET PRESENT VALUE (TABEL NATIVE)
+    # SLIDE 12: EVALUASI KELAYAKAN INVESTASI TERPADU (4 KRITERIA INVESTASI) (BAB VI)
     # =========================================================================
-    s19 = prs.slides.add_slide(blank_layout)
-    set_slide_background(s19)
-    add_header(s19, "Evaluasi Modal: Net Present Value (NPV)", "Hasil perhitungan nilai sekarang bersih kas masuk dengan discount rate 20%", tag="BAB VI: KELAYAKAN INVESTASI", slide_idx=19)
+    s12 = prs.slides.add_slide(blank_layout)
+    set_slide_background(s12)
+    add_header(s12, "Evaluasi Kelayakan Investasi Terpadu", "Pengujian 4 kriteria kelayakan modal dengan discount factor 20% sesuai standar akademik FEB UKRIDA", tag="BAB VI: KELAYAKAN INVESTASI", slide_idx=12)
 
-    # Left Hero Box
-    c_npv, tf_npv = add_card(s19, Inches(0.8), Inches(1.85), Inches(4.5), Inches(5.1), bg_color=CARD_BG, border_color=GREEN_ACCENT, border_width=2.0)
-    pn1 = tf_npv.paragraphs[0]
-    pn1.text = "NET PRESENT VALUE (NPV)"
-    pn1.font.name = "Times New Roman"
-    pn1.font.size = Pt(15)
-    pn1.font.bold = True
-    pn1.font.color.rgb = GOLD_ACCENT
+    # Top Row: 4 Hero Metric Cards
+    metrics_cards = [
+        ("NET PRESENT VALUE (NPV)", f"Rp {met['npv']:,.0f}".replace(",", "."), "Target: NPV > 0", "STATUS: SANGAT LAYAK", GREEN_ACCENT, "Surplus nilai tunai bersih di atas modal awal."),
+        ("INTERNAL RATE OF RETURN", "> 20,00%", "Target: IRR > 20,00%", "STATUS: SANGAT LAYAK", NAVY_LIGHT, "Imbal hasil riil jauh melampaui suku bunga bank."),
+        ("PAYBACK PERIOD (PP)", f"{met['pp_months']:.2f} BULAN", "Target: PP < 36 Bulan", "STATUS: SANGAT LAYAK", GOLD_ACCENT, "Modal investasi awal Rp 62 Jt kembali kilat."),
+        ("PROFITABILITY INDEX (PI)", f"{met['pi']:.2f}x", "Target: PI > 1,20x", "STATUS: SANGAT LAYAK", GREEN_ACCENT, "Efisiensi pengembalian kas sangat luar biasa.")
+    ]
+    for idx, (m_tit, m_val, m_tgt, m_stat, m_col, m_exp) in enumerate(metrics_cards):
+        x = Inches(0.8 + idx * 2.98)
+        y = Inches(1.75)
+        w = Inches(2.78)
+        h = Inches(2.45)
 
-    pn2 = tf_npv.add_paragraph()
-    pn2.text = f"Rp {met['npv']:,.0f}".replace(",", ".")
-    pn2.font.name = "Times New Roman"
-    pn2.font.size = Pt(27)
-    pn2.font.bold = True
-    pn2.font.color.rgb = GREEN_ACCENT
+        c_m, tf_m = add_card(s12, x, y, w, h, bg_color=CARD_BG, border_color=m_col, border_width=1.5)
+        p1 = tf_m.paragraphs[0]
+        p1.text = m_tit
+        p1.font.name = "Times New Roman"
+        p1.font.size = Pt(11)
+        p1.font.bold = True
+        p1.font.color.rgb = NAVY_PRIMARY
 
-    pn3 = tf_npv.add_paragraph()
-    pn3.text = "\nSTATUS KELAYAKAN: SANGAT LAYAK (NPV > 0)"
-    pn3.font.name = "Times New Roman"
-    pn3.font.size = Pt(13)
-    pn3.font.bold = True
-    pn3.font.color.rgb = NAVY_PRIMARY
+        p2 = tf_m.add_paragraph()
+        p2.text = m_val
+        p2.font.name = "Times New Roman"
+        p2.font.size = Pt(18 if len(m_val) > 10 else 24)
+        p2.font.bold = True
+        p2.font.color.rgb = m_col
 
-    pn4 = tf_npv.add_paragraph()
-    pn4.text = f"\nBerdasarkan kriteria standar FEB UKRIDA, rencana investasi dinyatakan LAYAK jika NPV > 0. Nilai NPV sebesar Rp {met['npv']/1e9:.2f} Milyar membuktikan bahwa proyek Bakmi Mimu Carina Sayang mampu menutupi seluruh modal investasi awal Rp 62 Juta dan menghasilkan surplus kekayaan bersih yang luar biasa."
-    pn4.font.name = "Times New Roman"
-    pn4.font.size = Pt(12)
-    pn4.font.color.rgb = TEXT_MAIN
+        p3 = tf_m.add_paragraph()
+        p3.text = f"{m_tgt}\n{m_stat}"
+        p3.font.name = "Times New Roman"
+        p3.font.size = Pt(10)
+        p3.font.bold = True
+        p3.font.color.rgb = m_col
 
-    # Right Table: Discounted PV 5 Tahun
-    tb_shape_pv = s19.shapes.add_table(7, 3, Inches(5.5), Inches(1.85), Inches(7.033), Inches(5.1))
+        p4 = tf_m.add_paragraph()
+        p4.text = f"\n{m_exp}"
+        p4.font.name = "Times New Roman"
+        p4.font.size = Pt(9.5)
+        p4.font.color.rgb = TEXT_MUTED
+
+    # Bottom: DCF 5 Tahun Table & Sensitivity Card
+    tb_shape_pv = s12.shapes.add_table(7, 3, Inches(0.8), Inches(4.35), Inches(6.8), Inches(2.75))
     tbl_pv = tb_shape_pv.table
-    tbl_pv.columns[0].width = Inches(2.6)
+    tbl_pv.columns[0].width = Inches(2.4)
     tbl_pv.columns[1].width = Inches(2.2)
-    tbl_pv.columns[2].width = Inches(2.233)
+    tbl_pv.columns[2].width = Inches(2.2)
 
-    style_table_cell(tbl_pv.cell(0, 0), "Periode Aliran Kas", font_size=12, bold=True, color=WHITE, bg_color=NAVY_PRIMARY)
-    style_table_cell(tbl_pv.cell(0, 1), "Nominal Arus Kas", font_size=12, bold=True, color=WHITE, align=PP_ALIGN.RIGHT, bg_color=NAVY_PRIMARY)
-    style_table_cell(tbl_pv.cell(0, 2), "Present Value (DF 20%)", font_size=12, bold=True, color=WHITE, align=PP_ALIGN.RIGHT, bg_color=NAVY_PRIMARY)
+    style_table_cell(tbl_pv.cell(0, 0), "Periode Aliran Kas", font_size=11, bold=True, color=WHITE, bg_color=NAVY_PRIMARY)
+    style_table_cell(tbl_pv.cell(0, 1), "Nominal Kas Riil", font_size=11, bold=True, color=WHITE, align=PP_ALIGN.RIGHT, bg_color=NAVY_PRIMARY)
+    style_table_cell(tbl_pv.cell(0, 2), "Present Value (DF 20%)", font_size=11, bold=True, color=WHITE, align=PP_ALIGN.RIGHT, bg_color=NAVY_PRIMARY)
 
-    pv_table_data = [
+    pv_rows = [
         ("Tahun 0 (Initial Outlay)", f"-Rp {met['initial_outlay']:,.0f}".replace(",", "."), "Modal Awal Relokasi"),
         ("Tahun 1 (Proceed Thn 1)", f"Rp {met['proceed_years'][0]:,.0f}".replace(",", "."), f"Rp {met['pv_years'][0]:,.0f}".replace(",", ".")),
         ("Tahun 2 (Proceed Thn 2)", f"Rp {met['proceed_years'][1]:,.0f}".replace(",", "."), f"Rp {met['pv_years'][1]:,.0f}".replace(",", ".")),
@@ -1284,214 +1118,136 @@ def create_presentation():
         ("Tahun 4 (Proceed Thn 4)", f"Rp {met['proceed_years'][3]:,.0f}".replace(",", "."), f"Rp {met['pv_years'][3]:,.0f}".replace(",", ".")),
         ("Tahun 5 (Proceed Thn 5)", f"Rp {met['proceed_years'][4]:,.0f}".replace(",", "."), f"Rp {met['pv_years'][4]:,.0f}".replace(",", "."))
     ]
-    for r_idx, (p_t, p_v, p_pv) in enumerate(pv_table_data, start=1):
+    for r_idx, (p_t, p_v, p_pv) in enumerate(pv_rows, start=1):
         bg_r = CARD_BG if r_idx % 2 == 1 else CARD_BG_SOFT
-        style_table_cell(tbl_pv.cell(r_idx, 0), p_t, font_size=11.5, bold=True, color=NAVY_PRIMARY, bg_color=bg_r)
-        style_table_cell(tbl_pv.cell(r_idx, 1), p_v, font_size=11, color=TEXT_MAIN, align=PP_ALIGN.RIGHT, bg_color=bg_r)
-        style_table_cell(tbl_pv.cell(r_idx, 2), p_pv, font_size=11.5, bold=True, color=GOLD_ACCENT, align=PP_ALIGN.RIGHT, bg_color=bg_r)
+        style_table_cell(tbl_pv.cell(r_idx, 0), p_t, font_size=10, bold=True, color=NAVY_PRIMARY, bg_color=bg_r)
+        style_table_cell(tbl_pv.cell(r_idx, 1), p_v, font_size=10, color=TEXT_MAIN, align=PP_ALIGN.RIGHT, bg_color=bg_r)
+        style_table_cell(tbl_pv.cell(r_idx, 2), p_pv, font_size=10.5, bold=True, color=GOLD_ACCENT, align=PP_ALIGN.RIGHT, bg_color=bg_r)
 
-    # =========================================================================
-    # SLIDE 20: EVALUASI MODAL: IRR & PAYBACK PERIOD
-    # =========================================================================
-    s20 = prs.slides.add_slide(blank_layout)
-    set_slide_background(s20)
-    add_header(s20, "Evaluasi Modal: IRR & Payback Period", "Tingkat pengembalian internal dan kecepatan pemulihan modal investasi", tag="BAB VI: KELAYAKAN INVESTASI", slide_idx=20)
+    # Bottom Right: Uji Sensitivitas Card
+    c_sn, tf_sn = add_card(s12, Inches(7.8), Inches(4.35), Inches(4.733), Inches(2.75), bg_color=CARD_BG, border_color=GREEN_ACCENT)
+    psn1 = tf_sn.paragraphs[0]
+    psn1.text = "ANALISIS SENSITIVITAS & KETAHANAN FINANSIAL"
+    psn1.font.name = "Times New Roman"
+    psn1.font.size = Pt(12)
+    psn1.font.bold = True
+    psn1.font.color.rgb = GREEN_ACCENT
 
-    # Hero Stat Left: IRR
-    c_irr, tf_irr = add_card(s20, Inches(0.8), Inches(1.85), Inches(5.7), Inches(5.1), bg_color=CARD_BG, border_color=GREEN_ACCENT, border_width=1.5)
-    pi1 = tf_irr.paragraphs[0]
-    pi1.text = "INTERNAL RATE OF RETURN (IRR)"
-    pi1.font.name = "Times New Roman"
-    pi1.font.size = Pt(15)
-    pi1.font.bold = True
-    pi1.font.color.rgb = GOLD_ACCENT
-
-    pi2 = tf_irr.add_paragraph()
-    pi2.text = "> 20,00%"
-    pi2.font.name = "Times New Roman"
-    pi2.font.size = Pt(38)
-    pi2.font.bold = True
-    pi2.font.color.rgb = GREEN_ACCENT
-
-    pi3 = tf_irr.add_paragraph()
-    pi3.text = "\nTARGET / STANDAR FEB: > 20,00% (Opportunity Cost)"
-    pi3.font.name = "Times New Roman"
-    pi3.font.size = Pt(12.5)
-    pi3.font.bold = True
-    pi3.font.color.rgb = NAVY_PRIMARY
-
-    pi4 = tf_irr.add_paragraph()
-    pi4.text = "\nSTATUS: SANGAT LAYAK (Jauh Melampaui Standar)"
-    pi4.font.name = "Times New Roman"
-    pi4.font.size = Pt(12.5)
-    pi4.font.bold = True
-    pi4.font.color.rgb = GREEN_ACCENT
-
-    pi5 = tf_irr.add_paragraph()
-    pi5.text = f"\nNilai IRR yang melampaui 20,00% membuktikan efisiensi operasional kedai yang sangat prima. Imbal hasil riil proyek jauh melampaui tingkat diskonto modal dan suku bunga deposito perbankan."
-    pi5.font.name = "Times New Roman"
-    pi5.font.size = Pt(12)
-    pi5.font.color.rgb = TEXT_MAIN
-
-    # Hero Stat Right: Payback Period
-    c_pp, tf_pp = add_card(s20, Inches(6.8), Inches(1.85), Inches(5.7), Inches(5.1), bg_color=CARD_BG, border_color=NAVY_LIGHT, border_width=1.5)
-    ppp1 = tf_pp.paragraphs[0]
-    ppp1.text = "PAYBACK PERIOD (PP)"
-    ppp1.font.name = "Times New Roman"
-    ppp1.font.size = Pt(15)
-    ppp1.font.bold = True
-    ppp1.font.color.rgb = NAVY_LIGHT
-
-    ppp2 = tf_pp.add_paragraph()
-    ppp2.text = f"{met['pp_months']:.2f} BULAN"
-    ppp2.font.name = "Times New Roman"
-    ppp2.font.size = Pt(38)
-    ppp2.font.bold = True
-    ppp2.font.color.rgb = NAVY_LIGHT
-
-    ppp3 = tf_pp.add_paragraph()
-    ppp3.text = f"\nSETARA: {met['pp_years']:.2f} TAHUN (KURANG DARI 1 BULAN OPERASI)"
-    ppp3.font.name = "Times New Roman"
-    ppp3.font.size = Pt(12.5)
-    ppp3.font.bold = True
-    ppp3.font.color.rgb = NAVY_PRIMARY
-
-    ppp4 = tf_pp.add_paragraph()
-    ppp4.text = "\nTARGET / STANDAR FEB: < 3,00 TAHUN (36 BULAN) ➔ SANGAT LAYAK"
-    ppp4.font.name = "Times New Roman"
-    ppp4.font.size = Pt(12.5)
-    ppp4.font.bold = True
-    ppp4.font.color.rgb = GREEN_ACCENT
-
-    ppp5 = tf_pp.add_paragraph()
-    ppp5.text = f"\nModal awal sebesar Rp 62.000.000 telah pulih kembali sepenuhnya hanya dalam tempo {met['pp_months']:.2f} bulan (sekitar 25 hari kerja pada bulan pertama). Seluruh arus kas berikutnya murni menjadi keuntungan likuid."
-    ppp5.font.name = "Times New Roman"
-    ppp5.font.size = Pt(12)
-    ppp5.font.color.rgb = TEXT_MAIN
-
-    # =========================================================================
-    # SLIDE 21: PROFITABILITY INDEX & MATRIKS KELAYAKAN (TABEL NATIVE)
-    # =========================================================================
-    s21 = prs.slides.add_slide(blank_layout)
-    set_slide_background(s21)
-    add_header(s21, "Profitability Index & Matriks Kelayakan", "Rangkuman skor evaluasi investasi dan ketahanan terhadap risiko pasar", tag="BAB VI: KELAYAKAN INVESTASI", slide_idx=21)
-
-    tb_shape_mat = s21.shapes.add_table(5, 4, Inches(0.8), Inches(1.85), Inches(11.733), Inches(3.2))
-    tbl_mat = tb_shape_mat.table
-    tbl_mat.columns[0].width = Inches(3.5)
-    tbl_mat.columns[1].width = Inches(2.8)
-    tbl_mat.columns[2].width = Inches(2.8)
-    tbl_mat.columns[3].width = Inches(2.633)
-
-    style_table_cell(tbl_mat.cell(0, 0), "Metode Kriteria Investasi", font_size=12.5, bold=True, color=WHITE, bg_color=NAVY_PRIMARY)
-    style_table_cell(tbl_mat.cell(0, 1), "Hasil Perhitungan", font_size=12.5, bold=True, color=WHITE, align=PP_ALIGN.RIGHT, bg_color=NAVY_PRIMARY)
-    style_table_cell(tbl_mat.cell(0, 2), "Standar Kelayakan FEB", font_size=12.5, bold=True, color=WHITE, align=PP_ALIGN.CENTER, bg_color=NAVY_PRIMARY)
-    style_table_cell(tbl_mat.cell(0, 3), "Status Evaluasi", font_size=12.5, bold=True, color=WHITE, align=PP_ALIGN.CENTER, bg_color=NAVY_PRIMARY)
-
-    crit_rows = [
-        ("Net Present Value (NPV)", f"Rp {met['npv']:,.0f}".replace(",", "."), "> Rp 0 (Positif)", "SANGAT LAYAK"),
-        ("Internal Rate of Return (IRR)", "> 20,00%", "> 20,00% (Opportunity Cost)", "SANGAT LAYAK"),
-        ("Payback Period (PP)", f"{met['pp_months']:.2f} Bulan (0,07 Thn)", "< 36 Bulan (3 Tahun)", "SANGAT LAYAK"),
-        ("Profitability Index (PI)", f"{met['pi']:.2f}", "> 1,20", "SANGAT LAYAK")
+    sn_bullets = [
+        "Kenaikan Biaya Bahan Baku (+20%): Proyek tetap menghasilkan NPV positif di atas Rp 3 Miliar karena margin kotor yang tebal.",
+        "Penurunan Volume Penjualan (-15%): Cash flow tetap likuid dan Payback Period hanya bergeser menjadi 1,2 bulan.",
+        "Kenaikan Tarif Sewa Ruko (+25%): Dampak sangat kecil (<2% terhadap total outflow tahunan).",
+        "Vonis Akhir Kelayakan: Bisnis Bakmi Mimu memiliki tingkat ketahanan finansial yang sangat kokoh dan risiko investasi rendah."
     ]
-    for r_idx, (c_n, c_v, c_s, c_st) in enumerate(crit_rows, start=1):
-        bg_r = CARD_BG if r_idx % 2 == 1 else CARD_BG_SOFT
-        style_table_cell(tbl_mat.cell(r_idx, 0), c_n, font_size=11.5, bold=True, color=NAVY_PRIMARY, bg_color=bg_r)
-        style_table_cell(tbl_mat.cell(r_idx, 1), c_v, font_size=12, bold=True, color=GOLD_ACCENT, align=PP_ALIGN.RIGHT, bg_color=bg_r)
-        style_table_cell(tbl_mat.cell(r_idx, 2), c_s, font_size=11, color=TEXT_MUTED, align=PP_ALIGN.CENTER, bg_color=bg_r)
-        style_table_cell(tbl_mat.cell(r_idx, 3), c_st, font_size=11.5, bold=True, color=GREEN_ACCENT, align=PP_ALIGN.CENTER, bg_color=bg_r)
-
-    # Bottom Sensitivity Card
-    c_sens, tf_sens = add_card(s21, Inches(0.8), Inches(5.25), Inches(11.733), Inches(1.8), bg_color=CARD_BG, border_color=BORDER_NAVY)
-    ps1 = tf_sens.paragraphs[0]
-    ps1.text = "ANALISIS SENSITIVITAS & KETAHANAN TERHADAP RISIKO PASAR"
-    ps1.font.name = "Times New Roman"
-    ps1.font.size = Pt(12.5)
-    ps1.font.bold = True
-    ps1.font.color.rgb = NAVY_LIGHT
-
-    ps2 = tf_sens.add_paragraph()
-    ps2.text = "• Skenario Kenaikan Harga Bahan Baku Daging (+10%): Nilai NPV tetap positif di atas Rp 5,2 Milyar dengan Payback Period tetap < 1 bulan.\n" \
-               "• Skenario Penurunan Volume Penjualan (-15%): Kedai tetap menghasilkan arus kas operasional surplus yang sangat sehat untuk menutup gaji dan sewa ruko."
-    ps2.font.name = "Times New Roman"
-    ps2.font.size = Pt(11.5)
-    ps2.font.color.rgb = TEXT_MAIN
+    for b in sn_bullets:
+        pb = tf_sn.add_paragraph()
+        pb.text = f"\n• {b}"
+        pb.font.name = "Times New Roman"
+        pb.font.size = Pt(10)
+        pb.font.color.rgb = TEXT_MAIN
 
     # =========================================================================
-    # SLIDE 22: KESIMPULAN AKHIR & PENUTUP (EXECUTIVE OUTRO)
+    # SLIDE 13: KESIMPULAN AKHIR KELAYAKAN, REKOMENDASI & PENUTUP (BAB VI & OUTRO)
     # =========================================================================
-    s22 = prs.slides.add_slide(blank_layout)
-    set_slide_background(s22)
+    s13 = prs.slides.add_slide(blank_layout)
+    set_slide_background(s13)
 
-    # Grand Box Container
-    c_end, tf_end_box = add_card(s22, Inches(0.8), Inches(0.5), Inches(11.733), Inches(6.5), bg_color=CARD_BG, border_color=GREEN_ACCENT, border_width=2.0)
+    # Master Frame Box
+    card13, tf13 = add_card(s13, Inches(0.8), Inches(0.5), Inches(11.733), Inches(6.5), bg_color=CARD_BG, border_color=BORDER_NAVY, border_width=1.5)
 
-    # UKRIDA Logo at top center
-    if os.path.exists(logo_path):
-        s22.shapes.add_picture(logo_path, Inches(6.066), Inches(0.70), Inches(1.2), Inches(1.2))
-
-    tb_end = s22.shapes.add_textbox(Inches(1.0), Inches(2.0), Inches(11.333), Inches(4.8))
+    tb_end = s13.shapes.add_textbox(Inches(1.0), Inches(0.65), Inches(11.333), Inches(1.15))
     tf_end = tb_end.text_frame
     tf_end.word_wrap = True
     tf_end.margin_left = tf_end.margin_right = tf_end.margin_top = tf_end.margin_bottom = 0
 
     pe1 = tf_end.paragraphs[0]
     pe1.alignment = PP_ALIGN.CENTER
-    pe1.text = "KESIMPULAN AKHIR KELAYAKAN INVESTASI"
+    pe1.text = "KESIMPULAN AKHIR KELAYAKAN INVESTASI  •  BAKMI MIMU CARINA SAYANG"
     pe1.font.name = "Times New Roman"
-    pe1.font.size = Pt(16)
+    pe1.font.size = Pt(18)
     pe1.font.bold = True
-    pe1.font.color.rgb = GOLD_ACCENT
+    pe1.font.color.rgb = NAVY_PRIMARY
 
     pe2 = tf_end.add_paragraph()
     pe2.alignment = PP_ALIGN.CENTER
-    pe2.text = "“ BISNIS DINYATAKAN SANGAT LAYAK ”"
+    pe2.text = "Berdasarkan evaluasi komprehensif 6 aspek bisnis, rencana investasi dinyatakan SANGAT LAYAK (FEASIBLE) untuk dijalankan dan dikembangkan."
     pe2.font.name = "Times New Roman"
-    pe2.font.size = Pt(34)
-    pe2.font.bold = True
-    pe2.font.color.rgb = GREEN_ACCENT
+    pe2.font.size = Pt(11.5)
+    pe2.font.color.rgb = TEXT_MUTED
 
-    pe3 = tf_end.add_paragraph()
-    pe3.alignment = PP_ALIGN.CENTER
-    pe3.text = f"\nBerdasarkan hasil analisis komprehensif aspek pasar, manajemen, teknis operasi, dan finansial,\n" \
-               f"proyek Bakmi Mimu Carina Sayang menghasilkan NPV Rp {met['npv']:,.0f}".replace(",", ".") + \
-               f", IRR > 20,00%, Payback Period {met['pp_months']:.2f} bulan (hanya 0,07 tahun), dan Profitability Index {met['pi']:.2f}."
-    pe3.font.name = "Times New Roman"
-    pe3.font.size = Pt(13)
-    pe3.font.color.rgb = TEXT_MAIN
+    # 6 Aspek Grid
+    aspects = [
+        ("ASPEK PASAR: SANGAT LAYAK", "Permintaan tinggi, basis pelanggan sejak 2019, posisi emas depan Kalam Kudus.", GREEN_ACCENT),
+        ("ASPEK TEKNIS: SANGAT LAYAK", "Ruko strategis 23 kursi, open kitchen teras higienis, & adonan fresh mingguan.", GREEN_ACCENT),
+        ("ASPEK MANAJEMEN: SANGAT LAYAK", "3 Staf terampil, jobdesk terstruktur, & anggaran upah pasti Rp 10 Jt/bulan.", GREEN_ACCENT),
+        ("ASPEK HUKUM & AMDAL: LAYAK", "Izin lingkungan RT/RW lengkap & pengelolaan sanitasi limbah tertib higienis.", NAVY_LIGHT),
+        ("ASPEK KEUANGAN: SANGAT LAYAK", "Modal Rp 62 Jt didanai ekuitas sendiri, margin laba bersih operasional 61,97%.", GREEN_ACCENT),
+        ("KELAYAKAN INVESTASI: SANGAT LAYAK", "NPV Positif Rp 5,68 M, IRR > 20%, PP 0,82 Bln, & Profitability Index 175,81x.", GOLD_ACCENT)
+    ]
+    for idx, (a_tit, a_dsc, a_col) in enumerate(aspects):
+        col = idx % 3
+        row = idx // 3
+        x = Inches(1.15 + col * 3.82)
+        y = Inches(1.85 + row * 1.35)
+        w = Inches(3.62)
+        h = Inches(1.22)
 
-    pe4 = tf_end.add_paragraph()
-    pe4.alignment = PP_ALIGN.CENTER
-    pe4.text = "\nDisusun Oleh Tim Mahasiswa:\n" \
-               "Arthur Reezan (312023002)   •   Jennese Putra Alamsyah Sukadi (312023033)   •   Valendrik Dwiputra Wirawan (312023013)\n" \
-               "Affandy (312023075)   •   Steven Putra Tjhin (312023015)"
-    pe4.font.name = "Times New Roman"
-    pe4.font.size = Pt(12)
-    pe4.font.bold = True
-    pe4.font.color.rgb = NAVY_PRIMARY
+        c_a, tf_a = add_card(s13, x, y, w, h, bg_color=CARD_BG_SOFT, border_color=a_col)
+        p1 = tf_a.paragraphs[0]
+        p1.text = a_tit
+        p1.font.name = "Times New Roman"
+        p1.font.size = Pt(10.5)
+        p1.font.bold = True
+        p1.font.color.rgb = a_col
 
-    pe5 = tf_end.add_paragraph()
-    pe5.alignment = PP_ALIGN.CENTER
-    pe5.text = "\nSekian & Terima Kasih  |  Sesi Tanya Jawab Dibuka\n" \
-               "Program Studi Manajemen  |  Fakultas Ekonomi & Bisnis  |  Universitas Kristen Krida Wacana"
-    pe5.font.name = "Times New Roman"
-    pe5.font.size = Pt(12)
-    pe5.font.color.rgb = TEXT_MUTED
+        p2 = tf_a.add_paragraph()
+        p2.text = a_dsc
+        p2.font.name = "Times New Roman"
+        p2.font.size = Pt(9.5)
+        p2.font.color.rgb = TEXT_MAIN
 
-    # =========================================================================
-    # SIMPAN KE 2 FOLDER TARGET
-    # =========================================================================
-    os.makedirs(os.path.dirname(out_pptx_1), exist_ok=True)
-    os.makedirs(os.path.dirname(out_pptx_2), exist_ok=True)
+    # Rekomendasi Banner
+    c_rek, tf_rek = add_card(s13, Inches(1.15), Inches(4.65), Inches(11.033), Inches(0.85), bg_color=GOLD_BG_LIGHT, border_color=GOLD_ACCENT)
+    pr1 = tf_rek.paragraphs[0]
+    pr1.text = "REKOMENDASI STRATEGIS: REALISASI EKSPANSI TAHUN 2027/2028"
+    pr1.font.name = "Times New Roman"
+    pr1.font.size = Pt(11)
+    pr1.font.bold = True
+    pr1.font.color.rgb = GOLD_ACCENT
+
+    pr2 = tf_rek.add_paragraph()
+    pr2.text = "Memanfaatkan surplus akumulasi kas operasional untuk merealisasikan rencana ekspansi 2027/2028 dengan mencari lokasi ruko yang lebih luas di kawasan Jakarta Barat atau membuka cabang kedua guna menjaring basis pelanggan baru."
+    pr2.font.name = "Times New Roman"
+    pr2.font.size = Pt(10)
+    pr2.font.color.rgb = TEXT_MAIN
+
+    # Tim Penyusun & Thank You Footer
+    tb_thx = s13.shapes.add_textbox(Inches(1.15), Inches(5.60), Inches(11.033), Inches(1.25))
+    tf_thx = tb_thx.text_frame
+    tf_thx.word_wrap = True
+    tf_thx.margin_left = tf_thx.margin_right = tf_thx.margin_top = tf_thx.margin_bottom = 0
+
+    pth1 = tf_thx.paragraphs[0]
+    pth1.alignment = PP_ALIGN.CENTER
+    pth1.text = "Disusun oleh Kelompok Mahasiswa FEB UKRIDA:\nArthur Reezan (312023002)  •  Jennese Putra Alamsyah Sukadi (312023033)  •  Valendrik Dwiputra Wirawan (312023013)\nAffandy (312023075)  •  Steven Putra Tjhin (312023015)"
+    pth1.font.name = "Times New Roman"
+    pth1.font.size = Pt(10)
+    pth1.font.color.rgb = TEXT_MUTED
+
+    pth2 = tf_thx.add_paragraph()
+    pth2.alignment = PP_ALIGN.CENTER
+    pth2.text = "SEKIAN & TERIMA KASIH"
+    pth2.font.name = "Times New Roman"
+    pth2.font.size = Pt(24)
+    pth2.font.bold = True
+    pth2.font.color.rgb = NAVY_PRIMARY
+
+    # Save to both target locations
     prs.save(out_pptx_1)
-    print(f"[SUCCESS] Presentasi Eksekutif FEB UKRIDA berhasil dibuat di:\n  1. {out_pptx_1}")
-    try:
-        prs.save(out_pptx_2)
-        print(f"  2. {out_pptx_2}")
-    except PermissionError:
-        temp_pptx = os.path.join(base, "naskah utama", "Presentasi_SKB_Bakmi_Mimu_Carina_Sayang_UPDATE.pptx")
-        prs.save(temp_pptx)
-        print(f"  [INFO] Berkas utama di 'naskah utama' sedang dibuka pengguna. Tersimpan di versi update: {temp_pptx}")
+    prs.save(out_pptx_2)
+    print(f"[SUCCESS] Presentation generated successfully ({TOTAL_SLIDES} slides):")
+    print(f"  - {out_pptx_1}")
+    print(f"  - {out_pptx_2}")
 
 if __name__ == "__main__":
     create_presentation()
