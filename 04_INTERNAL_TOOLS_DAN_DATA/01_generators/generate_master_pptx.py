@@ -16,6 +16,7 @@ def create_presentation():
         met = json.load(f)
 
     logo_path = os.path.join(data_dir, "logo_ukrida.png")
+    layout_path = os.path.join(data_dir, "denah_tata_letak_ruko.png")
     out_pptx_1 = os.path.join(base, "01_TUGAS_FINAL_BAKMI_MIMU", "Presentasi_SKB_Bakmi_Mimu_Carina_Sayang.pptx")
     out_pptx_2 = os.path.join(base, "naskah utama", "Presentasi_SKB_Bakmi_Mimu_Carina_Sayang.pptx")
 
@@ -816,57 +817,100 @@ def create_presentation():
         p2.font.color.rgb = TEXT_MUTED
 
     # =========================================================================
-    # SLIDE 12: TATA LETAK RUKO 1 LANTAI & MODAL AWAL 2016
+    # SLIDE 12: TATA LETAK RUKO 1 LANTAI & ZONASI OPERASIONAL
     # =========================================================================
     s12 = prs.slides.add_slide(blank_layout)
     set_slide_background(s12)
-    add_header(s12, "Tata Letak Ruko 1 Lantai & Modal Awal 2016", "Denah penataan kedai 22 kursi padat dan rincian realisasi modal awal relokasi 2016", tag="BAB IV: TEKNIS & OPERASI", slide_idx=12)
+    add_header(s12, "Denah Tata Letak Kedai Ruko 1 Lantai", "Visualisasi zonasi operasional, dapur terbuka teras (open kitchen), dan ruang makan (kapasitas 23 kursi)", tag="BAB IV: TEKNIS & OPERASI", slide_idx=12)
 
-    # Left Card: Tata Letak Ruko
-    c_f1, tf_f1 = add_card(s12, Inches(0.8), Inches(1.85), Inches(5.7), Inches(5.1), bg_color=CARD_BG, border_color=NAVY_PRIMARY)
-    p_f1 = tf_f1.paragraphs[0]
-    p_f1.text = "TATA LETAK KEDAI (RUKO 1 LANTAI - 22 KURSI PADAT)"
-    p_f1.font.name = "Times New Roman"
-    p_f1.font.size = Pt(12)
-    p_f1.font.bold = True
-    p_f1.font.color.rgb = NAVY_PRIMARY
+    # Top Card: Wadah Denah Arsitektural
+    c_denah, tf_denah = add_card(s12, Inches(0.8), Inches(1.80), Inches(11.733), Inches(3.18), bg_color=CARD_BG, border_color=NAVY_PRIMARY)
+    p_d0 = tf_denah.paragraphs[0]
+    p_d0.text = "DENAH ARSITEKTURAL TATA LETAK FISIK KEDAI RUKO (ALUR SATU ARAH)"
+    p_d0.font.name = "Times New Roman"
+    p_d0.font.size = Pt(11)
+    p_d0.font.bold = True
+    p_d0.font.color.rgb = NAVY_PRIMARY
 
-    f1_details = [
-        ("Area Depan (Teras Ruko)", "Gerobak etalase open kitchen (stasiun rebus mie, dandang kaldu panas, kompor gas, meja bumbu & 3 jenis minyak mie)."),
-        ("Area Makan (Tengah)", "Kapasitas 22 kursi padat: 4 meja pendek kayu (16 kursi) + 1 meja panjang menempel dinding (6 kursi), sirkulasi 6 kipas angin."),
-        ("Area Kasir & Minuman", "Meja kasir nota manual, etalase minuman botol dingin (Badak, Liang Teh, Susu Kacang, Aqua, Teh Botol/Pucuk)."),
-        ("Area Belakang (Dapur Cuci)", "Dapur persiapan & stok, 1 unit kulkas, 1 unit freezer daging beku, stasiun cuci piring mangkok, dan 1 toilet ruko.")
+    p_d1 = tf_denah.add_paragraph()
+    p_d1.text = "Alur Kerja: Pintu Masuk ➔ Open Kitchen Teras ➔ Rolling Door ➔ Ruang Makan Utama (Meja Reguler & Dinding) ➔ Fasilitas Sanitasi"
+    p_d1.font.name = "Times New Roman"
+    p_d1.font.size = Pt(8.5)
+    p_d1.font.color.rgb = TEXT_MUTED
+
+    if os.path.exists(layout_path):
+        # Rasio aspek denah adalah 3.879 (1024 / 264)
+        img_w = Inches(9.10)
+        img_h = Inches(2.35)
+        img_left = Inches(0.8) + (Inches(11.733) - img_w) / 2
+        img_top = Inches(2.50)
+        s12.shapes.add_picture(layout_path, img_left, img_top, img_w, img_h)
+
+    # 3 Kartu Zonasi Berdampingan di Bagian Bawah
+    # Card 1: Zona Depan & Dapur
+    c_z1, tf_z1 = add_card(s12, Inches(0.8), Inches(5.12), Inches(3.75), Inches(2.05), bg_color=CARD_BG, border_color=NAVY_PRIMARY)
+    p_z1 = tf_z1.paragraphs[0]
+    p_z1.text = "ZONA 1: DAPUR TERAS & TERBUKA"
+    p_z1.font.name = "Times New Roman"
+    p_z1.font.size = Pt(10)
+    p_z1.font.bold = True
+    p_z1.font.color.rgb = NAVY_PRIMARY
+
+    z1_items = [
+        "Etalase kaca display racik mie & kompor gas perebusan",
+        "Meja kuah kaldu, dispenser minum & kulkas sayur segar",
+        "Meja persiapan potong sayur & pembungkusan pangsit",
+        "1 Meja makan teras (4 kursi) & 1 unit freezer beku daging"
     ]
-    for n, d in f1_details:
-        p = tf_f1.add_paragraph()
-        p.text = f"\n▸ {n}:\n  {d}"
+    for it in z1_items:
+        p = tf_z1.add_paragraph()
+        p.text = f"• {it}"
         p.font.name = "Times New Roman"
-        p.font.size = Pt(10)
+        p.font.size = Pt(8.5)
         p.font.color.rgb = TEXT_MAIN
 
-    # Right Card: Realisasi Modal 2016
-    c_f2, tf_f2 = add_card(s12, Inches(6.8), Inches(1.85), Inches(5.7), Inches(5.1), bg_color=CARD_BG, border_color=GOLD_ACCENT)
-    p_f2 = tf_f2.paragraphs[0]
-    p_f2.text = "REALISASI MODAL AWAL RELOKASI 2016 (OUTLAY RP 62 JT)"
-    p_f2.font.name = "Times New Roman"
-    p_f2.font.size = Pt(12)
-    p_f2.font.bold = True
-    p_f2.font.color.rgb = GOLD_ACCENT
+    # Card 2: Zona Tengah & Dining Room
+    c_z2, tf_z2 = add_card(s12, Inches(4.79), Inches(5.12), Inches(3.75), Inches(2.05), bg_color=CARD_BG, border_color=GOLD_ACCENT)
+    p_z2 = tf_z2.paragraphs[0]
+    p_z2.text = "ZONA 2: RUANG MAKAN (DINE-IN)"
+    p_z2.font.name = "Times New Roman"
+    p_z2.font.size = Pt(10)
+    p_z2.font.bold = True
+    p_z2.font.color.rgb = GOLD_ACCENT
 
-    f2_details = [
-        ("Gerobak Etalase Utama", "Rp 8.000.000 (Gerobak alumunium kaca stasiun depan)"),
-        ("Meja Makan & Kursi", "Rp 8.300.000 (4 Meja pendek 2,8 Jt, Meja dinding 1,8 Jt, Kursi 37 pcs 3,7 Jt)"),
-        ("Kipas Angin & Pendingin", "Rp 6.900.000 (6 Kipas angin @150k = 900k, Kulkas 2,5 Jt, Freezer 3,5 Jt)"),
-        ("Alat Dapur & Stok Mangkok", "Rp 6.500.000 (Panci masak, dandang, mangkok makan, sendok, sumpit)"),
-        ("Renovasi & Signage Ruko", "Rp 11.000.000 (Cat ruko 1 lantai, kelistrikan/air, spanduk/plang nama)"),
-        ("Sewa Tempat Ruko 1 Tahun", "Rp 20.000.000 (Alokasi biaya sewa ruko tahun pertama 2016)"),
-        ("Biaya Pra-Operasi & Perizinan", "Rp 1.300.000 (AMDAL/kebersihan 300k, survey 500k, promosi 500k)")
+    z2_items = [
+        "Pembatas partisi fleksibel Rolling Door (sekat debu/udara)",
+        "3 Meja makan reguler kayu (kapasitas 12 kursi santap)",
+        "1 Meja makan dinding memanjang (7 kursi solo diner)",
+        "Sirkulasi 6 kipas angin dinding sejuk bebas pengap"
     ]
-    for n, d in f2_details:
-        p = tf_f2.add_paragraph()
-        p.text = f"• {n} ➔ {d}"
+    for it in z2_items:
+        p = tf_z2.add_paragraph()
+        p.text = f"• {it}"
         p.font.name = "Times New Roman"
-        p.font.size = Pt(9.5)
+        p.font.size = Pt(8.5)
+        p.font.color.rgb = TEXT_MAIN
+
+    # Card 3: Zona Belakang & Sanitasi
+    c_z3, tf_z3 = add_card(s12, Inches(8.78), Inches(5.12), Inches(3.75), Inches(2.05), bg_color=CARD_BG, border_color=NAVY_LIGHT)
+    p_z3 = tf_z3.paragraphs[0]
+    p_z3.text = "ZONA 3: FASILITAS & SANITASI"
+    p_z3.font.name = "Times New Roman"
+    p_z3.font.size = Pt(10)
+    p_z3.font.bold = True
+    p_z3.font.color.rgb = NAVY_LIGHT
+
+    z3_items = [
+        "Meja barang penyimpanan stok piring & kemasan bersih",
+        "Wastafel cuci tangan higienis bagi pengunjung kedai",
+        "1 Unit kamar mandi / toilet ruko tertutup higienis",
+        "Total kapasitas santap kedai: 23 kursi pengunjung aktif"
+    ]
+    for it in z3_items:
+        p = tf_z3.add_paragraph()
+        p.text = f"• {it}"
+        p.font.name = "Times New Roman"
+        p.font.size = Pt(8.5)
         p.font.color.rgb = TEXT_MAIN
 
     # =========================================================================

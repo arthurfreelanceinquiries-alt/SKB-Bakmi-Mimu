@@ -357,10 +357,19 @@ def build_master_docx():
     style_table(t41, [Inches(0.5), Inches(2.6), Inches(0.8), Inches(1.3), Inches(1.4)])
 
     add_heading(doc, "4.2 Layout Usaha", level=2)
-    add_fig_cap(doc, f"Gambar 4.1 Layout {cfg['business_name']}")
-    add_p(doc, f"Tata letak ruangan {cfg['business_name']} dirancang mengutamakan kebersihan, kelancaran arus staf dapur, dan kenyamanan pengunjung bersantap:")
-    for rm in cfg['operations']['rooms']:
-        add_p(doc, rm, bold_prefix="- ", indent=1)
+    layout_path = os.path.join(data_dir, "denah_tata_letak_ruko.png")
+    if os.path.exists(layout_path):
+        p_img = doc.add_paragraph()
+        apply_p_format(p_img, align=WD_PARAGRAPH_ALIGNMENT.CENTER, line_spacing=1.0, space_after=Pt(4), space_before=Pt(8))
+        r_img = p_img.add_run()
+        r_img.add_picture(layout_path, width=Inches(6.0))
+    add_fig_cap(doc, f"Gambar 4.1 Denah Tata Letak Kedai Ruko 1 Lantai {cfg['business_name']}")
+    add_p(doc, f"Tata letak (layout) ruangan {cfg['business_name']} dirancang dengan prinsip ergonomi alur kerja (workflow ergonomics) dan efisiensi ruang ruko satu lantai berdimensi memanjang. Penataan ruang menerapkan sistem arus satu arah (straight-line flow) dari akses masuk depan menuju ruang santap utama dan area servis belakang, guna meminimalisasi tabrakan arus antara pengunjung dan staf operasional:")
+    add_p(doc, "1. Area Depan & Teras (Dapur Semi-Terbuka / Open Kitchen & Dine-In Luar): Terletak di bagian depan sebelum rolling door sebagai titik kontak pertama pelanggan. Dilengkapi etalase kaca gerobak utama untuk meracik mie, stasiun kompor gas perebusan bertemperatur tinggi, meja kuah kaldu, dispenser tempat minum, kulkas penyimpanan sayuran dan bahan segar harian, serta meja persiapan sayur dan pangsit. Pada sisi seberang teras disediakan 1 meja makan dengan 4 kursi santap luar (juga difungsikan sebagai waiting area pesanan take-away), 1 unit freezer pembeku stok daging, serta rak perlengkapan sanitasi dan kipas angin teras.")
+    add_p(doc, "2. Rolling Door (Partisi Fleksibel Ruang): Berfungsi sebagai sekat pembatas fungsional antara area dapur depan dengan ruang makan dalam. Rolling door dibuka penuh pada jam sibuk dan dapat ditutup sebagian saat malam hari untuk menjaga kestabilan sirkulasi udara serta mencegah debu jalan masuk ke ruang makan utama.")
+    add_p(doc, "3. Area Makan Utama (Indoor Dining Room - 19 Kursi Santap): Ruang makan utama yang nyaman dan terlindung, dilengkapi 3 unit meja makan reguler berkapasitas 4 orang per meja (total 12 kursi) di sisi atas serta 1 unit meja makan dinding memanjang dengan 7 kursi sejajar di sisi bawah yang sangat ramah bagi pelanggan individu (solo diner). Sirkulasi udara ditunjang 6 unit kipas angin dinding untuk menjaga kenyamanan pengunjung tanpa membebani biaya listrik pendingin AC berlebihan.")
+    add_p(doc, "4. Area Servis & Fasilitas Sanitasi Belakang: Terletak di ujung belakang ruko secara terpisah demi menjamin higienitas pangan. Terdiri dari meja barang untuk penataan inventaris alat makan bersih dan kemasan take-away, wastafel cuci tangan higienis bagi pelanggan, serta 1 unit kamar mandi/toilet bersih tertutup.")
+    add_p(doc, f"Total kapasitas tempat duduk pengunjung di seluruh area kedai {cfg['business_name']} mencapai 23 kursi aktif (4 kursi di teras depan dan 19 kursi di ruang makan dalam), menjamin pemenuhan target perputaran meja (table turnover rate) harian secara optimal.")
 
     add_heading(doc, "4.3 Network Planning", level=2)
     add_fig_cap(doc, f"Gambar 4.2 Network Planning {cfg['business_name']}")
