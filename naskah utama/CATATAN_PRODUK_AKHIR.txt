@@ -1,0 +1,35 @@
+PRODUK TERAKHIR TUGAS STUDI KELAYAKAN BISNIS (SKB)
+PROGRAM STUDI MANAJEMEN - FAKULTAS EKONOMI DAN BISNIS
+UNIVERSITAS KRISTEN KRIDA WACANA (UKRIDA)
+TAHUN AKADEMIK 2024 / 2025
+
+Judul Usaha : Bakmi Mimu Carina Sayang
+Lokasi Usaha: Jl. Angsoka Hijau IV Blok E6 No. 17 Duri Kosambi, Cengkareng, Jakarta Barat
+              (Depan Taman TK, SD, SMP Sekolah Kristen Kalam Kudus)
+
+Tim Penyusun (5 Mahasiswa):
+1. Arthur Reezan (NIM: 312023002)
+2. Jennese Putra Alamsyah Sukadi (NIM: 312023033)
+3. Valendrik Dwiputra Wirawan (NIM: 312023013)
+4. Affandy (NIM: 312023075)
+5. Steven Putra Tjhin (NIM: 312023015)
+
+Daftar Berkas Final di Folder Ini:
+1. Laporan_SKB_Bakmi_Mimu_Carina_Sayang.docx
+   - Naskah lengkap BAB I s.d. BAB VI sesuai template acuan Martabak Hati.
+   - 30 Tabel Native Word, Font 100% Times New Roman, spasi 1.5.
+   - Narasi telah memuat seluruh data koreksi terbaru (3 jenis minyak, ruko 1 lantai, 22 kursi padat, modal awal 2016 Rp 62 Jt, 3 staf gaji Rp 10 Jt/bln, tanpa insentif, kasir nota manual, tanpa Wi-Fi & AC).
+
+2. Model_Finansial_Bakmi_Mimu_Carina_Sayang.xlsx
+   - Model finansial 3 Sheet (Sheet1: NCF & Investasi Awal, Sheet2: Detail CIF & COF, Sheet3: Evaluasi Kriteria Modal).
+   - Seluruh rumus PV, IRR, NPV, PP, dan PI dinamis dan terhubung otomatis.
+   - Initial Outlay: Rp 62.000.000 | Depresiasi: Rp 8.140.000/thn.
+   - NPV: Rp 5.682.364.987 (Layak) | IRR: > 20% (Layak) | PP: 0,82 Bulan (Layak) | PI: 175,81 (Layak).
+
+3. Presentasi_SKB_Bakmi_Mimu_Carina_Sayang.pptx
+   - Presentasi Eksekutif 22 Slide (Widescreen 16:9).
+   - Tipografi 100% Times New Roman.
+   - Visualisasi modern per bab mencakup latar belakang 1999 Taman Aries -> 2016 Kosambi, menu riil, 3 minyak, ruko 1 lantai 22 kursi, modal 2016, struktur 3 staf, dan dashboard kelayakan modal.
+
+Status Audit: 100 / 100 (Pass - Sempurna)
+Semua file siap diserahkan/dipresentasikan ke Dosen Pembimbing.

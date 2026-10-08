@@ -1,0 +1,161 @@
+{
+  "business_name": "Kopi Susu Senja",
+  "tagline": "Hangatnya Rasa, Sesuai Hatimu",
+  "commodity_type": "Kopi & Minuman Kekinian",
+  "author": {
+    "name": "Mahasiswa FEB",
+    "nim": "312023001",
+    "institution": "Universitas Kristen Krida Wacana",
+    "faculty": "Fakultas Ekonomi & Bisnis",
+    "year": "2024/2025"
+  },
+  "background": {
+    "history": "Indonesia merupakan salah satu negara penghasil kopi terbesar di dunia dengan tradisi minum kopi yang telah mengakar sejak zaman kolonial. Perjalanan kopi di Indonesia berkembang pesat dari sekadar komoditas perkebunan menjadi bagian integral dari gaya hidup modern masyarakat urban.",
+    "opportunity": "Tren konsumsi kopi susu kekinian terus meningkat signifikan di kalangan mahasiswa, generasi muda, dan profesional. Minuman kopi dengan racikan gula aren dan varian rasa unik menjadi pilihan utama untuk menemani aktivitas belajar, bekerja, maupun sosialisasi santai.",
+    "challenges": "Persaingan ketat antar kedai kopi dan fluktuasi harga biji kopi serta susu segar menuntut pelaku usaha memiliki keunggulan kompetitif dalam hal efisiensi operasional, konsistensi rasa, dan kenyamanan tempat.",
+    "concept": "Kopi Susu Senja menghadirkan kedai kopi berkonsep cozy modern dengan menyediakan area dine-in ber-AC, stopkontak memadai, Wi-Fi berkecepatan tinggi, serta menu kopi dan non-kopi berkualitas tinggi dengan harga ramah kantong mahasiswa."
+  },
+  "marketing": {
+    "location": "Jl. Tanjung Duren Raya No. 45, Grogol Petamburan, Jakarta Barat (Dekat Kampus UKRIDA & Kawasan Kos Mahasiswa)",
+    "segmentation": {
+      "demographic": "Mahasiswa, pelajar, dan pekerja muda usia 17-35 tahun dari kelas sosial menengah ke bawah hingga menengah ke atas yang mencari minuman berkualitas dan tempat berkumpul yang nyaman.",
+      "geographic": "Wilayah Tanjung Duren dan sekitarnya di Jakarta Barat yang memiliki konsentrasi kos-kosan dan perguruan tinggi yang padat.",
+      "behavioral": "Konsumen yang menyukai kopi susu kekinian, membutuhkan tempat untuk mengerjakan tugas/WFH, dan aktif di media sosial."
+    },
+    "differentiation": {
+      "taste": "Menggunakan 100% biji kopi arabika-robusta pilihan dari petani lokal dengan racikan sirup gula aren organik dan susu segar berkualitas tinggi.",
+      "location": "Lokasi sangat strategis di jalur utama mahasiswa, dilengkapi area dine-in ber-AC, toilet bersih, dan area parkir motor yang aman.",
+      "service": "Pelayanan ramah berstandar barista profesional, open bar brewing agar konsumen melihat langsung higienitas pembuatan, dan kemasan take-away anti-tumpah.",
+      "size": "Pilihan ukuran gelas fleksibel: Regular (12 oz), Large (16 oz), dan Botol Literan (1 Liter) untuk dinikmati bersama keluarga atau teman kos.",
+      "presentation": "Penyajian modern dengan cup transparan berlogo estetik, sleeve cup ramah lingkungan, dan menu platter untuk dine-in."
+    },
+    "price_range": "Rp 15.000 - Rp 35.000"
+  },
+  "management": {
+    "organization_roles": [
+      {
+        "title": "Manajer Kedai",
+        "job_desc": "Mengawasi operasional harian, menyusun laporan keuangan bulanan, mengontrol inventory, dan memastikan SOP pelayanan barista terlaksana dengan baik."
+      },
+      {
+        "title": "Head Barista & Cook",
+        "job_desc": "Bertanggung jawab atas kalibrasi mesin kopi, peracikan minuman, pembuatan camilan ringan, dan menjaga konsistensi mutu rasa produk."
+      },
+      {
+        "title": "Barista & Server",
+        "job_desc": "Menerima pesanan dengan ramah, meracik minuman sesuai pesanan, mengantar hidangan ke meja pelanggan dine-in, dan menjaga kebersihan bar."
+      },
+      {
+        "title": "Kasir",
+        "job_desc": "Melayani pembayaran tunai maupun cashless (QRIS/EDC), merekonsiliasi penerimaan kas harian, dan membukukan transaksi penjualan ke POS system."
+      },
+      {
+        "title": "Stock & Inventory Man",
+        "job_desc": "Mengelola ketersediaan biji kopi, susu, sirup, dan kemasan, mengecek tanggal kadaluarsa, serta melakukan order bahan baku ke supplier."
+      },
+      {
+        "title": "Delivery & Cleaning Staff",
+        "job_desc": "Mengantarkan pesanan delivery sekitar area kampus, menjaga kebersihan area dine-in, toilet, dan fasilitas toko secara berkala."
+      }
+    ]
+  },
+  "operations": {
+    "facility_status": "Sewa Ruko 1 Lantai (Kontrak 5 Tahun, Rp 40.000.000/tahun)",
+    "rooms": [
+      "Dining Room ber-AC dengan 8 meja dan 32 kursi, Wi-Fi 100 Mbps, TV, dan stopkontak di setiap meja",
+      "Bar & Production Area dengan konsep open-bar transparan",
+      "Cashier Counter terintegrasi dengan mesin POS touchscreen",
+      "Warehouse khusus penyimpanan biji kopi, susu, sirup, dan cup packaging",
+      "Staff Room / Changing Room untuk tempat istirahat barista",
+      "Toilet higienis untuk pengunjung dan staf",
+      "Area Parkir khusus kendaraan roda dua"
+    ]
+  },
+  "financial_assumptions": {
+    "operating_days_per_month": 25,
+    "months_per_year": 12,
+    "depreciation_rate": 0.20,
+    "discount_rate": 0.20,
+    "target_payback_years": 3.0,
+    "target_profitability_index": 1.2
+  },
+  "products": [
+    {
+      "name": "Kopi Susu Senja Regular",
+      "price_year_1": 18000,
+      "daily_sales": [20, 25, 30, 35, 40],
+      "price_increase_rates": [0.0, 0.10, 0.12, 0.13, 0.15]
+    },
+    {
+      "name": "Kopi Susu Senja Large",
+      "price_year_1": 24000,
+      "daily_sales": [15, 18, 22, 26, 30],
+      "price_increase_rates": [0.0, 0.10, 0.12, 0.13, 0.15]
+    },
+    {
+      "name": "Americano Dingin",
+      "price_year_1": 15000,
+      "daily_sales": [12, 15, 18, 20, 24],
+      "price_increase_rates": [0.0, 0.10, 0.12, 0.13, 0.15]
+    },
+    {
+      "name": "Caramel Macchiato",
+      "price_year_1": 28000,
+      "daily_sales": [10, 13, 16, 18, 22],
+      "price_increase_rates": [0.0, 0.10, 0.12, 0.13, 0.15]
+    },
+    {
+      "name": "Matcha Latte Creamy",
+      "price_year_1": 25000,
+      "daily_sales": [12, 15, 18, 22, 25],
+      "price_increase_rates": [0.0, 0.10, 0.12, 0.13, 0.15]
+    },
+    {
+      "name": "Croissant Butter",
+      "price_year_1": 22000,
+      "daily_sales": [14, 18, 22, 25, 28],
+      "price_increase_rates": [0.0, 0.10, 0.12, 0.13, 0.15]
+    }
+  ],
+  "capex_items": [
+    {"name": "Meja Kayu Minimalis", "qty": 8, "unit_price": 1000000},
+    {"name": "Kursi Kayu & Sandaran", "qty": 32, "unit_price": 250000},
+    {"name": "Bar Counter & Display Etalase", "qty": 1, "unit_price": 12000000},
+    {"name": "Mesin Espresso Komersial 2 Group", "qty": 1, "unit_price": 35000000},
+    {"name": "Coffee Grinder Otomatis", "qty": 2, "unit_price": 4500000},
+    {"name": "Kulkas Chiller / Undercounter", "qty": 1, "unit_price": 8500000},
+    {"name": "Ice Maker Machine", "qty": 1, "unit_price": 7500000},
+    {"name": "Blender Komersial Heavy Duty", "qty": 2, "unit_price": 1800000},
+    {"name": "Microwave & Toaster", "qty": 1, "unit_price": 2200000},
+    {"name": "Peralatan Bar & Glassware", "qty": 1, "unit_price": 4500000},
+    {"name": "Mesin Kasir POS Touchscreen & Thermal Printer", "qty": 1, "unit_price": 3500000},
+    {"name": "AC Inverter 1.5 PK", "qty": 2, "unit_price": 5000000},
+    {"name": "Sistem CCTV 4 Kamera", "qty": 1, "unit_price": 2500000},
+    {"name": "Audio Speaker System Toko", "qty": 1, "unit_price": 1800000},
+    {"name": "Smart TV 43 Inci", "qty": 1, "unit_price": 4000000},
+    {"name": "Motor Operasional & Delivery", "qty": 1, "unit_price": 19500000},
+    {"name": "Modem Wi-Fi & Instalasi Router", "qty": 1, "unit_price": 800000},
+    {"name": "Renovasi Interior & Pengecatan Ruko", "qty": 1, "unit_price": 18000000}
+  ],
+  "operational_costs": {
+    "rent_per_year": 40000000,
+    "amdal_initial": 450000,
+    "survey_initial": 800000,
+    "promosi_initial": 1500000,
+    "employees": [
+      {"role": "Manajer Kedai", "count": 1, "monthly_salary": 5500000, "raise_rate": [0.0, 0.10, 0.12, 0.13, 0.15]},
+      {"role": "Head Barista", "count": 1, "monthly_salary": 4800000, "raise_rate": [0.0, 0.10, 0.12, 0.13, 0.15]},
+      {"role": "Barista & Server", "count": 2, "monthly_salary": 4500000, "raise_rate": [0.0, 0.10, 0.12, 0.13, 0.15]},
+      {"role": "Kasir", "count": 1, "monthly_salary": 4500000, "raise_rate": [0.0, 0.10, 0.12, 0.13, 0.15]},
+      {"role": "Inventory & Delivery Staff", "count": 1, "monthly_salary": 4300000, "raise_rate": [0.0, 0.10, 0.12, 0.13, 0.15]}
+    ],
+    "raw_materials_monthly_base": 21500000,
+    "raw_materials_inflation_rates": [0.0, 0.12, 0.15, 0.18, 0.20],
+    "electricity_monthly_base": 2400000,
+    "electricity_inflation_rates": [0.0, 0.10, 0.12, 0.15, 0.18],
+    "water_monthly_base": 650000,
+    "water_inflation_rates": [0.0, 0.08, 0.10, 0.12, 0.15],
+    "internet_monthly_base": 550000,
+    "gas_monthly_base": 300000
+  }
+}

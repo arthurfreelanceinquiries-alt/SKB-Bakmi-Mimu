@@ -1,0 +1,576 @@
+{
+  "business_name": "Bakmi Mimu Carina Sayang",
+  "tagline": "Cita Rasa Bakmi Legendaris & Otentik Sejak 1999",
+  "commodity_type": "Kuliner Bakmi & Hidangan Khas",
+  "authors": [
+    {
+      "name": "Arthur Reezan",
+      "nim": "312023002"
+    },
+    {
+      "name": "Jennese Putra Alamsyah Sukadi",
+      "nim": "312023033"
+    },
+    {
+      "name": "Valendrik Dwiputra Wirawan",
+      "nim": "312023013"
+    },
+    {
+      "name": "Affandy",
+      "nim": "312023075"
+    },
+    {
+      "name": "Steven Putra Tjhin",
+      "nim": "312023015"
+    }
+  ],
+  "author": {
+    "name": "Kelompok SKB FEB UKRIDA",
+    "nim": "312023002 / 312023033 / 312023013 / 312023075 / 312023015",
+    "institution": "Universitas Kristen Krida Wacana",
+    "faculty": "Fakultas Ekonomi & Bisnis",
+    "program": "Program Studi Manajemen",
+    "year": "2024"
+  },
+  "background": {
+    "history": "Indonesia memiliki kekayaan kuliner mie yang sangat mengakar dalam tradisi masyarakat peranakan Tionghoa dan nusantara. Salah satu kedai bakmi legendaris di Jakarta Barat adalah Bakmi Mimu Carina Sayang. Perjalanan usaha ini berawal pada tahun 1999 saat pertama kali didirikan di kawasan Taman Aries, Meruya. Seiring perkembangan kawasan pemukiman, pada tahun 2016 kedai memutuskan untuk berpindah lokasi ke ruko perumahan di Duri Kosambi, Cengkareng. Berkat komitmen resep otentik turun-temurun, basis pelanggan setia di Duri Kosambi mulai terbentuk secara mantap sekitar tahun 2019, terutama dari kalangan keluarga pemukiman sekitar dan civitas sekolah.",
+    "opportunity": "Melihat tingginya loyalitas pelanggan yang terus meningkat dan kepadatan kunjungan pada jam sarapan hingga makan siang, manajemen melihat peluang ekspansi yang sangat potensial sekitar tahun 2027/2028, baik dalam bentuk mencari tempat baru yang lebih luas maupun membuka cabang baru di titik strategis Jakarta Barat guna menjangkau pangsa pasar yang lebih luas.",
+    "challenges": "Tantangan operasional mencakup pemeliharaan konsistensi mutu rasa masakan, fluktuasi harga bahan baku daging segar dan tepung terigu, keterbatasan kapasitas kursi pada jam sibuk, serta persaingan sesama kedai bakmi oriental di wilayah Jakarta Barat.",
+    "concept": "Konsep kedai Bakmi Mimu Carina Sayang mempertahankan keaslian kedai bakmi tradisional oriental yang bersahaja, bersih, dan higienis. Adonan mie selalu dibuat segar setiap minggu (fresh weekly batch) secara mandiri tanpa menggunakan bahan pengawet kimia. Kedai beroperasi dalam format ruko satu lantai dengan dapur terbuka (open kitchen) di bagian depan, sistem peracikan transparan, fasilitas pendingin kipas angin yang nyaman, serta pilihan racikan minyak mie yang dapat disesuaikan dengan selera pelanggan."
+  },
+  "marketing": {
+    "location": "Jl. Angsoka Hijau IV Blok E6 No. 17 Duri Kosambi, Cengkareng, Jakarta Barat 11750 (Lokasi tepat di depan Taman TK, SD, SMP Kalam Kudus)",
+    "segmentation": {
+      "demographic": "Masyarakat umum, keluarga pemukiman perumahan Duri Kosambi dan sekitarnya, siswa-siswi, guru, staf, serta orang tua murid Sekolah Kristen Kalam Kudus dari kelompok usia 7 hingga 65 tahun pada strata sosial ekonomi menengah ke bawah hingga menengah ke atas.",
+      "geographic": "Kawasan perumahan Duri Kosambi (Carina Sayang), Taman Semanan Indah, Kosambi Baru, Cengkareng, Puri Kembangan, hingga area perbatasan Jakarta Barat dan Tangerang.",
+      "behavioral": "Konsumen pecinta hidangan bakmi tradisional yang menghargai cita rasa autentik, tekstur mie kenyal segar buatan sendiri, aroma minyak racikan khas, kebersihan kedai, serta kepraktisan santap pagi dan makan siang."
+    },
+    "differentiation": {
+      "taste": "Kekenyalan mie buatan sendiri (fresh batch tiap minggu) tanpa pengawet dipadukan dengan 3 pilihan minyak mie racikan khas (minyak babi, minyak ayam, dan minyak sayur campur wijen), kuah kaldu rebusan tulang asli, serta pilihan topping murni: daging ayam putih gurih, babi cincang kecap, dan casiu madu panggang merah (tanpa olahan bebek maupun jamur). Dilengkapi saus botolan standar terpercaya (Cap Belibis dan Mangga Besar).",
+      "location": "Sangat strategis di Jl. Angsoka Hijau IV Blok E6 No. 17 Duri Kosambi, persis di depan gerbang dan taman TK, SD, SMP Kalam Kudus yang menghasilkan arus kunjungan alami yang stabil.",
+      "service": "Layanan cepat dan ramah dengan konsep open kitchen gerobak di bagian depan ruko, peracikan langsung terlihat higienis, serta kemasan takeaway aman untuk dibawa pulang maupun pesan-antar online.",
+      "size": "Variasi porsi yang sangat fleksibel untuk segala kebutuhan konsumen: Porsi Kecil (hemat/anak-anak Rp 27.000), Porsi Standar/Reguler (Rp 29.000 - Rp 39.000), dan Porsi Jumbo (+100% mie dari porsi standar Rp 49.000 - Rp 59.000).",
+      "presentation": "Penyajian mangkok keramik khas kedai bakmi oriental dengan taburan daun bawang segar, kuah kaldu bening terpisah, tongcai gurih, serta pilihan menu pelengkap swikiaw rebus, pangsit rebus, baso sapi/ikan kuah, pangsit goreng, dan baso goreng babi-udang."
+    },
+    "price_range": "Rp 24.000 - Rp 59.000 per porsi bakmi (Menu Pelengkap & Minuman Rp 1.000 s.d. Rp 15.000)",
+    "phone_wa": "0859 3984 7536",
+    "opening_hours": "07.30 - 13.30 WIB",
+    "delivery_services": "GoFood, GrabFood, Pesanan WhatsApp & Takeaway",
+    "promotion_strategy": "Tidak mengadakan promosi diskon/stamp card formal; murni mengandalkan reputasi lokal dan rekomendasi getok tular (word-of-mouth) dari pelanggan setia dan pembeli baru, didukung ulasan organik sukarela dari food influencer di media sosial (TikTok & Instagram)."
+  },
+  "management": {
+    "total_monthly_salary": 10000000,
+    "incentive_policy": "Tidak ada bonus insentif penjualan; kompensasi diberikan dalam bentuk gaji pokok bulanan tetap yang teratur.",
+    "ordering_system": "Sistem pemesanan masih manual menggunakan nota dan kertas pesanan fisik.",
+    "organization_roles": [
+      {
+        "title": "Koki Utama / Master Cook (1 Orang)",
+        "job_desc": "Bertanggung jawab atas peracikan adonan mie segar mingguan, pengolahan daging topping (ayam putih, babi kecap, casiu), peracikan 3 macam minyak mie (babi, ayam, sayur+wijen), perebusan kaldu, dan pematangan mie pada stasiun dandang open kitchen."
+      },
+      {
+        "title": "Asisten Koki & Pembuat Swikiaw / Pangsit (1 Orang)",
+        "job_desc": "Mempersiapkan isian daging homemade untuk swikiaw dan pangsit, memotong daun bawang dan sayur sawi, menggoreng baso goreng dan pangsit goreng, serta membantu plating dan penyajian mangkok kuah."
+      },
+      {
+        "title": "Kasir & Pramusaji / Pelayan (1 Orang)",
+        "job_desc": "Melayani pencatatan pesanan manual, mengantarkan hidangan dan minuman ke meja konsumen, menerima pembayaran tunai/QRIS, merekap pembukuan harian, serta menjaga kebersihan meja makan dan area dine-in."
+      }
+    ]
+  },
+  "operations": {
+    "facility_status": "Sewa Ruko 1 Lantai (Biaya Sewa sekitar Rp 20.000.000 per tahun)",
+    "dine_in_capacity": "Maksimal 22 orang (kapasitas padat)",
+    "layout_details": {
+      "front_area": "Gerobak etalase bakmi open kitchen, stasiun dandang rebus mie komersial, kompor gas, dan meja racik bumbu di teras depan ruko.",
+      "dining_area": "Ruang makan utama ruko 1 lantai dengan tata letak efisien: 4 meja pendek kayu (kapasitas 16 kursi) dan meja panjang bar menempel dinding (kapasitas 6 kursi), total 22 kursi terpasang (dari total 37 kursi stok).",
+      "comfort_facilities": "Dilengkapi 6 unit kipas angin dinding/plafon yang tersebar merata untuk sirkulasi udara sejuk alami (non-AC), stopkontak listrik, dan tanpa fasilitas Wi-Fi untuk mempertahankan turnover meja yang sehat.",
+      "back_area": "Dapur persiapan bahan mentah belakang, kulkas pendingin, freezer penyimpanan daging beku, wastafel cuci mangkok dan alat makan, serta toilet pengunjung."
+    },
+    "rooms": [
+      "Area Dapur Terbuka (Open Kitchen) dengan Gerobak Etalase di Bagian Depan Ruko",
+      "Area Dine-in Ruko 1 Lantai Berkapasitas Maksimal 22 Kursi (4 Meja Pendek + Meja Panjang Dinding)",
+      "Fasilitas Pendingin 6 Unit Kipas Angin Dinding (Bebas Gerah Alami, Tanpa AC)",
+      "Area Kasir Pemesanan Manual & Showcase Minuman Botol Dingin",
+      "Dapur Persiapan Belakang & Pencucian Alat Makan",
+      "Ruang Penyimpanan Chiller (Kulkas 1 Unit) & Pembeku Daging (Freezer 1 Unit)",
+      "Fasilitas Toilet Bersih & Wastafel",
+      "Area Parkir Motor di Depan Ruko"
+    ]
+  },
+  "financial_assumptions": {
+    "operating_days_per_month": 25,
+    "months_per_year": 12,
+    "depreciation_rate": 0.2,
+    "discount_rate": 0.2,
+    "target_payback_years": 3.0,
+    "target_profitability_index": 1.2
+  },
+  "products": [
+    {
+      "name": "Bakmi Ayam / Babi / Campur",
+      "price_year_1": 29000,
+      "daily_sales": [22, 26, 30, 35, 40],
+      "price_increase_rates": [0.0, 0.1, 0.12, 0.13, 0.15]
+    },
+    {
+      "name": "Bakmi Casiu (Spesial Chasiu)",
+      "price_year_1": 31000,
+      "daily_sales": [18, 22, 25, 29, 33],
+      "price_increase_rates": [0.0, 0.1, 0.12, 0.13, 0.15]
+    },
+    {
+      "name": "Bakmi MIMU Special R (3 Isi)",
+      "price_year_1": 39000,
+      "daily_sales": [15, 18, 22, 26, 30],
+      "price_increase_rates": [0.0, 0.1, 0.12, 0.13, 0.15]
+    },
+    {
+      "name": "Bakmi MIMU Special L (3 Isi Besar)",
+      "price_year_1": 59000,
+      "daily_sales": [8, 10, 12, 15, 18],
+      "price_increase_rates": [0.0, 0.1, 0.12, 0.13, 0.15]
+    },
+    {
+      "name": "Bakmi Pangsit (Ayam / Babi / Campur)",
+      "price_year_1": 38000,
+      "daily_sales": [12, 15, 18, 21, 25],
+      "price_increase_rates": [0.0, 0.1, 0.12, 0.13, 0.15]
+    },
+    {
+      "name": "Bakmi Swikiauw (Ayam / Babi / Campur)",
+      "price_year_1": 40000,
+      "daily_sales": [10, 12, 15, 18, 22],
+      "price_increase_rates": [0.0, 0.1, 0.12, 0.13, 0.15]
+    },
+    {
+      "name": "Bakmi Karet Ayam / Babi / Campur",
+      "price_year_1": 29000,
+      "daily_sales": [12, 15, 18, 21, 25],
+      "price_increase_rates": [0.0, 0.1, 0.12, 0.13, 0.15]
+    },
+    {
+      "name": "Nasi Tim Autentik",
+      "price_year_1": 29000,
+      "daily_sales": [8, 10, 12, 14, 16],
+      "price_increase_rates": [0.0, 0.1, 0.12, 0.13, 0.15]
+    },
+    {
+      "name": "Swikiauw Kuah (5 buah)",
+      "price_year_1": 27500,
+      "daily_sales": [10, 12, 15, 18, 20],
+      "price_increase_rates": [0.0, 0.1, 0.12, 0.13, 0.15]
+    },
+    {
+      "name": "Pangsit Kuah (5 buah)",
+      "price_year_1": 22500,
+      "daily_sales": [10, 12, 15, 18, 20],
+      "price_increase_rates": [0.0, 0.1, 0.12, 0.13, 0.15]
+    },
+    {
+      "name": "Bakso Goreng / Pangsit Goreng",
+      "price_year_1": 8000,
+      "daily_sales": [25, 30, 35, 40, 45],
+      "price_increase_rates": [0.0, 0.1, 0.12, 0.13, 0.15]
+    },
+    {
+      "name": "Badak Sarsaparilla (+ Es)",
+      "price_year_1": 14000,
+      "daily_sales": [10, 12, 15, 18, 20],
+      "price_increase_rates": [0.0, 0.1, 0.12, 0.13, 0.15]
+    },
+    {
+      "name": "Liang Teh Herbal / Susu Kacang",
+      "price_year_1": 12000,
+      "daily_sales": [20, 24, 28, 32, 36],
+      "price_increase_rates": [0.0, 0.1, 0.12, 0.13, 0.15]
+    },
+    {
+      "name": "Es Teh Manis",
+      "price_year_1": 5000,
+      "daily_sales": [35, 40, 45, 50, 55],
+      "price_increase_rates": [0.0, 0.1, 0.12, 0.13, 0.15]
+    }
+  ],
+  "capex_items": [
+    {
+      "name": "Gerobak + Etalase Bakmi Stainless Kaca",
+      "qty": 1,
+      "unit_price": 8000000
+    },
+    {
+      "name": "Meja Pendek Kayu Makan",
+      "qty": 4,
+      "unit_price": 700000
+    },
+    {
+      "name": "Meja Panjang Dinding (Bar Seating)",
+      "qty": 1,
+      "unit_price": 1800000
+    },
+    {
+      "name": "Kursi Makan Kedai (Stok)",
+      "qty": 37,
+      "unit_price": 100000
+    },
+    {
+      "name": "Kipas Angin Dinding / Plafon",
+      "qty": 6,
+      "unit_price": 150000
+    },
+    {
+      "name": "Kulkas Pendingin Minuman & Sayur",
+      "qty": 1,
+      "unit_price": 3000000
+    },
+    {
+      "name": "Chest Freezer Pembeku Daging",
+      "qty": 1,
+      "unit_price": 3500000
+    },
+    {
+      "name": "Dandang Rebus Mie & Kompor Gas Mawar",
+      "qty": 1,
+      "unit_price": 4500000
+    },
+    {
+      "name": "Panci Masak & Peralatan Dapur (Stok)",
+      "qty": 1,
+      "unit_price": 3500000
+    },
+    {
+      "name": "Mangkok Keramik & Alat Makan (Stok)",
+      "qty": 1,
+      "unit_price": 2500000
+    },
+    {
+      "name": "Renovasi Ruko & Instalasi Listrik/Air",
+      "qty": 1,
+      "unit_price": 5000000
+    },
+    {
+      "name": "Plang Nama Kedai & Signboard",
+      "qty": 1,
+      "unit_price": 1500000
+    }
+  ],
+  "operational_costs": {
+    "rent_per_year": 20000000,
+    "amdal_initial": 300000,
+    "survey_initial": 500000,
+    "promosi_initial": 500000,
+    "employees": [
+      {
+        "role": "Koki Utama / Master Chef",
+        "count": 1,
+        "monthly_salary": 3800000,
+        "raise_rate": [0.0, 0.1, 0.12, 0.13, 0.15]
+      },
+      {
+        "role": "Asisten Koki & Swikiaw",
+        "count": 1,
+        "monthly_salary": 3200000,
+        "raise_rate": [0.0, 0.1, 0.12, 0.13, 0.15]
+      },
+      {
+        "role": "Kasir & Pramusaji",
+        "count": 1,
+        "monthly_salary": 3000000,
+        "raise_rate": [0.0, 0.1, 0.12, 0.13, 0.15]
+      }
+    ],
+    "raw_materials_monthly_base": 34500000,
+    "raw_materials_inflation_rates": [0.0, 0.12, 0.15, 0.18, 0.2],
+    "electricity_monthly_base": 850000,
+    "electricity_inflation_rates": [0.0, 0.1, 0.12, 0.15, 0.18],
+    "water_monthly_base": 350000,
+    "water_inflation_rates": [0.0, 0.08, 0.1, 0.12, 0.15],
+    "gas_monthly_base": 900000
+  },
+  "menu_catalog": [
+    {
+      "category": "MENU UTAMA (AYAM PUTIH / BABI KECAP / CASIU / CAMPUR)",
+      "items": [
+        {
+          "name": "Bakmi Ayam Putih / Babi Kecap / Campur",
+          "price": 29000,
+          "desc": "Mie keriting kenyal dengan pilihan minyak babi, ayam, atau sayur+wijen, topping ayam putih gurih, babi cincang kecap, atau campur"
+        },
+        {
+          "name": "Bihun Ayam Putih / Babi Kecap / Campur",
+          "price": 29000,
+          "desc": "Bihun lembut kuah kaldu rempah dengan daging pilihan"
+        },
+        {
+          "name": "Kwetiauw Ayam Putih / Babi Kecap / Campur",
+          "price": 29000,
+          "desc": "Kwetiauw kenyal gurih topping ayam putih, babi kecap, atau campur"
+        },
+        {
+          "name": "Bakmi Daging Casiu (Spesial Chasiu)",
+          "price": 31000,
+          "desc": "Bakmi keriting kenyal topping irisan babi casiu panggang madu merah gurih"
+        },
+        {
+          "name": "Bakmi MIMU Special R (3 Isi)",
+          "price": 39000,
+          "desc": "Porsi reguler dengan 3 topping lengkap: ayam putih, babi kecap, dan babi casiu madu"
+        },
+        {
+          "name": "Bakmi MIMU Special L (3 Isi Jumbo)",
+          "price": 59000,
+          "desc": "Porsi jumbo (+100% mie dari standar) dengan 3 isi melimpah: ayam putih, babi kecap, dan casiu"
+        }
+      ]
+    },
+    {
+      "category": "PORSI JUMBO & PORSI KECIL",
+      "items": [
+        {
+          "name": "Porsi Jumbo Daging Campur (+100% Mie)",
+          "price": 49000,
+          "desc": "Porsi jumbo ekstra kenyang 2x mie porsi reguler topping ayam putih + babi kecap"
+        },
+        {
+          "name": "Porsi Jumbo Casiu (+100% Mie)",
+          "price": 54000,
+          "desc": "Porsi jumbo 2x lipat mie standar dengan ekstra irisan babi casiu madu gurih"
+        },
+        {
+          "name": "Porsi Kecil Ayam Putih / Babi Kecap / Campur",
+          "price": 27000,
+          "desc": "Porsi hemat pas untuk sarapan ringan atau porsi anak-anak"
+        },
+        {
+          "name": "Porsi Kecil Daging Casiu",
+          "price": 29000,
+          "desc": "Porsi hemat bakmi topping irisan babi casiu madu"
+        }
+      ]
+    },
+    {
+      "category": "MENU PANGSIT (AYAM PUTIH / BABI KECAP / CASIU)",
+      "items": [
+        {
+          "name": "Bakmi Pangsit Ayam / Babi / Campur",
+          "price": 38000,
+          "desc": "Bakmi gurih disajikan bersama pangsit rebus kuah kaldu (isi olahan babi gurih)"
+        },
+        {
+          "name": "Bihun Pangsit Ayam / Babi / Campur",
+          "price": 38000,
+          "desc": "Bihun lembut disajikan dengan pangsit rebus kuah kaldu"
+        },
+        {
+          "name": "Kwetiauw Pangsit Ayam / Babi / Campur",
+          "price": 38000,
+          "desc": "Kwetiauw gurih disajikan dengan pangsit rebus kuah kaldu"
+        },
+        {
+          "name": "Porsi Kecil Bakmi Pangsit",
+          "price": 36000,
+          "desc": "Porsi hemat bakmi pangsit kuah"
+        }
+      ]
+    },
+    {
+      "category": "MENU BAKSO SAPI & BAKSO IKAN",
+      "items": [
+        {
+          "name": "Bakmi Bakso Sapi Ayam / Babi / Campur",
+          "price": 38000,
+          "desc": "Bakmi lezat disajikan dengan bakso sapi kenyal kuah kaldu"
+        },
+        {
+          "name": "Bakmi Bakso Ikan Ayam / Babi / Campur",
+          "price": 38000,
+          "desc": "Bakmi lezat disajikan dengan bakso ikan gurih kuah kaldu bening"
+        },
+        {
+          "name": "Bihun Bakso Sapi / Ikan",
+          "price": 38000,
+          "desc": "Bihun lembut dengan bakso kuah kaldu bening"
+        },
+        {
+          "name": "Kwetiauw Bakso Sapi / Ikan",
+          "price": 38000,
+          "desc": "Kwetiauw gurih dengan bakso kuah kaldu bening"
+        },
+        {
+          "name": "Porsi Kecil Bakmi Bakso",
+          "price": 36000,
+          "desc": "Porsi hemat bakmi bakso kuah"
+        }
+      ]
+    },
+    {
+      "category": "MENU SWIKIAW (HOMEMADE UDANG & BABI)",
+      "items": [
+        {
+          "name": "Bakmi Swikiaw Ayam / Babi / Campur",
+          "price": 40000,
+          "desc": "Bakmi topping daging dipadu swikiaw rebus padat isian udang dan babi segar"
+        },
+        {
+          "name": "Bihun Swikiaw Ayam / Babi / Campur",
+          "price": 40000,
+          "desc": "Bihun kuah dengan swikiaw rebus udang-babi homemade"
+        },
+        {
+          "name": "Kwetiauw Swikiaw Ayam / Babi / Campur",
+          "price": 40000,
+          "desc": "Kwetiauw gurih dengan swikiaw rebus udang-babi homemade"
+        },
+        {
+          "name": "Porsi Kecil Bakmi Swikiaw",
+          "price": 38000,
+          "desc": "Porsi hemat bakmi swikiaw"
+        }
+      ]
+    },
+    {
+      "category": "NASI TIM & BAKMI KARET",
+      "items": [
+        {
+          "name": "Nasi Tim Autentik",
+          "price": 29000,
+          "desc": "Nasi tim gurih lembut dengan topping daging ayam dan babi cincang khas"
+        },
+        {
+          "name": "Bakmi Karet Ayam / Babi / Campur",
+          "price": 29000,
+          "desc": "Tekstur mie karet tebal dan sangat kenyal gurih"
+        },
+        {
+          "name": "Bakmi Karet Casiu",
+          "price": 31000,
+          "desc": "Bakmi karet tebal kenyal dengan topping irisan babi casiu madu"
+        },
+        {
+          "name": "Bakmi Karet Porsi Jumbo Campur",
+          "price": 49000,
+          "desc": "Bakmi karet porsi jumbo kenyang topping ayam putih dan babi kecap"
+        },
+        {
+          "name": "Bakmi Karet Porsi Jumbo Casiu",
+          "price": 54000,
+          "desc": "Bakmi karet porsi jumbo dengan topping melimpah babi casiu madu"
+        }
+      ]
+    },
+    {
+      "category": "PORSI KUAH & GORENGAN (PELENGKAP)",
+      "items": [
+        {
+          "name": "Pangsit Rebus Kuah (5 pcs)",
+          "price": 22500,
+          "desc": "Semangkuk pangsit rebus isi olahan daging gurih (@Rp 4.500/pcs) dalam kuah kaldu hangat"
+        },
+        {
+          "name": "Swikiaw Rebus Kuah (5 pcs)",
+          "price": 27500,
+          "desc": "Semangkuk swikiaw rebus padat isian udang dan babi cincang (@Rp 5.500/pcs)"
+        },
+        {
+          "name": "Baso Sapi Kuah (5 pcs)",
+          "price": 22500,
+          "desc": "Semangkuk baso sapi kenyal kuah kaldu gurih bening (@Rp 4.500/pcs, sama dengan harga pangsit)"
+        },
+        {
+          "name": "Baso Ikan Kuah (5 pcs)",
+          "price": 22500,
+          "desc": "Semangkuk baso ikan lembut gurih (@Rp 4.500/pcs, sama persis dengan harga pangsit rebus)"
+        },
+        {
+          "name": "Pangsit Goreng (Per Pcs)",
+          "price": 5000,
+          "desc": "Pangsit goreng renyah garing per buah disajikan dengan cocolan saus nikmat"
+        },
+        {
+          "name": "Baso Goreng Babi + Udang (Per Pcs)",
+          "price": 8000,
+          "desc": "Baso goreng garing gurih padat olahan daging babi dan udang segar per buah"
+        }
+      ]
+    },
+    {
+      "category": "EXTRA TOPPING DAGING & SAUS MEJA",
+      "items": [
+        {
+          "name": "Extra Daging Casiu",
+          "price": 25000,
+          "desc": "Tambahan sepiring irisan daging babi casiu madu merah panggang"
+        },
+        {
+          "name": "Extra Daging Ayam Putih / Babi Kecap",
+          "price": 19000,
+          "desc": "Tambahan topping daging ayam rebus gurih atau babi cincang kecap"
+        },
+        {
+          "name": "Saus Meja Standar Botolan",
+          "price": 0,
+          "desc": "Saus sambal Cap Belibis dan Sambal Mangga Besar standar meja kedai"
+        }
+      ]
+    },
+    {
+      "category": "MINUMAN SEGAR TRADISIONAL (RANGE RP 1.000 - RP 15.000)",
+      "items": [
+        {
+          "name": "Badak Sarsaparilla (Botol)",
+          "price": 12000,
+          "desc": "Minuman soda sarsaparilla legendaris asli Siantar dalam kemasan botol"
+        },
+        {
+          "name": "Badak Sarsaparilla + Es Batu",
+          "price": 14000,
+          "desc": "Badak sarsaparilla dingin disajikan dengan gelas es batu kristal segar"
+        },
+        {
+          "name": "Susu Kacang Homemade",
+          "price": 12000,
+          "desc": "Susu sari kedelai segar kental gurih manis alami buatan sendiri"
+        },
+        {
+          "name": "Liang Teh Herbal",
+          "price": 12000,
+          "desc": "Minuman liang teh herbal pereda panas dalam racikan khas oriental"
+        },
+        {
+          "name": "Aqua Botol 600ml",
+          "price": 6000,
+          "desc": "Air mineral higienis botol 600ml"
+        },
+        {
+          "name": "Teh Botol Sosro",
+          "price": 6000,
+          "desc": "Teh melati manis dalam kemasan botol praktis"
+        },
+        {
+          "name": "Teh Pucuk Harum",
+          "price": 6000,
+          "desc": "Teh pucuk melati dingin dalam botol"
+        },
+        {
+          "name": "Es Teh Manis",
+          "price": 5000,
+          "desc": "Teh manis dingin menyegarkan"
+        },
+        {
+          "name": "Teh Manis Hangat",
+          "price": 4000,
+          "desc": "Teh manis seduh hangat"
+        },
+        {
+          "name": "Es Teh Tawar",
+          "price": 3000,
+          "desc": "Teh tawar seduh dingin dengan es batu"
+        },
+        {
+          "name": "Teh Tawar Hangat / Air Putih",
+          "price": 1000,
+          "desc": "Secangkir teh tawar hangat atau air putih"
+        }
+      ]
+    }
+  ]
+}
